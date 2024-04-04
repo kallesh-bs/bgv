@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BiCloudUpload } from "react-icons/bi";
 import { GoVerified } from "react-icons/go";
@@ -19,30 +19,34 @@ const EducationCheck = () => {
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setIsOpen("");
-    if (option === "Rejected") {
+  };
+
+  useEffect(() => {
+    if (selectedOption === 'Select') {
+      setColorChange("bg-[rgb(222,222,222)]");
+    } else if (selectedOption === "Rejected") {
       setColorChange("bg-[rgb(255,1,1)]");
       setIconChange(false);
     } else {
       setColorChange("bg-[#1A8718]");
       setIconChange(true);
-
     }
-  };
+  }, [selectedOption]);
 
   return (
-    <div className="w-[100%] h-[65vh] pb-7  mt-5 overflow-x-scroll">
+    <div className="w-[100%] h-[65vh] pb-7  mt-5 overflow-x-scroll no-scrollbar">
       <div className="w-[100%] h-[20vh] ">
         <div className="w-[100%] h-[55px] flex ">
-          <div className="xl:w-[80%] lg:w-[65%] md:w-[45%] text-2xl ">
+          <div className="xl:w-[70%] lg:w-[65%] md:w-[45%] text-2xl flex items-center ">
             <h1 >{t("10th")}</h1>
           </div>
-          <div className="xl:w-[20%] lg:w-[35%] md:w-[55%] h-[55px] flex gap-3 text-lg">
-            <div className="w-[119px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"> <h1>{t("Insufficient")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t( "reject")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t( "verify")}</h1></div>
+          <div className="w-[30%] h-[55px] flex items-center xl:gap-5  pl-3  text-lg">
+            <button className="w-[100px] h-[35px] flex justify-center items-center p-2
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px] "> <h1>{t("Insufficient")}</h1></button>
+            <button className="w-[80px] h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px] p-2"><h1>{t("reject")}</h1></button>
+            <button className="w-[81px] h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px] p-2"><h1>{t("verify")}</h1></button>
           </div>
         </div>
         <div className="  w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0]
@@ -60,7 +64,8 @@ const EducationCheck = () => {
             <input type='file' multiple accept='.csv, .xlsx' hidden />
           </div>
         </div>
-        <div className="w-full h-[40px] flex border">
+      <div className="w-full h-[40px] overflow-x-auto no-scrollbar">
+      <div className="w-full h-[40px] flex border">
           <div className="w-[90%] flex items-center ">
             {t(" Document.Pdf")}
           </div>
@@ -69,12 +74,13 @@ const EducationCheck = () => {
           </div>
         </div>
       </div>
+      </div>
       <div className="w-[100%] h-[20vh] mt-3">
         <div className="w-[100%] h-[55px] flex ">
           <div className="xl:w-[80%] lg:w-[70%] md:w-[60%] flex  items-center text-2xl ">
             <h1 >{t("12th")}</h1>
           </div>
-          <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex  justify-center items-center text-lg">
+          <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px]  flex  justify-center items-center text-lg">
             <div className="relative">
               <div
                 className={`flex items-center  w-[200px]  md:w-[150px] 
@@ -111,7 +117,7 @@ const EducationCheck = () => {
             </div>
           </div>
         </div>
-        <div className="  w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0]
+        <div className="  w-[100%] h-[100px]  p-5 border-dashed border-2 border-[#E2E8F0]
                 flex justify-center items-center">
           <div className="h-15 w-[250px]">
             <button className="h-[40px] w-[40px] ml-[104px]">
@@ -126,7 +132,8 @@ const EducationCheck = () => {
             <input type='file' multiple accept='.csv, .xlsx' hidden />
           </div>
         </div>
-        <div className="w-full h-[40px] flex border">
+        <div className="w-full h-[40px] overflow-x-auto no-scrollbar">
+        <div className="w-full h-[40px]  flex border">
           <div className="w-[90%] flex items-center ">
             {t("Document.Pdf")}
           </div>
@@ -134,6 +141,8 @@ const EducationCheck = () => {
             <RxCross2 />
           </div>
         </div>
+        </div>
+        
       </div>
       <div className="w-[100%] h-[20vh]  mt-3">
         <div className="w-[100%] h-[55px] md:h-[100px] flex ">
@@ -191,6 +200,7 @@ const EducationCheck = () => {
             <input type='file' multiple accept='.csv, .xlsx' hidden />
           </div>
         </div>
+        <div className="w-full h-[40px] overflow-x-auto no-scrollbar">
         <div className="w-full h-[40px] flex border">
           <div className="w-[90%] flex items-center ">
             {t("Document.Pdf")}
@@ -199,6 +209,8 @@ const EducationCheck = () => {
             <RxCross2 />
           </div>
         </div>
+        </div>
+       
       </div>
       <div className="w-[100%] h-[20vh] mt-3 md:mt-12">
         <div className="w-[100%] h-[55px] flex ">
@@ -256,6 +268,7 @@ const EducationCheck = () => {
             <input type='file' multiple accept='.csv, .xlsx' hidden />
           </div>
         </div>
+        <div className="w-full h-[40px] overflow-x-auto no-scrollbar">
         <div className="w-full h-[40px] flex border">
           <div className="w-[90%] flex items-center ">
             {t("Document.Pdf")}
@@ -263,6 +276,7 @@ const EducationCheck = () => {
           <div className="w-[10%] h-[40px] flex justify-end items-center text-2xl">
             <RxCross2 />
           </div>
+        </div>
         </div>
       </div>
       <div className="w-[100%] h-[20vh] mt-3">
@@ -321,6 +335,7 @@ const EducationCheck = () => {
             <input type='file' multiple accept='.csv, .xlsx' hidden />
           </div>
         </div>
+        <div className="w-full h-[40px] overflow-x-auto no-scrollbar">
         <div className="w-full h-[40px] flex border">
           <div className="w-[90%] flex items-center ">
             {t("Document.Pdf")}
@@ -328,6 +343,7 @@ const EducationCheck = () => {
           <div className="w-[10%] h-[40px] flex justify-end items-center text-2xl">
             <RxCross2 />
           </div>
+        </div>
         </div>
       </div>
     </div>

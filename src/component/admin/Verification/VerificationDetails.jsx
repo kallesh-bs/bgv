@@ -20,7 +20,7 @@ const VerficationDetails = () => {
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
-  console.log('optionTab', optionTab);
+ 
   const handleOptionClick = (value) => {
     setOptionTab(value);
   };
