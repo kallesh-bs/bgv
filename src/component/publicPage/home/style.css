@@ -1,0 +1,28 @@
+/* Add perspective for 3D effect */
+.perspective {
+  perspective: 1000px;
+  transition: 3s ease-in;
+}
+
+/* Flip the card on hover */
+.group:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Hide the back face of the card by default */
+
+.flip-card-back {
+  backface-visibility: hidden;
+}
+
+.group:hover .flip-card-back img {
+  transform: rotateY(180deg);
+}
+
+.group:hover .flip-card-back p {
+  transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+  transition: transform 1s ease;
+}
