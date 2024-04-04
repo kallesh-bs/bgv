@@ -32,16 +32,16 @@ const EmployementHistoryCheck = () => {
     <>
       <div className="w-[100%] h-[20vh] mt-5 ">
         <div className="w-[100%] h-[55px] flex ">
-          <div className="xl:w-[80%] lg:w-[65%] md:w-[45%]  text-2xl ">
+          <div className="xl:w-[70%] lg:w-[50%] md:w-[45%] text-2xl flex items-center ">
             <h1 >{t("relievingLetter")}</h1>
           </div>
-          <div className="xl:w-[20%] lg:w-[35%] md:w-[55%] h-[55px] flex gap-3 text-lg">
-            <div className="w-[119px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"> <h1>{t("insufficien")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t("reject")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t("verify")}</h1></div>
+          <div className="xl:w-[30%] lg:w-[50%] md:w-[55%] h-[55px] flex items-center   gap-5  xl:text-lg lg:text-lg md:text-sm">
+            <button className="xl:w-[119px] lg:w-[119px] h-[35px] flex justify-center items-center p-5
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)]  md:w-[65px] rounded-[25px] "> <h1>{t("Insufficient")}</h1></button>
+            <button className="xl:w-[81px] lg:w-[81px]  h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)]  md:w-[65px] rounded-[25px] p-5"><h1>{t("reject")}</h1></button>
+            <button className="xl:w-[81px] lg:w-[81px]  h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)]  md:w-[65px] rounded-[25px] p-5"><h1>{t("verify")}</h1></button>
           </div>
         </div>
         <div className="  w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0]
@@ -68,18 +68,18 @@ const EmployementHistoryCheck = () => {
           </div>
         </div>
       </div>
-      <div className="w-[100%] h-[20vh] ">
+      <div className="w-[100%] h-[20vh] mt-5 ">
         <div className="w-[100%] h-[55px] flex ">
-          <div className="xl:w-[80%] lg:w-[65%] md:w-[45%]   text-2xl ">
+          <div className="xl:w-[70%] lg:w-[50%] md:w-[45%] text-2xl flex items-center ">
             <h1 >{t("experienceLetter")}</h1>
           </div>
-          <div className="xl:w-[20%] lg:w-[35%] md:w-[55%]  h-[55px] flex gap-3 text-lg">
-            <div className="w-[119px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"> <h1>{t( "insufficien")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t( "reject")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t("verify")}</h1></div>
+          <div className="xl:w-[30%] lg:w-[50%] md:w-[55%] h-[55px] flex items-center  gap-5   xl:text-lg lg:text-lg md:text-sm  ">
+            <button className="xl:w-[119px] lg:w-[119px] h-[35px] flex justify-center items-center p-5
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] md:w-[65px]  rounded-[25px] "> <h1>{t("Insufficient")}</h1></button>
+            <button className="xl:w-[81px] lg:w-[81px] h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] md:w-[65px]  rounded-[25px] p-5"><h1>{t("reject")}</h1></button>
+            <button className="xl:w-[81px] lg:w-[81px] h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] md:w-[65px]  rounded-[25px] p-5"><h1>{t("verify")}</h1></button>
           </div>
         </div>
         <div className="  w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0]
@@ -89,7 +89,7 @@ const EmployementHistoryCheck = () => {
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
-              {t( "Drag_drop_files")}
+              {t("Drag_drop_files")}
               <span className="text-[#031B59] font-bold cursor-pointer">
                                 &nbsp; {t( "browse_files")}
               </span>
@@ -105,7 +105,7 @@ const EmployementHistoryCheck = () => {
             <RxCross2 />
           </div>
         </div>
-      </div>  <div className="w-[100%] h-[20vh] mt-3">
+      </div> <div className="w-[100%] h-[20vh] mt-3">
         <div className="w-[100%] h-[55px] flex ">
           <div className="xl:w-[80%] lg:w-[65%] md:w-[45%]  flex  items-center text-2xl ">
             <h1 >{t("bankStatement")}</h1>

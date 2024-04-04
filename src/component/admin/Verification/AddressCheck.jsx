@@ -23,16 +23,16 @@ const AddressCheck = () => {
     <>
       <div className="w-[100%] h-[20vh] mt-10">
         <div className="w-[100%] h-[55px]  flex ">
-          <div className="lg:w-[60%] md:w-[40%] xl:w-[75%] text-2xl ">
+          <div className="xl:w-[70%] lg:w-[50%] md:w-[45%] text-2xl flex items-center ">
             <h1 >{t("adhar")}</h1>
           </div>
-          <div className="w-[20%] h-[55px] flex lg:gap-8 md:gap-6 text-lg">
-            <div className="w-[119px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"> <h1>{t("Insufficient")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t("reject")}</h1></div>
-            <div className="w-[81px] h-[35px] flex justify-center items-center
-                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] rounded-[25px]"><h1>{t("verify")}</h1></div>
+          <div className="xl:w-[30%] lg:w-[50%] md:w-[55%] h-[55px] flex items-center   gap-5  xl:text-lg lg:text-lg md:text-sm">
+            <button className="xl:w-[119px] lg:w-[119px] h-[35px] flex justify-center items-center p-5
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] md:w-[65px]  rounded-[25px] "> <h1>{t("Insufficient")}</h1></button>
+            <button className="xl:w-[81px] lg:w-[81px]  h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] md:w-[65px]  rounded-[25px] p-5"><h1>{t("reject")}</h1></button>
+            <button className="xl:w-[81px] lg:w-[81px]  h-[35px] flex justify-center items-center
+                  bg-[rgb(242,246,255)] text-[rgb(3,27,89)] md:w-[65px]  rounded-[25px] p-5"><h1>{t("verify")}</h1></button>
           </div>
         </div>
         <div className="  w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0]
