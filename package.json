@@ -1,21 +1,52 @@
 {
-  "name": "deeporion-verification",
+  "name": "deep-orion",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@reduxjs/toolkit": "^1.9.5",
+    "actioncable": "^5.2.8-1",
+    "formik": "^2.4.2",
+    "i18next": "^23.7.7",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "lottie-react": "^2.4.0",
+    "moment": "^2.29.4",
+    "npm": "^10.2.4",
+    "papaparse": "^5.4.1",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^13.5.0",
+    "react-icons": "^4.10.1",
+    "react-paginate": "^8.2.0",
+    "react-quill": "^2.0.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scroll": "^1.8.9",
+    "recharts": "^2.10.3",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.2",
+    "resize-observer-polyfill": "^1.5.1",
+    "socket.io-client": "^4.7.2",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.27",
+    "sweetalert2-react-content": "^5.0.7",
+    "tailwindcss": "^3.3.2",
+    "use-resize-observer": "^9.1.0",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "lint": "eslint src src --fix --ext .js,.jsx",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +65,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "react-test-renderer": "^18.2.0",
+    "redux-mock-store": "^1.5.4",
+    "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": "v20.11.1",
+    "npm": "10.2.4"
   }
 }

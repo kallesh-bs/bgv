@@ -1,0 +1,1832 @@
+.pagination {
+  list-style: none;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 27px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  /* gap: 2rem; */
+}
+
+.pagination .page-num {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 28px;
+  font-weight: 400;
+  color: #a1a1a1;
+}
+
+.pagination .page-num:hover {
+  background-color: rgb(237, 237, 238);
+  color: white;
+}
+
+.pagination .active {
+  background-color: #031b59;
+  color: white;
+}
+.tooltip_shadow {
+  box-shadow: 0px 6px 15px -3px rgba(255, 255, 255, 0.15),
+    0px 0px 3px 0px #5b7ac9 inset;
+}
+
+.employee_number svg {
+  position: absolute !important;
+  left: 71px !important   ;
+  top: 40px !important ;
+}
+
+.icon_bg:hover svg g path {
+  fill: white !important;
+}
+
+.header_bg .logo svg path {
+  fill: #1d3673 !important;
+}
+
+.hoverEffect:hover svg path {
+  fill: #fff !important;
+}
+
+.hoverEffect:hover {
+  background-color: #031b59 !important;
+  color: #fff !important;
+}
+
+.hoverEffect:hover h2 {
+  color: #fff !important;
+}
+
+.icon_label {
+  text-wrap: nowrap;
+}
+
+.icon_label:hover {
+  color: #fe872e;
+  font-weight: 600;
+}
+
+.dropdown_items:hover .icon_label {
+  color: #fe872e;
+  font-weight: 600;
+  text-wrap: nowrap;
+}
+
+.dropdown_items:hover .icon_bg {
+  background-color: #f3f6fd;
+}
+
+.dropdown_items:hover .icon_bg svg g path,
+.dropdown_items:hover .icon_bg svg path {
+  fill: #fe872e !important;
+}
+
+.underline-small {
+  display: inline-block;
+  position: relative;
+}
+
+.underline-small::after {
+  content: "";
+  height: 2px;
+  width: 13px;
+  background: currentColor;
+  position: absolute;
+  left: 2px;
+  bottom: -1px;
+}
+
+#marquee__container {
+  background-color: transparent;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Manrope", sans-serif;
+}
+
+.marquee__title {
+  font-size: 3rem;
+  color: #5e5e5e;
+  margin: 2rem 0;
+  text-align: center;
+  padding: 1rem;
+}
+
+.marquee {
+  background-color: transparent;
+  color: lightgrey;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee__content {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: scrolling 10s linear infinite;
+}
+
+.marquee__content li {
+  width: fit-content;
+  height: 5.188rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.marquee__img {
+  height: 4.188rem;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee__img:hover {
+  transition: all 0.4s ease;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #e0e0e0;
+}
+
+/*TABLET VERSION*/
+@media screen and (max-width: 1100px) {
+  .marquee__title {
+    font-size: 2.5rem;
+    padding: 0rem;
+  }
+
+  .marquee__content li {
+    width: fit-content;
+  }
+
+  .marquee {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .marquee__img {
+    height: 4rem;
+  }
+}
+
+/*MOBILE VERSION*/
+@media screen and (max-width: 480px) {
+  .dropdown_items .icon_bg svg g path {
+    fill: #1d3673 !important;
+  }
+
+  .dropdown_items:hover .icon_label {
+    color: #fff;
+    font-weight: 600;
+    text-decoration-line: underline;
+  }
+
+  .dropdown_items:hover .icon_bg {
+    background-color: #031b59;
+  }
+
+  .marquee__img {
+    height: 4rem;
+  }
+
+  .marquee__content {
+    animation: scrolling 15s linear infinite;
+  }
+
+  .marquee__content li {
+    height: 4rem;
+  }
+
+  .marquee--invisible--mobile {
+    display: none !important;
+  }
+
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.service_sub_icon svg g path {
+  fill: #1d3673;
+}
+
+.background-animate {
+  background-image: linear-gradient(0deg, #d8e3ff, #031b59);
+  animation: animatedgradient normal 3s infinite;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-image: linear-gradient(0deg, #d8e3ff, #031b59);
+  }
+  10% {
+    background-image: linear-gradient(37deg, #d8e3ff, #031b59);
+  }
+  20% {
+    background-image: linear-gradient(72deg, #d8e3ff, #031b59);
+  }
+  30% {
+    background-image: linear-gradient(108deg, #d8e3ff, #031b59);
+  }
+  40% {
+    background-image: linear-gradient(144deg, #d8e3ff, #031b59);
+  }
+  50% {
+    background-image: linear-gradient(180deg, #d8e3ff, #031b59);
+  }
+  60% {
+    background-image: linear-gradient(206deg, #d8e3ff, #031b59);
+  }
+  70% {
+    background-image: linear-gradient(248deg, #d8e3ff, #031b59);
+  }
+  80% {
+    background-image: linear-gradient(278deg, #d8e3ff, #031b59);
+  }
+  90% {
+    background-image: linear-gradient(324deg, #d8e3ff, #031b59);
+  }
+  100% {
+    background-image: linear-gradient(360deg, #d8e3ff, #031b59);
+  }
+}
+
+/*   Company Card slide-in animation  */
+
+.scroll-trigger {
+  transform: translateX(-10rem);
+  opacity: 0;
+  transition: transform 3s ease, opacity 0.5s ease;
+}
+
+.scroll-trigger.animate {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: transform 3s ease, opacity 0.5s ease;
+}
+
+.scroll-trigger-right {
+  transform: translateX(10rem);
+  transition: transform 3s ease, opacity 0.5s ease;
+}
+
+.scroll-trigger-right.animate {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: transform 3s ease, opacity 0.5 ease;
+}
+
+@media screen and (max-width: 480px) {
+  .service-design-mob-box {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  .service_web_design {
+    position: static;
+    margin-left: 4rem;
+  }
+
+  .service-design-mob-box-img {
+    margin-top: 3rem;
+    width: 400px;
+    margin-left: 3rem;
+  }
+
+  .service-design-mob-boxes {
+    width: fit-content;
+  }
+
+  .service-design-mob-container {
+    height: 452px;
+  }
+
+  .service-design-mob-gradient-border {
+    width: 10.625rem;
+    height: 10.928rem;
+    font-size: 0.75rem;
+  }
+
+  .service-design-mob-line {
+    margin-left: 15px;
+  }
+
+  .services-design-mob-h1-div {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .services-design-mob-h1 {
+    width: 370px;
+    font-size: 24px;
+  }
+
+  .services-design-mob-heading {
+    width: 400px;
+    height: 400px;
+  }
+
+  .services-design-mob-p {
+    width: 370px;
+  }
+
+  .service-fundraising-container {
+    width: auto;
+  }
+
+  .service-fundraising-text-container {
+    position: static;
+  }
+
+  .service-fundraising-h1 {
+    font-size: 48px;
+    line-height: 60px;
+  }
+
+  .service-fundraising-img2 {
+    margin-top: 34px;
+  }
+
+  .service-fundraising-mob-gradient-border {
+    width: 170px;
+    height: 175px;
+    font-size: 12px;
+  }
+
+  .service-fundraising-content {
+    width: 370px;
+  }
+
+  .service-fundraising-content-h1 {
+    font-size: 26px;
+  }
+
+  .service-hrPortal-content {
+    height: 375px;
+    width: 370px;
+  }
+
+  .service-hrportal-text-container {
+    width: auto;
+    position: static;
+    margin-left: -4.125rem;
+  }
+
+  .service_development {
+    margin-left: 0;
+    margin-top: 3rem;
+  }
+
+  .service_pmTools {
+    margin-top: 3rem;
+    margin-left: 0;
+  }
+
+  .service_mvp {
+    margin-top: 3rem;
+    margin-left: 1rem;
+  }
+
+  .service_fundraising_ {
+    margin-left: 2rem;
+  }
+
+  .service-fundraising {
+    margin-top: 3rem;
+    margin-left: 0;
+  }
+
+  .service_portal {
+    margin-left: 2rem;
+  }
+
+  .service_portal img {
+    margin-left: 0;
+  }
+
+  .hr-h1 {
+    width: 21rem;
+  }
+
+  .mob-font-w {
+    width: 10rem;
+  }
+
+  .mob-icon {
+    width: 1.875rem;
+  }
+
+  .mob-service-container {
+    width: 10.625rem;
+    height: 10.928rem;
+    font-size: 0.75rem;
+  }
+}
+
+.portfolio_bg_img {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/portfolio_banner.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 28.25rem;
+  margin-top: 0;
+}
+
+.background-color-gradient {
+  background: linear-gradient(
+    180deg,
+    #d8e3ff 0.03%,
+    rgba(216, 227, 255) 38.39%,
+    #031b59 76.76%,
+    #fff 76.77%
+  );
+}
+
+.background-square-pattern {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/what_we_doBg.png");
+  width: 100%;
+  height: 37rem;
+}
+
+.background-review-gradient {
+  background-image: linear-gradient(
+    180deg,
+    rgba(243, 246, 253, 0) 9.5%,
+    #f3f6fd 100%
+  );
+}
+
+@media screen and (max-width: 625px) {
+  .background-square-pattern {
+    height: 47rem;
+  }
+}
+
+.aboutUs_bg_img {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/about_banner.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 37.5rem;
+  margin-top: 0;
+}
+
+.insight_bg_img {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/insights_bg_img.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 37.5rem;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .about-bg-text {
+    width: auto;
+  }
+
+  .about-mob-img {
+    display: none;
+  }
+
+  .about-mob-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .about-exp-container {
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .about-exp-box {
+    width: fit-content;
+  }
+
+  .about-exp-box1 {
+    margin-left: 40%;
+    width: 500px;
+  }
+
+  .about-exp-boxes {
+    width: 500px;
+  }
+
+  .about-phil-container {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .about-phil-boxes {
+    margin: 10px 0;
+  }
+
+  .mob-mt {
+    margin-top: 100px;
+  }
+}
+
+#form-file-upload {
+  width: 28rem;
+  max-width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+#input-file-upload {
+  display: none;
+}
+
+#label-file-upload {
+  width: 380px;
+  padding: 20px 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 2px;
+  border-radius: 1rem;
+  border-style: dashed;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+#label-file-upload.drag-active {
+  background-color: #ffffff;
+}
+
+.upload-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: none;
+  font-family: "Oswald", sans-serif;
+  background-color: transparent;
+  color: #031b59;
+}
+
+.upload-button:hover {
+  text-decoration-line: underline;
+}
+
+#drag-file-element {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.career_bg_image {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/career_bg_img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 37.5rem;
+  margin-top: 0;
+}
+
+.main_div {
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.main_div:hover {
+  background-color: #031b59;
+}
+
+.icon_container {
+  background-color: #f3f6fd;
+  width: 74px;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.content_head {
+  color: #031b59;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-family: Jost;
+  font-size: 19.4px;
+  white-space: nowrap;
+}
+
+.main_div:hover .content_head,
+.main_div:hover .content_text {
+  color: white;
+}
+
+.main_div:hover .icon_container {
+  background-color: #363979;
+}
+
+.main_div:hover svg g path,
+.main_div:hover svg path {
+  fill: #f3f6fd;
+}
+
+@media only screen and (max-width: 701px) {
+  .background-polka {
+    background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/CtaMobileBg.png") !important;
+    width: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+  }
+
+  .background-people {
+    background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/cta_people_mobile.webp");
+    width: 100%;
+    background-position: center;
+    object-fit: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (min-width: 701px) {
+  .background-polka {
+    background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/ctaPolka.png");
+    width: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+  }
+
+  .background-people {
+    background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/cta_people.webp") !important;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.custom_scroll::-webkit-scrollbar-thumb {
+  border-radius: 0.8125rem;
+  background: #001e63;
+}
+
+.custom_scroll::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.2rem;
+}
+
+.custom_scroller::-webkit-scrollbar {
+  display: none;
+  height: 90%;
+}
+
+.custom_scroll_chat::-webkit-scrollbar-thumb {
+  border-radius: 0.8125rem;
+  background: #d9d9d9;
+}
+
+.custom_scroll_chat::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 5.3rem;
+}
+
+.custom_scroll_text::-webkit-scrollbar-thumb {
+  display: none; 
+  width: 0px; 
+}
+
+.custom_scroll_text::-webkit-scrollbar {
+  display: none; 
+  width: 0px; 
+}
+
+#popUP {
+  position: relative;
+}
+
+@media screen and (max-width: 990px) and (min-width: 768px) {
+  #popUP {
+    right: 50px;
+  }
+}
+
+@media screen and (max-width: 930px) and (min-width: 768px) {
+  #popUP {
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 874px) and (min-width: 768px) {
+  #popUP {
+    width: 530px;
+    right: 80px;
+  }
+  #popBUTTON {
+    width: 530px;
+  }
+}
+
+@media screen and (max-width: 874px) and (min-width: 768px) {
+  #popUP {
+    width: 430px;
+    right: 20px;
+  }
+  #popTEXT {
+    width: 330px;
+    font-size: 12px;
+  }
+  #popBUTTON {
+    width: 430px;
+  }
+}
+@media screen and (max-width: 791px) and (min-width: 768px) {
+  #popUP {
+    width: 430px;
+    right: 70px;
+  }
+  #popTEXT {
+    width: 330px;
+    font-size: 12px;
+  }
+  #popBUTTON {
+    width: 430px;
+  }
+}
+
+.content {
+  height: 358px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  background-color: #333;
+}
+
+.dots-container {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 10px 0;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+.carousel-bullets {
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.carousel-bullet {
+  border: 2px solid #dedede;
+  background-color: #dedede;
+  margin: 5px 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.carousel-bullet.active {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #fff;
+  background-color: #fe872e;
+  border-width: 2px;
+  outline: 2px solid #fe872e;
+}
+
+/* Custom styles for individual buttons */
+.carousel-bullet-1 {
+  width: 8px;
+  height: 8px;
+}
+
+.carousel-bullet-2 {
+  width: 10px;
+  height: 10px;
+}
+
+.carousel-bullet-3 {
+  width: 12px;
+  height: 12px;
+}
+
+.carousel-bullet-4 {
+  width: 10px;
+  height: 10px;
+}
+
+.carousel-bullet-5 {
+  width: 8px;
+  height: 8px;
+}
+
+@media screen and (max-width: 480px) {
+  .feedback-mob-bottom-margin {
+    margin-bottom: 100px;
+  }
+
+  .align-center {
+    width: 315px;
+    text-align: center;
+  }
+
+  .feedback-mob-slash {
+    margin: 6px 0;
+    width: 42px;
+    height: 26px;
+  }
+  .feedback-carousel-content {
+    width: 323px;
+    line-height: 24px;
+    font-size: 16px;
+  }
+  /* Styles for the container */
+  .carousel-bullets {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    bottom: 90px;
+    right: 0;
+  }
+
+  /* Styles for the individual bullet elements */
+  .carousel-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  /* Style for the active bullet */
+  .carousel-bullet.active {
+    background-color: #fe872e;
+  }
+}
+
+.background-gradient-footer {
+  background-image: linear-gradient(to bottom, #f3f6fd 50%, #242424 50%);
+}
+
+@media screen and (max-width: 600px) {
+  .background-gradient-footer {
+    background-image: linear-gradient(to bottom, #f3f6fd 13%, #242424 13%);
+  }
+}
+
+.header_bg {
+  padding: 0.75rem;
+  position: fixed;
+  background: white;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  left: 0;
+  box-shadow: 4px 10px 30px 0px rgba(0, 0, 0, 0.03);
+}
+
+.hb {
+  padding: 0.75rem;
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.video-bg {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    linear-gradient(0deg, rgba(3, 27, 89, 0.2) 0%, rgba(3, 27, 89, 0.2) 100%);
+}
+
+@media screen and (max-width: 480px) {
+  .home-about-mob-text {
+    width: 90%;
+    text-align: center;
+  }
+  .home-about-mob-img-box {
+    display: none;
+  }
+  .home-service-mob-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .effective_solution_container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .effective_soluction_wrapper {
+    width: 60vw;
+  }
+}
+
+.bg-auto {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/Automobile.png");
+}
+
+.bg-empty {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/blue_empty.png");
+}
+
+.bg-edu {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/Education.png");
+}
+
+.bg-fashion {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/Fashion.png");
+}
+
+.bg-real {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/RealState.png");
+}
+
+.bg-Health {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/HealthCare.png");
+}
+
+.bg-hospitality {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/blue_Mediacal.png");
+  width: 100%;
+}
+
+.insight_hover:hover h3 {
+  color: #031b59;
+}
+
+.insight_hover:hover p {
+  color: #242529;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.loader-container {
+  position: fixed;
+  z-index: 1;
+}
+
+.spinner {
+  width: 54px;
+  height: 54px;
+  border: 5px solid;
+  border-color: #031b59;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+  border-right-color: transparent; /* Ensure that both sides of the border are transparent */
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .portfolio-mob-img-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+
+  .portfolio-scroll-container {
+    display: flex;
+    flex: 1;
+  }
+
+  .portfolio-scroll-containe-margin-left {
+    margin-left: 1710px;
+  }
+
+  .portfolio-scroll-container > div {
+    flex: 0 0 auto;
+    padding-right: 20px;
+  }
+}
+
+.service_icon_container {
+  background-color: #031b59;
+  width: 74px;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  filter: drop-shadow(4px 10px 30px rgba(67, 97, 238, 0.4));
+}
+
+.header_bg_img {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/ServiceScreenheroImage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  border-bottom-left-radius: 130px;
+  margin-top: 0;
+}
+
+.scrollbar-white::-webkit-scrollbar {
+  width: 6px;
+}
+
+.jobscrollbar-white::-webkit-scrollbar {
+  width: 0px;
+}
+
+.scrollbar-white::-webkit-scrollbar-thumb {
+  background-color: #d5cdcd66;
+  border-radius: 6px;
+}
+
+.scrollbar-white::-webkit-scrollbar-track {
+  background-color: #031b59;
+  border-radius: 8px;
+}
+
+.toast {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.25, 1.35);
+}
+
+.toast.active {
+  transform: translateX(0);
+}
+
+.toast-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.message-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.text-1 {
+  color: #333;
+}
+
+.text-2 {
+  color: #191919;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.toast-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  opacity: 0.7;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+}
+
+.progress::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.progress::before {
+  animation: progress 2s linear forwards;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+    width: 100%;
+  }
+}
+
+/* Mobile images for industry we serve */
+.bg-autoMob {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/AutoMobile.png");
+}
+
+.bg-eduMob {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/EduMobile.png");
+}
+
+.bg-fashionMob {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/FashionMobile.png");
+}
+
+.bg-realMob {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/RealMobile.png");
+}
+
+.bg-HealthMob {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/HealthMobile.png");
+}
+
+.contact_bg_image {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/contact_bg_img.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 37.5rem;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .contact_icons {
+    height: auto;
+    max-width: fit-content;
+  }
+
+  .contact-mob-bg-text {
+    width: fit-content;
+  }
+
+  .contact-mob-h1 {
+    text-align: center;
+  }
+
+  .contact-mob-p {
+    width: 370px;
+  }
+
+  .contact-mob-name-div {
+    width: 100%;
+  }
+
+  .contact-mob-email-div {
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 0 !important;
+  }
+}
+
+.about-card-bg1 {
+  background: linear-gradient(
+      0deg,
+      rgba(36, 37, 41, 0.6) 0%,
+      rgba(36, 37, 41, 0.6) 100%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/card1.webp")
+      lightgray -296.471px 0px / 315.089% 100% no-repeat;
+  background-size: 58rem;
+  background-position: center;
+}
+
+.active1 {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.7) -60.11%,
+      rgba(3, 19, 58, 0.7) 54.95%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/card1.webp")
+      lightgray 50% / cover no-repeat;
+}
+
+.active2 {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.7) -60.11%,
+      rgba(3, 19, 58, 0.7) 54.95%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/card2.webp")
+      lightgray 50% / cover no-repeat;
+}
+
+.active3 {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.7) -60.11%,
+      rgba(3, 19, 58, 0.7) 54.95%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/card3.webp")
+      lightgray 50% / cover no-repeat;
+}
+
+.about-card-bg2 {
+  background: linear-gradient(
+      0deg,
+      rgba(36, 37, 41, 0.6) 0%,
+      rgba(36, 37, 41, 0.6) 100%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/card2.webp")
+      lightgray -296.471px 0px / 315.089% 100% no-repeat;
+  background-size: 58rem;
+  background-position: center;
+}
+
+.about-card-bg3 {
+  background: linear-gradient(
+      0deg,
+      rgba(36, 37, 41, 0.6) 0%,
+      rgba(36, 37, 41, 0.6) 100%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/card3.webp")
+      lightgray -296.471px 0px / 315.089% 100% no-repeat;
+  background-size: 58rem;
+  background-position: center;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2.13rem;
+  width: 73.125rem;
+}
+
+.arrow {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .about-card {
+    flex-direction: column;
+    width: fit-content;
+  }
+
+  .about-card-list {
+    width: 23rem;
+    height: 9rem;
+  }
+
+  .about-card-bg1 {
+    background-size: 25rem;
+  }
+  .about-card-bg2 {
+    background-size: 25rem;
+  }
+  .about-card-bg3 {
+    background-size: 25rem;
+  }
+
+  .about-card-list-active {
+    height: 19rem;
+    width: 23rem;
+  }
+
+  .about-content-1 {
+    font-size: 0.75rem;
+  }
+
+  .about-content-2 {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    line-height: 1.375rem;
+  }
+
+  .about-content-btn {
+    padding: 0.88rem 1.625rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .arrow {
+    display: flex;
+  }
+
+  .arrow-icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    transform: rotate(-20deg);
+  }
+}
+
+.asset-header {
+  position: sticky;
+  background-color: #f2f6ff;
+  top: 0;
+}
+
+.asset-header:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #f2f6ff;
+  top: 0;
+  z-index: 20;
+}
+.Ind_edu:hover svg g path {
+  fill: #ed6e0f !important;
+}
+.Ind_edu:hover svg g path defs linearGradient stop {
+  fill: #ed6e0f !important;
+}
+.Ind_Fashion:hover svg g path {
+  fill: #ed6e0f !important;
+}
+.Ind_health:hover svg g path {
+  fill: #ed6e0f !important;
+}
+.Ind_Estate:hover svg g path {
+  fill: #ed6e0f !important;
+}
+.Ind_AutoM:hover svg g path {
+  fill: #ed6e0f !important;
+}
+.arrow-recent {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+@media screen and (max-width: 1300px) {
+  .recent-card-1 {
+    width: 35rem;
+    /* left: 10rem; */
+  }
+
+  .recent-card-2 {
+    width: 32rem;
+    left: 30rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .recent-card-1 {
+    width: 30rem;
+  }
+
+  .recent-card-2 {
+    width: 26rem;
+    left: 24rem;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .recent-card-1 {
+    width: 30rem;
+  }
+
+  .recent-card-2 {
+    width: 26rem;
+    left: 18rem;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .recent-card-1 {
+    width: 30rem;
+  }
+
+  .recent-card-2 {
+    width: 26rem;
+    left: 12rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .recent-card-2 {
+    left: 2rem;
+    top: 10rem;
+  }
+
+  .btns {
+    position: relative;
+    top: 1rem;
+  }
+}
+
+@media screen and (max-width: 494px) {
+  .recent-card-1 {
+    width: 28rem;
+  }
+  .recent-card-2 {
+    left: 1rem;
+    top: 8rem;
+  }
+
+  .btns {
+    position: relative;
+    top: 0rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .recent-card-1 {
+    width: 25rem;
+  }
+  .recent-card-2 {
+    width: 22rem;
+    left: 1.5rem;
+    top: 9rem;
+  }
+
+  .btns {
+    position: relative;
+    top: 1rem;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .feedback-hide {
+    display: none !important;
+  }
+
+  .feedback-center {
+    width: 40rem;
+  }
+}
+/* Conatctus Image */
+
+.bg-contact {
+  background-image: url("https://deeporion.s3.ap-south-1.amazonaws.com/images/get-in-touch-bg.png");
+  background-repeat: no-repeat;
+}
+
+.detail_insight_bg {
+  transform: rotateY(180deg);
+  height: 37.5rem;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.56) 24.38%,
+      rgba(7, 7, 7, 0) 44.21%,
+      rgba(6, 6, 6, 0.56) 59.36%,
+      rgba(8, 8, 8, 0.56) 96.45%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/insights.jpeg")
+      lightgray 0px -65.563px / 100% 135.187% no-repeat;
+}
+
+.industry_education {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.3) 100%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/industry_education_leftImage.webp")
+      lightgray 50% / cover no-repeat;
+}
+
+.industry_healthcare {
+  background: linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.05) 0%,
+      rgba(3, 27, 89, 0.5) 57%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/industry_health_leftImage.webp")
+      lightgray -195.329px -64px / 166.203% 110.833% no-repeat;
+}
+
+.industry_fashion {
+  background: linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.05) 0%,
+      rgba(3, 27, 89, 0.5) 57%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/industry_fashion_leftImage.webp")
+      lightgray -195.329px -64px / 166.203% 110.833% no-repeat;
+}
+
+.industry_travel {
+  background: linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.05) 0%,
+      rgba(3, 27, 89, 0.5) 57%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/travel_benefits.jpeg")
+      lightgray 50% / cover no-repeat;
+}
+
+.industry_auto_mobile {
+  background: linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.05) 0%,
+      rgba(3, 27, 89, 0.5) 82.02%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/auto_mobile_bg.jpg")
+      lightgray -1667.624px 0px / 331.834% 221.25% no-repeat;
+}
+
+.industry_hospitality {
+  background: linear-gradient(
+      180deg,
+      rgba(3, 27, 89, 0.05) 0%,
+      rgba(3, 27, 89, 0.5) 57%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/industry_hospitality_leftImage.webp")
+      lightgray -87.737px 0px / 149.927% 100% no-repeat;
+}
+
+.industry_real_estate {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.3) 100%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/industry_realState_leftImage.webp")
+      lightgray 50% / cover no-repeat;
+}
+
+.why_choose_us_bg {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 100%
+    ),
+    url("https://deeporion.s3.ap-south-1.amazonaws.com/images/industry_rightImage.webp")
+      lightgray -197.498px -24px / 163.194% 108.889% no-repeat;
+}
+.cardheading {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1050px) {
+  .cards-tab-gap {
+    padding: 3rem;
+    gap: 3rem;
+  }
+
+  .why_choose_us {
+    padding: 3rem;
+  }
+}
+
+@media screen and (max-width: 846px) {
+  .cards-gap {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-tab-gap {
+    gap: 3rem;
+    min-height: 38rem;
+    height: auto;
+  }
+
+  .why_choose_us {
+    padding: 2rem 1rem;
+  }
+}
+
+.marquee-left,
+.marquee-right {
+  overflow: hidden;
+}
+
+.marquee-left .translate:hover,
+.marquee-right .translate:hover {
+  animation-play-state: paused;
+}
+
+.marquee-left .translate,
+.marquee-right .translate {
+  border-radius: 200px;
+  animation: marquee-left 15s linear infinite;
+}
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-right .translate {
+  animation: marquee-right 15s linear infinite;
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.circle {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to bottom, #D8E3FF, #031B59) border-box;
+  border: 3px solid transparent;
+  border-radius: 100px; 
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.2;
+    
+  }
+}
+
+.scroll-parent {
+  position: relative;
+  width: 100vw;
+  height: 20vh;
+  padding: 2rem 0;
+}
+.scroll-element {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.primary {
+  animation: primary 15s linear infinite;
+}
+.secondary {
+  animation: secondary 15s linear infinite;
+}
+@keyframes primary {
+  from {
+    left: 0%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@keyframes secondary {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* common Button Animatio */
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 0.875rem 1.625rem;
+  color: #333;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  display: flex;
+  border: 1.5px solid #031b59;
+  z-index: 99;
+}
+.button::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  content: "";
+  background: #031b59;
+  transition: transform 0.3s;
+  border-radius: 5px;
+}
+.button:hover {
+  color: #fff;
+}
+
+.animated_button::before {
+  transform: scale(1, 0);
+}
+.animated_button:hover {
+  animation: hover15 0.6s forwards;
+}
+.animated_button:hover::before {
+  animation: hover15-in 0.3s forwards alternate,
+    hover15-out 0.3s 0.3s forwards alternate;
+}
+@keyframes hover15 {
+  0%,
+  100% {
+    color: #333;
+  }
+  50% {
+    color: #fff;
+  }
+}
+@keyframes hover15-in {
+  0% {
+    transform-origin: left top;
+    transform: scale(1, 0);
+  }
+  100% {
+    transform-origin: left top;
+    transform: scale(1, 1);
+  }
+}
+@keyframes hover15-out {
+  0% {
+    transform-origin: left bottom;
+    transform: scale(1, 1);
+  }
+  100% {
+    transform-origin: left bottom;
+    transform: scale(1, 0);
+  }
+}
+.cardData:hover{
+  background-image: linear-gradient(180deg, #FE872E -8.99%, #FFEBDC 123.4%);
+  border-radius: 12px;
+}
+.cardData:hover .progressicon{
+ background-color: #FFF2E9;
+}
