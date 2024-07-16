@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 export function MailbarLink() {
   const { t } = useTranslation();
   const isActive = (match) => {
-    return match === location;
+    // return match === location;
   };
 
   const mailbarLink = [
