@@ -20,15 +20,15 @@ const VerficationDetails = () => {
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
- 
+
   const handleOptionClick = (value) => {
     setOptionTab(value);
   };
 
   return (
     <>
-      <div className="w-[96%] h-[92vh]  p-[20px_0px_0px_0px]  ">
-        <div>
+      <div className="w-[96%] h-[92vh]  p-[0px_0px_0px_0px]  ">
+        {/* <div>
           <div className="w-[100%] h-[128px] rounded-[0px_0px_16px_16px] shadow-xl  p-[10px_0px_10px_0px] ">
             <div className="flex  gap-[20px] ">
               <div className="w-[50px] h-[60px] rounded-[136px] border-2" id="verficationImage">
@@ -71,21 +71,23 @@ const VerficationDetails = () => {
               </div>
             </div>
           </div>
+        </div> */}
 
-        </div>
-
-        <div className="w-[100%] h-[82.3%] mt-11 rounded-[20px] shadow-xl p-[5px_21px_20px_21px] gap-[22px]">
+        <div className="w-[100%] h-[82.3%] mt-0 rounded-[20px] shadow-xl p-[5px_21px_20px_21px] gap-[22px]">
           <div className="w-[100%] flex items-center justify-start md:space-x-2  lg:space-x-12">
             <button
               onClick={function () {
                 handleTabClick(1);
               }}
+              className={`p-2 ${activeTab === 1 ?
+                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
+                : ("text-[#686868]")}`}
             >
               <Link
                 rel="stylesheet" href="#">
                 <div className={`    text-lg ${activeTab === 1 ?
-                  ("text-[#002169] font-bold underline-small")
-                  : ("text-[#686868]")}`}>
+                  ("text-[#002169] font-bold ")
+                  : ("text-[#686868]")} `}>
                   <div className="flex justify-center items-center gap-2 ">
                     <FaRegUser />
                     <h1>{t("checkIden")}</h1>
@@ -94,15 +96,19 @@ const VerficationDetails = () => {
                 </div>
               </Link>
             </button>
+
             <button
               onClick={function () {
                 handleTabClick(2);
               }}
+              className={`p-2 ${activeTab === 2 ?
+                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
+                : ("text-[#686868]")}`}
             >
               <Link
                 rel="stylesheet" href="#">
                 <div className={`    text-lg ${activeTab === 2 ?
-                  ("text-[#002169] font-bold underline-small")
+                  ("text-[#002169] font-bold ")
                   : ("text-[#686868]")}`}>
                   <div className="flex justify-center items-center gap-2">
                     <FaGraduationCap />
@@ -111,15 +117,19 @@ const VerficationDetails = () => {
                 </div>
               </Link>
             </button>
+
             <button
               onClick={function () {
                 handleTabClick(3);
               }}
+              className={`p-2 ${activeTab === 3 ?
+                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
+                : ("text-[#686868]")}`}
             >
               <Link
                 rel="stylesheet" href="#">
                 <div className={`    text-lg ${activeTab === 3 ?
-                  ("text-[#002169] font-bold underline-small")
+                  ("text-[#002169] font-bold ")
                   : ("text-[#686868]")}`}>
                   <div className="flex justify-center items-center gap-2">
                     <CiLocationOn />
@@ -128,16 +138,18 @@ const VerficationDetails = () => {
                 </div>
               </Link>
             </button>
+
             <button
               onClick={function () {
                 handleTabClick(4);
               }}
+              className={`p-2 ${activeTab === 4 ?
+                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
+                : ("text-[#686868]")}`}
             >
               <Link
                 rel="stylesheet" href="#">
-                <div className={`    lg:text-lg md:text-md ${activeTab === 4 ?
-                  ("text-[#002169] font-bold underline-small")
-                  : ("text-[#686868]")}`}>
+                <div className={`    lg:text-lg md:text-md `}>
                   <div className="flex justify-center items-center gap-2">
                     <PiBagSimpleLight />
                     <h1>{t("EmploymentHistory")}</h1>
@@ -148,27 +160,31 @@ const VerficationDetails = () => {
           </div>
           {activeTab === 1 && (<div >
             <div className="mt-8 w-[300px]">
-              <select className="w-[300px] h-[50px] bg-transparent border border-gray-300
+              <select className="pl-2 pr-6 w-[300px] h-[50px] bg-transparent border border-gray-300
             gap-[2px] outline-none" name="Choose~" onChange={(e) => handleOptionClick(e.target.value)}>
-                <option value="Chosse~" className=" bg-transparent ">{t( "Choosse~")}</option>
+                <option value="Chosse~" className=" bg-transparent ">{t("Choosse~")}</option>
                 <option value="Aadhar Card" className=" bg-transparent"
                   id="1">{t("adhar")}</option>
                 <option value="Driving License" className=" bg-transparent " id="2">{t("Driving License")}</option>
                 <option value="Passport" className=" bg-transparent " id="3">{("Passport")}</option>
               </select>
             </div>
-            {optionTab === 'Aadhar Card' && <AddressCheck />}
-            {optionTab === 'Driving License' &&
-              (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
+            {optionTab === 'Aadhar Card' && <AddressCheck texts={'Aadhar Card'} />}
+            {optionTab === 'Driving License' && <AddressCheck texts={'Driving License'} />}
+            {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
                 {t("No UI Found")}
-              </div>)}
-            {optionTab === 'Passport' && (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
-              {t("No UI Found")}            </div>)}
+              </div>)} */}
+            {optionTab === 'Passport' && <AddressCheck texts={'Passport'} />}
+            {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
+              {t("No UI Found")}            </div>)} */}
           </div>)}
           {activeTab === 2 && <EducationCheck />}
           {activeTab === 3 && <AddressCheck />}
           {activeTab === 4 && <EmployementHistoryCheck />}
+
+
         </div>
+
       </div>
     </>
   );

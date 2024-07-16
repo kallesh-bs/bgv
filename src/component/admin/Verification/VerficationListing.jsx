@@ -1,106 +1,131 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { GoSearch } from "react-icons/go";
-import Paginate from "../Employee/Paginate";
 import { useState } from "react";
-import { FaEye } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import { GoSearch } from "react-icons/go";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { awsURL } from "../../../utils/Constants";
+import Paginate from "../Employee/Paginate";
 
 const VerficationListing = ({ tabValue }) => {
-  const {tab, label} = tabValue;
+  const { tab, label } = tabValue;
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount] = useState(1);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { isLoading } = useSelector(
-    (state) => state.leaveReducer
-  );
+  const { isLoading } = useSelector((state) => state.leaveReducer);
 
   const dummyData = [
     {
       id: 1,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "John Doe",
       designation: "Software Engineer",
       contactNo: "123-456-7890",
       doj: "2022-01-01",
-      status: "Active",
+      status: "Hold",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Rejected",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Inprogress",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      name: "Jane Smith",
+      email: "abc@deeporion.com",
+      designation: "UX Designer",
+      contactNo: "987-654-3210",
+      doj: "2022-02-15",
+      status: "Verified",
+    },
+    {
+      id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Insufficient",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Rejected",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Rejected",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Rejected",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
+      status: "Rejected",
     },
     {
       id: 2,
+      img: `${awsURL}/images/penetration-tester.png`,
+      email: "abc@deeporion.com",
       name: "Jane Smith",
       designation: "UX Designer",
       contactNo: "987-654-3210",
       doj: "2022-02-15",
-      status: "Inactive",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Inactive",
+      status: "Rejected",
     },
   ];
+
+  const statusColors = {
+    Hold: "#67147C",
+    Verified: "#1A8718",
+    Inprogress: "#576CA2",
+    Insufficient: "#FF981E",
+    Rejected: "#FA3232",
+  };
 
   return (
     <>
@@ -137,7 +162,8 @@ const VerficationListing = ({ tabValue }) => {
         <div
           className={`overflow-x-scroll  ${
             isLoading ? "custom_scroller" : "custom_scroll"
-          } h-[35rem] `} >
+          } h-[35rem] `}
+        >
           <table className="w-full  h-full p-5 bg-white rounded-lg text-left">
             <thead className="border flex-0 text-left p-2">
               <tr className="h-[3.125rem] text-[#686868] text-sm font-normal bg-[#F2F6FF] h border border-[#E2E8F0]">
@@ -166,14 +192,29 @@ const VerficationListing = ({ tabValue }) => {
               <tbody className="p-2 text-sm text-left font-normal flex-0">
                 {dummyData.map((employee, index) => (
                   <tr
-                    className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0] "
+                    className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
                     key={index}
                   >
                     <td
                       className={`min-w-[5.5rem] p-2 sticky left-0
-                    ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
                     >
-                      {employee.name}</td>
+                      <div className="flex items-center gap-[12px]">
+                        <img
+                          src={employee.img}
+                          alt="Employee"
+                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium text-[14px] text-[#031B59]">
+                            {employee.name}
+                          </div>
+                          <div className="text-[14px] text-[#A1A1A1]">
+                            {employee.email}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.designation}
                     </td>
@@ -183,12 +224,15 @@ const VerficationListing = ({ tabValue }) => {
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.doj}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
+                    <td
+                      className="min-w-[12.7rem] p-2 text-center"
+                      style={{ color: statusColors[employee.status] }}
+                    >
                       {employee.status}
                     </td>
                     <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start 
-            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
                     >
                       <button
                         className="mt-[15px]"
@@ -203,16 +247,34 @@ const VerficationListing = ({ tabValue }) => {
                 ))}
               </tbody>
             )}
+
             {tab === 2 && (
               <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData?.map((employee, index) => (
+                {dummyData.map((employee, index) => (
                   <tr
                     className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
                     key={index}
                   >
                     <td
-                      className={`min-w-[2rem] p-2 ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >{employee.name}</td>
+                      className={`min-w-[5.5rem] p-2 sticky left-0
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                    >
+                      <div className="flex items-center gap-[12px]">
+                        <img
+                          src={employee.img}
+                          alt="Employee"
+                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium text-[14px] text-[#031B59]">
+                            {employee.name}
+                          </div>
+                          <div className="text-[14px] text-[#A1A1A1]">
+                            {employee.email}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.designation}
                     </td>
@@ -222,16 +284,20 @@ const VerficationListing = ({ tabValue }) => {
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.doj}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
+                    <td
+                      className="min-w-[12.7rem] p-2 text-center"
+                      style={{ color: statusColors[employee.status] }}
+                    >
                       {employee.status}
                     </td>
                     <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start 
-            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
                     >
                       <button
                         className="mt-[15px]"
                         onClick={() => {
+                          navigate("/VerficaticationDetails");
                         }}
                       >
                         <FaEye fontSize="20px" className="mr-[6px]" />
@@ -243,33 +309,54 @@ const VerficationListing = ({ tabValue }) => {
             )}
             {tab === 3 && (
               <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData?.map((employee, index) => (
+                {dummyData.map((employee, index) => (
                   <tr
                     className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
                     key={index}
                   >
                     <td
-                      className={`min-w-[2rem] p-2 ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >{employee.name}</td>
+                      className={`min-w-[5.5rem] p-2 sticky left-0
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                    >
+                      <div className="flex items-center gap-[12px]">
+                        <img
+                          src={employee.img}
+                          alt="Employee"
+                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium text-[14px] text-[#031B59]">
+                            {employee.name}
+                          </div>
+                          <div className="text-[14px] text-[#A1A1A1]">
+                            {employee.email}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.designation}
                     </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.contactNo}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 capitalize text-center">
+                    <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.doj}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
+                    <td
+                      className="min-w-[12.7rem] p-2 text-center"
+                      style={{ color: statusColors[employee.status] }}
+                    >
                       {employee.status}
                     </td>
                     <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start 
-            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
                     >
                       <button
                         className="mt-[15px]"
                         onClick={() => {
+                          navigate("/VerficaticationDetails");
                         }}
                       >
                         <FaEye fontSize="20px" className="mr-[6px]" />
@@ -281,33 +368,54 @@ const VerficationListing = ({ tabValue }) => {
             )}
             {tab === 4 && (
               <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData?.map((employee, index) => (
+                {dummyData.map((employee, index) => (
                   <tr
                     className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
                     key={index}
                   >
                     <td
-                      className={`min-w-[2rem] p-2 ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >{employee.name}</td>
+                      className={`min-w-[5.5rem] p-2 sticky left-0
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                    >
+                      <div className="flex items-center gap-[12px]">
+                        <img
+                          src={employee.img}
+                          alt="Employee"
+                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium text-[14px] text-[#031B59]">
+                            {employee.name}
+                          </div>
+                          <div className="text-[14px] text-[#A1A1A1]">
+                            {employee.email}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.designation}
                     </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.contactNo}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 capitalize text-center">
+                    <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.doj}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
+                    <td
+                      className="min-w-[12.7rem] p-2 text-center"
+                      style={{ color: statusColors[employee.status] }}
+                    >
                       {employee.status}
                     </td>
                     <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start 
-            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
                     >
                       <button
                         className="mt-[15px]"
                         onClick={() => {
+                          navigate("/VerficaticationDetails");
                         }}
                       >
                         <FaEye fontSize="20px" className="mr-[6px]" />
@@ -319,33 +427,55 @@ const VerficationListing = ({ tabValue }) => {
             )}
             {tab === 5 && (
               <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData?.map((employee, index) => (
+                {dummyData.map((employee, index) => (
                   <tr
                     className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
                     key={index}
                   >
                     <td
-                      className={`min-w-[2rem] p-2 ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >{employee.name}</td>
+                      className={`min-w-[5.5rem] p-2 sticky left-0
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                    >
+                      <div className="flex items-center gap-[12px]">
+                        <img
+                          src={employee.img}
+                          alt="Employee"
+                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium text-[14px] text-[#031B59]">
+                            {employee.name}
+                          </div>
+                          <div className="text-[14px] text-[#A1A1A1]">
+                            {employee.email}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.designation}
                     </td>
                     <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.contactNo}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 capitalize text-center">
+                    <td className="min-w-[12.7rem] p-2 text-center">
                       {employee.doj}
                     </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
+                    <td
+                      className="min-w-[12.7rem] p-2 text-center"
+                      style={{ color: statusColors[employee.status] }}
+                    >
                       {employee.status}
                     </td>
                     <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start 
-            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
+                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
+          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
                     >
                       <button
                         className="mt-[15px]"
-                        onClick={() => { }}
+                        onClick={() => {
+                          navigate("/VerficaticationDetails");
+                        }}
                       >
                         <FaEye fontSize="20px" className="mr-[6px]" />
                       </button>
@@ -361,8 +491,9 @@ const VerficationListing = ({ tabValue }) => {
           {dummyData?.length ? (
             <>
               <div className="text-[#031B59] font-medium">
-                {t("Showing")}{currentPage}{t("of")}{pageCount}
-              </div>{" "}
+                {t("Showing ")} {currentPage}
+                {t(" of ")} {pageCount}
+              </div>
               <Paginate
                 currentPage={currentPage}
                 initialPageCount={pageCount}
@@ -385,6 +516,6 @@ const VerficationListing = ({ tabValue }) => {
 
 export default VerficationListing;
 
-VerficationListing.PropTypes = {
-  tabValue: PropTypes.object,
-};
+// VerficationListing.PropTypes = {
+//   tabValue: PropTypes.object,
+// };
