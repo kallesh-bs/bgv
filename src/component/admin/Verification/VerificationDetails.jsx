@@ -1,30 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CiLocationOn } from "react-icons/ci";
 import { FaGraduationCap, FaRegUser } from "react-icons/fa";
-import { GrLocationPin } from "react-icons/gr";
-import { LuUser2 } from "react-icons/lu";
-import { MdOutlineBloodtype } from "react-icons/md";
 import { PiBagSimpleLight } from "react-icons/pi";
-import { RxCalendar } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import EducationCheck from "./EducationCheck";
 import AddressCheck from "./AddressCheck";
+import EducationCheck from "./EducationCheck";
 import EmployementHistoryCheck from "./EmployementHistoryCheck";
-import { useTranslation } from "react-i18next";
 import "./Verfication.css";
 
 const VerficationDetails = () => {
   const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
-  const [optionTab, setOptionTab] = useState(0);
+  const [identifyOptionTab, setIdentifyOptionTab] = useState(0);
+  const [adressOptionTab, setAddressOptionTab] = useState(0);
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
 
-  const handleOptionClick = (value) => {
-    setOptionTab(value);
+  const handlAddresseOptionClick = (value) => {
+    setAddressOptionTab(value);
   };
 
+  const handleIdentifyOptionClick = (value) => {
+    setIdentifyOptionTab(value);
+  };
   return (
     <>
       <div className="w-[96%] h-[92vh]  p-[0px_0px_0px_0px]  ">
@@ -79,20 +79,24 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(1);
               }}
-              className={`p-2 ${activeTab === 1 ?
-                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
-                : ("text-[#686868]")}`}
+              className={`p-2 ${
+                activeTab === 1
+                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                  : "text-[#686868]"
+              }`}
             >
-              <Link
-                rel="stylesheet" href="#">
-                <div className={`    text-lg ${activeTab === 1 ?
-                  ("text-[#002169] font-bold ")
-                  : ("text-[#686868]")} `}>
+              <Link rel="stylesheet" href="#">
+                <div
+                  className={`    text-lg ${
+                    activeTab === 1
+                      ? "text-[#002169] font-bold "
+                      : "text-[#686868]"
+                  } `}
+                >
                   <div className="flex justify-center items-center gap-2 ">
                     <FaRegUser />
                     <h1>{t("checkIden")}</h1>
                   </div>
-
                 </div>
               </Link>
             </button>
@@ -101,15 +105,20 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(2);
               }}
-              className={`p-2 ${activeTab === 2 ?
-                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
-                : ("text-[#686868]")}`}
+              className={`p-2 ${
+                activeTab === 2
+                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                  : "text-[#686868]"
+              }`}
             >
-              <Link
-                rel="stylesheet" href="#">
-                <div className={`    text-lg ${activeTab === 2 ?
-                  ("text-[#002169] font-bold ")
-                  : ("text-[#686868]")}`}>
+              <Link rel="stylesheet" href="#">
+                <div
+                  className={`    text-lg ${
+                    activeTab === 2
+                      ? "text-[#002169] font-bold "
+                      : "text-[#686868]"
+                  }`}
+                >
                   <div className="flex justify-center items-center gap-2">
                     <FaGraduationCap />
                     <h1>{t("checkEdu")}</h1>
@@ -122,15 +131,20 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(3);
               }}
-              className={`p-2 ${activeTab === 3 ?
-                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
-                : ("text-[#686868]")}`}
+              className={`p-2 ${
+                activeTab === 3
+                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                  : "text-[#686868]"
+              }`}
             >
-              <Link
-                rel="stylesheet" href="#">
-                <div className={`    text-lg ${activeTab === 3 ?
-                  ("text-[#002169] font-bold ")
-                  : ("text-[#686868]")}`}>
+              <Link rel="stylesheet" href="#">
+                <div
+                  className={`    text-lg ${
+                    activeTab === 3
+                      ? "text-[#002169] font-bold "
+                      : "text-[#686868]"
+                  }`}
+                >
                   <div className="flex justify-center items-center gap-2">
                     <CiLocationOn />
                     <h1>{t("checkadd")}</h1>
@@ -143,12 +157,13 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(4);
               }}
-              className={`p-2 ${activeTab === 4 ?
-                ("text-[#002169] font-bold border-b-4 border-b-[#002169]")
-                : ("text-[#686868]")}`}
+              className={`p-2 ${
+                activeTab === 4
+                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                  : "text-[#686868]"
+              }`}
             >
-              <Link
-                rel="stylesheet" href="#">
+              <Link rel="stylesheet" href="#">
                 <div className={`    lg:text-lg md:text-md `}>
                   <div className="flex justify-center items-center gap-2">
                     <PiBagSimpleLight />
@@ -158,33 +173,98 @@ const VerficationDetails = () => {
               </Link>
             </button>
           </div>
-          {activeTab === 1 && (<div >
-            <div className="mt-8 w-[300px]">
-              <select className="pl-2 pr-6 w-[300px] h-[50px] bg-transparent border border-gray-300
-            gap-[2px] outline-none" name="Choose~" onChange={(e) => handleOptionClick(e.target.value)}>
-                <option value="Chosse~" className=" bg-transparent ">{t("Choosse~")}</option>
-                <option value="Aadhar Card" className=" bg-transparent"
-                  id="1">{t("adhar")}</option>
-                <option value="Driving License" className=" bg-transparent " id="2">{t("Driving License")}</option>
-                <option value="Passport" className=" bg-transparent " id="3">{("Passport")}</option>
-              </select>
+          {activeTab === 1 && (
+            <div>
+              <div className="mt-8 w-[300px]">
+                <select
+                  className="pl-2 pr-6 w-[300px] h-[50px] bg-transparent border border-gray-300
+            gap-[2px] outline-none"
+                  name="Choose~"
+                  onChange={(e) => handleIdentifyOptionClick(e.target.value)}
+                >
+                  <option value="Chosse~" className=" bg-transparent ">
+                    {t("Choosse~")}
+                  </option>
+                  <option
+                    value="Aadhar Card"
+                    className=" bg-transparent"
+                    id="1"
+                  >
+                    {t("adhar")}
+                  </option>
+                  <option
+                    value="Driving License"
+                    className=" bg-transparent "
+                    id="2"
+                  >
+                    {t("Driving License")}
+                  </option>
+                  <option value="Passport" className=" bg-transparent " id="3">
+                    {"Passport"}
+                  </option>
+                </select>
+              </div>
+              {identifyOptionTab === "Aadhar Card" && (
+                <AddressCheck selectOption={"Aadhar Card"} />
+              )}
+              {identifyOptionTab === "Driving License" && (
+                <AddressCheck selectOption={"Driving License"} />
+              )}
+              {identifyOptionTab === "Passport" && (
+                <AddressCheck selectOption={"Passport"} />
+              )}
             </div>
-            {optionTab === 'Aadhar Card' && <AddressCheck texts={'Aadhar Card'} />}
-            {optionTab === 'Driving License' && <AddressCheck texts={'Driving License'} />}
-            {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
+          )}
+          {activeTab === 2 && <EducationCheck />}
+          {activeTab === 3 && (
+            <div>
+              <div className="mt-8 w-[300px]">
+                <select
+                  className="pl-2 pr-6 w-[300px] h-[50px] bg-transparent border border-gray-300
+            gap-[2px] outline-none"
+                  name="Choose~"
+                  onChange={(e) => handlAddresseOptionClick(e.target.value)}
+                >
+                  <option value="Chosse~" className=" bg-transparent ">
+                    {t("Choosse~")}
+                  </option>
+                  <option
+                    value="Aadhar Card"
+                    className=" bg-transparent"
+                    id="1"
+                  >
+                    {t("adhar")}
+                  </option>
+                  <option
+                    value="Driving License"
+                    className=" bg-transparent "
+                    id="2"
+                  >
+                    {t("Driving License")}
+                  </option>
+                  <option value="Passport" className=" bg-transparent " id="3">
+                    {"Passport"}
+                  </option>
+                </select>
+              </div>
+              {adressOptionTab === "Aadhar Card" && (
+                <AddressCheck selectOption={"Aadhar Card"} />
+              )}
+              {adressOptionTab === "Driving License" && (
+                <AddressCheck selectOption={"Driving License"} />
+              )}
+              {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
                 {t("No UI Found")}
               </div>)} */}
-            {optionTab === 'Passport' && <AddressCheck texts={'Passport'} />}
-            {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
+              {adressOptionTab === "Passport" && (
+                <AddressCheck selectOption={"Passport"} />
+              )}
+              {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
               {t("No UI Found")}            </div>)} */}
-          </div>)}
-          {activeTab === 2 && <EducationCheck />}
-          {activeTab === 3 && <AddressCheck />}
+            </div>
+          )}
           {activeTab === 4 && <EmployementHistoryCheck />}
-
-
         </div>
-
       </div>
     </>
   );
