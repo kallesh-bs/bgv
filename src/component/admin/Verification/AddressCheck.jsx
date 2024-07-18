@@ -39,6 +39,7 @@ const AddressCheck = ({ selectOption }) => {
     setGetDocument(updatedDocuments);
     setDeleteButton("");
   };
+  
   const handleAddressCheck = async () => {
     // Create FormData and append files
     const formdata = new FormData();

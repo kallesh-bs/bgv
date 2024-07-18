@@ -5,44 +5,51 @@ import { BiCloudUpload } from "react-icons/bi";
 import { GoVerified } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
+import swalService from "utils/SwalServices";
 
 const EmployementHistoryCheck = () => {
+  const userData = localStorage.getItem("userLoginToken")
+    ? JSON.parse(localStorage.getItem("userLoginToken"))
+    : "";
+
   const [colorChange, setColorChange] = useState({
-    relieving: "bg-[#1A8718]",
-    experience: "bg-[#1A8718]",
-    BankStatement: "bg-[#1A8718]",
+    relieving_letters: "bg-[#1A8718]",
+    experience_letters: "bg-[#1A8718]",
+    bank_statements: "bg-[#1A8718]",
   });
   const [iconChange, setIconChange] = useState({
-    relieving: true,
-    experience: true,
-    BankStatement: true,
+    relieving_letters: true,
+    experience_letters: true,
+    bank_statements: true,
   });
   const { t } = useTranslation();
 
   // State to store files for each section
   const [documents, setDocuments] = useState({
-    relieving: [],
-    experience: [],
-    BankStatement: [],
+    relieving_letters: [],
+    experience_letters: [],
+    bank_statements: [],
   });
 
   // Ref for file input
   const inputRefs = {
-    relieving: useRef(),
-    experience: useRef(),
-    BankStatement: useRef(),
+    relieving_letters: useRef(),
+    experience_letters: useRef(),
+    bank_statements: useRef(),
   };
 
   // Dropdown state management
   const [isOpen, setIsOpen] = useState({
-    relieving: false,
-    experience: false,
-    BankStatement: false,
+    relieving_letters: false,
+    experience_letters: false,
+    bank_statements: false,
   });
   const [selectedOption, setSelectedOption] = useState({
-    relieving: "Select",
-    experience: "Select",
-    BankStatement: "Select",
+    relieving_letters: "Select",
+    experience_letters: "Select",
+    bank_statements: "Select",
   });
   const [deleteButton, setDeleteButton] = useState({ section: "", index: "" });
 
@@ -53,7 +60,8 @@ const EmployementHistoryCheck = () => {
     }));
   };
 
-  const handleOptionSelect = (section, option) => {
+  const handleOptionSelect = async (section, option) => {
+    console.log(section, option);
     setSelectedOption((prevSelectedOptions) => ({
       ...prevSelectedOptions,
       [section]: option,
@@ -62,6 +70,66 @@ const EmployementHistoryCheck = () => {
       ...prevIsOpen,
       [section]: false,
     }));
+
+    const formdata = new FormData();
+
+    console.log("documents:", documents);
+    console.log("documents.section:", documents[section]);
+
+    // Ensure documents[section] is an array
+    if (Array.isArray(documents[section])) {
+      documents[section].forEach((file) => {
+        formdata.append(`background_verification[${section}][]`, file);
+        formdata.append(`background_verification[${section}_status]`, option);
+      });
+    } else {
+      console.error("documents[section] is not an array");
+      return;
+    }
+
+    console.log(formdata);
+
+    // Determine the API path based on the value of `selectOption`
+    let path = `${apiUrl.employementHistoryCheck}/${userData?.id}`;
+    console.log("AddressCheck", path);
+
+    // Ensure a valid path was determined
+    if (!path) {
+      console.error("Invalid text value, no API path determined");
+      return;
+    }
+
+    // Log the payload before sending it
+    console.log("Payload being sent:", formdata);
+    try {
+      const { response, status } = await Helper.post(formdata, path, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response, status);
+
+      // Handle the response based on status
+      if (status === 200) {
+        swalService.showSuccess({
+          icon: "success",
+          title: "Added!",
+          text: response.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        swalService.showError({
+          icon: "error",
+          title: "Error!",
+          text: "Failed to Add New Employee",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.error("Error in handleAddressCheck:", error);
+    }
   };
 
   // Function to handle file change
@@ -110,7 +178,7 @@ const EmployementHistoryCheck = () => {
 
   return (
     <div className="w-[100%] h-[65vh] pb-7 mt-5 overflow-x-scroll no-scrollbar">
-      {/* relieving Section */}
+      {/* relieving_letters Section */}
       <div className="w-[100%]">
         <div className="w-[100%] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -118,25 +186,25 @@ const EmployementHistoryCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.relieving} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("relieving")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.relieving_letters} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("relieving_letters")}
                 >
-                  {iconChange.relieving ? (
+                  {iconChange.relieving_letters ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
                   <div className="w-full text-xl">
-                    {selectedOption.relieving}
+                    {selectedOption.relieving_letters}
                   </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen.relieving && (
+                {isOpen.relieving_letters && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("relieving", "Verified")
+                        handleOptionSelect("relieving_letters", "Verified")
                       }
                     >
                       {t("verify")}
@@ -144,7 +212,7 @@ const EmployementHistoryCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("relieving", "Insufficient")
+                        handleOptionSelect("relieving_letters", "Insufficient")
                       }
                     >
                       {t("Insufficient")}
@@ -152,7 +220,7 @@ const EmployementHistoryCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("relieving", "Rejected")
+                        handleOptionSelect("relieving_letters", "Rejected")
                       }
                     >
                       {t("reject")}
@@ -167,7 +235,7 @@ const EmployementHistoryCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.relieving.current.click()}
+              onClick={() => inputRefs.relieving_letters.current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -181,14 +249,14 @@ const EmployementHistoryCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "relieving")}
-              ref={inputRefs.relieving}
+              onChange={(e) => handleChange(e, "relieving_letters")}
+              ref={inputRefs.relieving_letters}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents.relieving.map((file, index) => (
+          {documents.relieving_letters.map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
@@ -196,7 +264,7 @@ const EmployementHistoryCheck = () => {
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
                   onClick={() =>
-                    setDeleteButton({ section: "relieving", index })
+                    setDeleteButton({ section: "relieving_letters", index })
                   }
                 >
                   <RxCross2 />
@@ -204,7 +272,7 @@ const EmployementHistoryCheck = () => {
               </div>
             </div>
           ))}
-          {deleteButton.section === "relieving" && (
+          {deleteButton.section === "relieving_letters" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
@@ -220,7 +288,7 @@ const EmployementHistoryCheck = () => {
         </div>
       </div>
 
-      {/* experience Section */}
+      {/* experience_letters Section */}
       <div className="w-[100%] ">
         <div className="w-[100%] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -228,25 +296,25 @@ const EmployementHistoryCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.experience} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("experience")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.experience_letters} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("experience_letters")}
                 >
-                  {iconChange.experience ? (
+                  {iconChange.experience_letters ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
                   <div className="w-full text-xl">
-                    {selectedOption.experience}
+                    {selectedOption.experience_letters}
                   </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen.experience && (
+                {isOpen.experience_letters && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("experience", "Verified")
+                        handleOptionSelect("experience_letters", "Verified")
                       }
                     >
                       {t("verify")}
@@ -254,7 +322,7 @@ const EmployementHistoryCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("experience", "Insufficient")
+                        handleOptionSelect("experience_letters", "Insufficient")
                       }
                     >
                       {t("Insufficient")}
@@ -262,7 +330,7 @@ const EmployementHistoryCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("experience", "Rejected")
+                        handleOptionSelect("experience_letters", "Rejected")
                       }
                     >
                       {t("reject")}
@@ -277,7 +345,7 @@ const EmployementHistoryCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.experience.current.click()}
+              onClick={() => inputRefs.experience_letters.current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -291,14 +359,14 @@ const EmployementHistoryCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "experience")}
-              ref={inputRefs.experience}
+              onChange={(e) => handleChange(e, "experience_letters")}
+              ref={inputRefs.experience_letters}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents.experience.map((file, index) => (
+          {documents.experience_letters.map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
@@ -306,7 +374,7 @@ const EmployementHistoryCheck = () => {
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
                   onClick={() =>
-                    setDeleteButton({ section: "experience", index })
+                    setDeleteButton({ section: "experience_letters", index })
                   }
                 >
                   <RxCross2 />
@@ -315,7 +383,7 @@ const EmployementHistoryCheck = () => {
             </div>
           ))}
 
-          {deleteButton.section === "experience" && (
+          {deleteButton.section === "experience_letters" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
@@ -331,7 +399,7 @@ const EmployementHistoryCheck = () => {
         </div>
       </div>
 
-      {/* BankStatement Section */}
+      {/* bank_statements Section */}
       <div className="w-[100%] ">
         <div className="w-[100%]  flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -339,25 +407,25 @@ const EmployementHistoryCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.BankStatement} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("BankStatement")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.bank_statements} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("bank_statements")}
                 >
-                  {iconChange.BankStatement ? (
+                  {iconChange.bank_statements ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
                   <div className="w-full text-xl">
-                    {selectedOption.BankStatement}
+                    {selectedOption.bank_statements}
                   </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen.BankStatement && (
+                {isOpen.bank_statements && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("BankStatement", "Verified")
+                        handleOptionSelect("bank_statements", "Verified")
                       }
                     >
                       {t("verify")}
@@ -365,7 +433,7 @@ const EmployementHistoryCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("BankStatement", "Insufficient")
+                        handleOptionSelect("bank_statements", "Insufficient")
                       }
                     >
                       {t("Insufficient")}
@@ -373,7 +441,7 @@ const EmployementHistoryCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("BankStatement", "Rejected")
+                        handleOptionSelect("bank_statements", "Rejected")
                       }
                     >
                       {t("reject")}
@@ -388,7 +456,7 @@ const EmployementHistoryCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.BankStatement.current.click()}
+              onClick={() => inputRefs.bank_statements.current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -402,14 +470,14 @@ const EmployementHistoryCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "BankStatement")}
-              ref={inputRefs.BankStatement}
+              onChange={(e) => handleChange(e, "bank_statements")}
+              ref={inputRefs.bank_statements}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents.BankStatement.map((file, index) => (
+          {documents.bank_statements.map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
@@ -417,7 +485,7 @@ const EmployementHistoryCheck = () => {
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
                   onClick={() =>
-                    setDeleteButton({ section: "BankStatement", index })
+                    setDeleteButton({ section: "bank_statements", index })
                   }
                 >
                   <RxCross2 />
@@ -426,7 +494,7 @@ const EmployementHistoryCheck = () => {
             </div>
           ))}
 
-          {deleteButton.section === "BankStatement" && (
+          {deleteButton.section === "bank_statements" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
