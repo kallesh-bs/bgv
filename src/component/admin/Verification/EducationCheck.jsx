@@ -5,8 +5,15 @@ import { BiCloudUpload } from "react-icons/bi";
 import { GoVerified } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
+import swalService from "utils/SwalServices";
 
 const EducationCheck = () => {
+  const userData = localStorage.getItem("userLoginToken")
+    ? JSON.parse(localStorage.getItem("userLoginToken"))
+    : "";
+
   const [colorChange, setColorChange] = useState({
     "10th": "bg-[#1A8718]",
     "12th": "bg-[#1A8718]",
@@ -65,7 +72,7 @@ const EducationCheck = () => {
     }));
   };
 
-  const handleOptionSelect = (section, option) => {
+  const handleOptionSelect = async (section, option) => {
     setSelectedOption((prevSelectedOptions) => ({
       ...prevSelectedOptions,
       [section]: option,
@@ -74,6 +81,54 @@ const EducationCheck = () => {
       ...prevIsOpen,
       [section]: false,
     }));
+
+    const formdata = new FormData();
+    getDocument.forEach((file) => {
+      formdata.append(
+        "background_verification[address_check_documents][]",
+        file
+      );
+    });
+    // Determine the API path based on the value of `selectOption`
+    let path = "";
+    path = `${apiUrl.addressCheck}/${userData?.id}`;
+    console.log("AddressCheck", path);
+
+    // Ensure a valid path was determined
+    if (!path) {
+      console.error("Invalid text value, no API path determined");
+      return;
+    }
+    // Log the payload before sending it
+    console.log("Payload being sent:", formdata);
+    try {
+      const { response, status } = await Helper.post(formdata, path, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response, status);
+      // Handle the response based on status
+      if (status === 200) {
+        swalService.showSuccess({
+          icon: "success",
+          title: "Added!",
+          text: response.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        swalService.showError({
+          icon: "error",
+          title: "Error!",
+          text: "Failed to Add New Employee",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.error("Error in handleAddressCheck:", error);
+    }
   };
 
   // Function to handle file change

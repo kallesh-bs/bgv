@@ -7,7 +7,7 @@ import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
 import swalService from "utils/SwalServices";
 
-const AddressCheck = ({ selectOption }) => {
+const IdentifyCheck = ({ selectOption }) => {
   const userData = localStorage.getItem("userLoginToken")
     ? JSON.parse(localStorage.getItem("userLoginToken"))
     : "";
@@ -39,7 +39,7 @@ const AddressCheck = ({ selectOption }) => {
     setGetDocument(updatedDocuments);
     setDeleteButton("");
   };
-  const handleAddressCheck = async () => {
+  const handleIdentifyCheck = async () => {
     // Create FormData and append files
     const formdata = new FormData();
     getDocument.forEach((file) => {
@@ -50,8 +50,8 @@ const AddressCheck = ({ selectOption }) => {
     });
     // Determine the API path based on the value of `selectOption`
     let path = "";
-    path = `${apiUrl.addressCheck}/${userData?.id}`;
-    console.log("AddressCheck", path);
+    path = `${apiUrl.identityCheck}/${userData?.id}`;
+    console.log(`${selectOption}`, path);
 
     // Ensure a valid path was determined
     if (!path) {
@@ -86,7 +86,7 @@ const AddressCheck = ({ selectOption }) => {
         });
       }
     } catch (error) {
-      console.error("Error in handleAddressCheck:", error);
+      console.error("Error in handleIdentifyCheck:", error);
     }
   };
 
@@ -168,7 +168,7 @@ const AddressCheck = ({ selectOption }) => {
                 : "bg-[#031B59] text-white"
             }`}
             disabled={getDocument?.length === 0}
-            onClick={handleAddressCheck}
+            onClick={handleIdentifyCheck}
           >
             {t("Save & Next")}
           </button>
@@ -191,4 +191,4 @@ const AddressCheck = ({ selectOption }) => {
   );
 };
 
-export default AddressCheck;
+export default IdentifyCheck;
