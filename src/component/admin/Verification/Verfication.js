@@ -1,24 +1,57 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VerficationListing from "./VerficationListing";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
 
 const Verfication = () => {
+  const [res, setRes] = useState();
   const [tabValue, setTabValue] = useState({
-    tab: 1,
+    tab: 5,
     label: "",
   });
-  const gridItems = [
-    { value: 169, label: "Total Checks", color: " #67147C" },
-    { value: 12, label: "Verified Checks", color: "#1A8718" },
-    { value: 12, label: "Inprogress Checks", color: "#576CA2" },
-    { value: 12, label: "Insufficent Checks", color: "#FF981E" },
-    { value: 12, label: "Rejected Checks", color: "#FA3232" },
-  ];
+  // const gridItems = [
+  //   { value: 169, label: "Total Checks", color: " #67147C" },
+  //   { value: 12, label: "Verified Checks", color: "#1A8718" },
+  //   { value: 12, label: "Inprogress Checks", color: "#576CA2" },
+  //   { value: 12, label: "Insufficent Checks", color: "#FF981E" },
+  //   { value: 12, label: "Rejected Checks", color: "#FA3232" },
+  // ];
+
+  const [gridItems, setGridItems] = useState([]);
+
+  async function getAddressCheck() {
+    let path = `${apiUrl.background_verification}/`;
+
+    // Ensure a valid path was determined
+    if (!path) {
+      console.error("Invalid text value, no API path determined");
+      return;
+    }
+    try {
+      const { response, status } = await Helper.get(path);
+      setRes(response);
+      let gridItemsTemp = []
+      gridItemsTemp.push({ value: response['verified_count'], label: 'Verified Checks', color: "#1A8718" })
+      gridItemsTemp.push({ value: response['rejected_count'], label: 'Rejected Checks', color: "#FA3232" })
+      gridItemsTemp.push({ value: response['inprogress_count'], label: 'Inprogress Checks', color: "#576CA2" })
+      gridItemsTemp.push({ value: response['insufficient_count'], label: 'Insufficent Checks', color: "#FF981E" })
+      gridItemsTemp.push({ value: response['total_check'].length, label: 'Total Checks', color: "#67147C" })
+      setGridItems(gridItemsTemp)
+    }
+    catch (error) {
+      console.error("Error in handleAddressCheck:", error);
+    }
+  }
+
+  useEffect(() => {
+    getAddressCheck();
+  }, []);
 
   return (
     <>
       <div className="w-full h-fit flex items-center">
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 w-full p-5">
-          {gridItems.map((item, index) => (
+          {gridItems?.map((item, index) => (
             <div
               key={index}
               className={`h-[8rem] w-full p-5 flex flex-col col-span-1 rounded-[20px] cursor-pointer shadow-[0px_0px_20px_0px_rgba(3,27,89,0.10)] mt-2`}
@@ -42,11 +75,10 @@ const Verfication = () => {
               </div>
               <div className="w-full h-full flex justify-between items-end">
                 <h2
-                  className={`text-[16px] flex items-end ${
-                    tabValue.tab === index + 1
-                      ? "underline font-normal"
-                      : "font-normal"
-                  }`}
+                  className={`text-[16px] flex items-end ${tabValue.tab === index + 1
+                    ? "underline font-normal"
+                    : "font-normal"
+                    }`}
                 >
                   {item.label}
                 </h2>
@@ -55,7 +87,7 @@ const Verfication = () => {
           ))}
         </div>
       </div>
-      <VerficationListing tabValue={tabValue} />
+      <VerficationListing tabValue={tabValue} allEmpData={res} />
     </>
   );
 };

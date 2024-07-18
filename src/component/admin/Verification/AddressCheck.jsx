@@ -90,8 +90,6 @@ const AddressCheck = ({ selectOption }) => {
     }
   };
 
-  const item = texts;
-
   return (
     <>
       <div className="w-[100%] h-[20vh] mt-10">
@@ -130,46 +128,45 @@ const AddressCheck = ({ selectOption }) => {
         </div>
         {getDocument?.length > 0
           ? getDocument.map((data, index) => (
+            <div
+              className="w-full h-[50px] text-xl flex border"
+              key={data.name}
+            >
               <div
-                className="w-full h-[50px] text-xl flex border"
-                key={data.name}
+                className="w-[90%] h-[50px] flex items-center "
+                onClick={() => handleImageClick(data)}
               >
-                <div
-                  className="w-[90%] h-[50px] flex items-center "
-                  onClick={() => handleImageClick(data)}
-                >
-                  <h1>{data.name}</h1>
-                </div>
-                <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
-                  <button
-                    onClick={() => {
-                      setDeleteButton(index);
-                    }}
-                  >
-                    <RxCross2 />
-                  </button>
-                </div>
+                <h1>{data.name}</h1>
               </div>
-            ))
+              <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
+                <button
+                  onClick={() => {
+                    setDeleteButton(index);
+                  }}
+                >
+                  <RxCross2 />
+                </button>
+              </div>
+            </div>
+          ))
           : // <div className="w-full h-[50px] text-xl flex border">
-            //   <div className="w-[90%] h-[50px] flex items-center ">
-            //     {t("Document.Pdf")}
-            //   </div>
-            //   <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
-            //     <RxCross2 />
-            //   </div>
-            // </div>
-            null}
+          //   <div className="w-[90%] h-[50px] flex items-center ">
+          //     {t("Document.Pdf")}
+          //   </div>
+          //   <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
+          //     <RxCross2 />
+          //   </div>
+          // </div>
+          null}
         <div className="bottom-18 flex justify-end mt-10 gap-4">
           <button className="text-black py-2 px-4 rounded-l">
             {t("Back")}
           </button>
           <button
-            className={`p-[15px_36px_15px_36px] rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full ${
-              getDocument?.length === 0
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#031B59] text-white"
-            }`}
+            className={`p-[15px_36px_15px_36px] rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full ${getDocument?.length === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#031B59] text-white"
+              }`}
             disabled={getDocument?.length === 0}
             onClick={handleAddressCheck}
           >

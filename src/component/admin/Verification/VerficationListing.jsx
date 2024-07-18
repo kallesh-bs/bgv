@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { awsURL } from "../../../utils/Constants";
 import Paginate from "../Employee/Paginate";
 
-const VerficationListing = ({ tabValue }) => {
+const VerficationListing = ({ tabValue, allEmpData }) => {
   const { tab, label } = tabValue;
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount] = useState(1);
@@ -16,108 +16,116 @@ const VerficationListing = ({ tabValue }) => {
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.leaveReducer);
 
-  const dummyData = [
-    {
-      id: 1,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "John Doe",
-      designation: "Software Engineer",
-      contactNo: "123-456-7890",
-      doj: "2022-01-01",
-      status: "Hold",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Rejected",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Inprogress",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      name: "Jane Smith",
-      email: "abc@deeporion.com",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Verified",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Insufficient",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Rejected",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Rejected",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Rejected",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Rejected",
-    },
-    {
-      id: 2,
-      img: `${awsURL}/images/penetration-tester.png`,
-      email: "abc@deeporion.com",
-      name: "Jane Smith",
-      designation: "UX Designer",
-      contactNo: "987-654-3210",
-      doj: "2022-02-15",
-      status: "Rejected",
-    },
-  ];
+  let dummyData = [];
+  if (allEmpData) {
+    dummyData = allEmpData?.total_check.map(obj => {
+      return { ...obj, name: obj.full_name, full_name: undefined, img: `${awsURL}/images/penetration-tester.png`, contactNo: "123-456-7890", doj: obj.date_of_joining, date_of_joining: undefined };
+    })
+  }
+
+
+  // const dummyData = [
+  //   {
+  //     id: 1,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "John Doe",
+  //     designation: "Software Engineer",
+  //     contactNo: "123-456-7890",
+  //     doj: "2022-01-01",
+  //     status: "Hold",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Rejected",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Inprogress",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     name: "Jane Smith",
+  //     email: "abc@deeporion.com",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Verified",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Insufficient",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Rejected",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Rejected",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Rejected",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Rejected",
+  //   },
+  //   {
+  //     id: 2,
+  //     img: `${awsURL}/images/penetration-tester.png`,
+  //     email: "abc@deeporion.com",
+  //     name: "Jane Smith",
+  //     designation: "UX Designer",
+  //     contactNo: "987-654-3210",
+  //     doj: "2022-02-15",
+  //     status: "Rejected",
+  //   },
+  // ];
 
   const statusColors = {
     Hold: "#67147C",
@@ -160,9 +168,8 @@ const VerficationListing = ({ tabValue }) => {
           </div>
         </div>
         <div
-          className={`overflow-x-scroll  ${
-            isLoading ? "custom_scroller" : "custom_scroll"
-          } h-[35rem] `}
+          className={`overflow-x-scroll  ${isLoading ? "custom_scroller" : "custom_scroll"
+            } h-[35rem] `}
         >
           <table className="w-full  h-full p-5 bg-white rounded-lg text-left">
             <thead className="border flex-0 text-left p-2">

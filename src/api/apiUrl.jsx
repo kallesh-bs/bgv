@@ -212,6 +212,7 @@ const apiUrl = {
   resetPassword: "api/reset_password",
 
   //verification
+  background_verification: "background_verification",
   addressCheck: "address_check",
   identityCheck: "identity_check",
   educationCheck: "education_check",
