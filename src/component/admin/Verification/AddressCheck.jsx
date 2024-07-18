@@ -70,6 +70,7 @@ const AddressCheck = ({ selectOption, active, setActiveTab }) => {
       console.log(response, status);
       // Handle the response based on status
       if (status === 200) {
+        setActiveTab(active + 1);
         swalService.showSuccess({
           icon: "success",
           title: "Added!",
@@ -77,7 +78,6 @@ const AddressCheck = ({ selectOption, active, setActiveTab }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        
       } else {
         swalService.showError({
           icon: "error",
@@ -93,13 +93,13 @@ const AddressCheck = ({ selectOption, active, setActiveTab }) => {
   };
 
   const handleBack = () => {
-    setActiveTab(active - 1)
-    console.log("dddddwwwwd", active, setActiveTab);
+    setActiveTab(active - 1);
   };
+  
   const handleSaveNext = () => {
-    setActiveTab(active + 1)
+    setActiveTab(active + 1);
     console.log(active, setActiveTab);
-  }
+  };
 
   return (
     <>
@@ -136,9 +136,7 @@ const AddressCheck = ({ selectOption, active, setActiveTab }) => {
           onClick={() => inputRef.current.click()}
         >
           <div className="h-15 w-[250px]">
-            <button
-              className="h-[40px] w-[40px] ml-[104px]"
-            >
+            <button className="h-[40px] w-[40px] ml-[104px]">
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
@@ -156,49 +154,50 @@ const AddressCheck = ({ selectOption, active, setActiveTab }) => {
               ref={inputRef}
             />
           </div>
-
         </div>
         {getDocument?.length > 0
           ? getDocument.map((data, index) => (
-            <div
-              className="w-full h-[50px] text-xl flex border"
-              key={data.name}
-            >
               <div
-                className="w-[90%] h-[50px] flex items-center "
-                onClick={() => handleImageClick(data)}
+                className="w-full h-[50px] text-xl flex border"
+                key={data.name}
               >
-                <h1>{data.name}</h1>
-              </div>
-              <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
-                <button
-                  onClick={() => {
-                    setDeleteButton(index);
-                  }}
+                <div
+                  className="w-[90%] h-[50px] flex items-center "
+                  onClick={() => handleImageClick(data)}
                 >
-                  <RxCross2 />
-                </button>
+                  <h1>{data.name}</h1>
+                </div>
+                <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
+                  <button
+                    onClick={() => {
+                      setDeleteButton(index);
+                    }}
+                  >
+                    <RxCross2 />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
+            ))
           : // <div className="w-full h-[50px] text-xl flex border">
-          //   <div className="w-[90%] h-[50px] flex items-center ">
-          //     {t("Document.Pdf")}
-          //   </div>
-          //   <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
-          //     <RxCross2 />
-          //   </div>
-          // </div>
-          null}
+            //   <div className="w-[90%] h-[50px] flex items-center ">
+            //     {t("Document.Pdf")}
+            //   </div>
+            //   <div className="w-[10%] h-[50px] flex justify-end items-center text-2xl">
+            //     <RxCross2 />
+            //   </div>
+            // </div>
+            null}
         <div className="bottom-18 flex justify-end mt-10 gap-4">
-          <button className="text-black py-2 px-4 rounded-l">
+          <button className="text-black py-2 px-4 rounded-l" onClick={handleBack} >
+            
             {t("Back")}
           </button>
           <button
-            className={`p-[15px_36px_15px_36px] rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full ${getDocument?.length === 0
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-[#031B59] text-white"
-              }`}
+            className={`p-[15px_36px_15px_36px] rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full ${
+              getDocument?.length === 0
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#031B59] text-white"
+            }`}
             disabled={getDocument?.length === 0}
             onClick={handleAddressCheck}
           >

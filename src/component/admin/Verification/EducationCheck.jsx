@@ -9,7 +9,7 @@ import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
 import swalService from "utils/SwalServices";
 
-const EducationCheck = () => {
+const EducationCheck = ({ active, setActiveTab }) => {
   const userData = localStorage.getItem("userLoginToken")
     ? JSON.parse(localStorage.getItem("userLoginToken"))
     : "";
@@ -188,6 +188,15 @@ const EducationCheck = () => {
     setDeleteButton({ section: "", index: "" });
   };
 
+  const handleBack = () => {
+    setActiveTab(active - 1);
+  };
+
+  const handleSaveNext = () => {
+    setActiveTab(active + 1);
+    console.log(active, setActiveTab);
+  };
+
   return (
     <div className="w-[100%] h-[65vh] pb-7 mt-5 overflow-x-scroll no-scrollbar">
       {/* Section markshseet_10th */}
@@ -243,12 +252,12 @@ const EducationCheck = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center">
+        <div
+          className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center cursor-pointer"
+          onClick={() => inputRefs["markshseet_10th"].current.click()}
+        >
           <div className="h-15 w-[250px]">
-            <button
-              className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs["markshseet_10th"].current.click()}
-            >
+            <button className="h-[40px] w-[40px] ml-[104px]">
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
@@ -352,12 +361,12 @@ const EducationCheck = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center">
+        <div
+          className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center cursor-pointer"
+          onClick={() => inputRefs["markshseet_12th"].current.click()}
+        >
           <div className="h-15 w-[250px]">
-            <button
-              className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs["markshseet_12th"].current.click()}
-            >
+            <button className="h-[40px] w-[40px] ml-[104px]">
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
@@ -463,12 +472,12 @@ const EducationCheck = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center">
+        <div
+          className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center cursor-pointer"
+          onClick={() => inputRefs.graduation_degrees.current.click()}
+        >
           <div className="h-15 w-[250px]">
-            <button
-              className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.graduation_degrees.current.click()}
-            >
+            <button className="h-[40px] w-[40px] ml-[104px]">
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
@@ -583,12 +592,12 @@ const EducationCheck = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center">
+        <div
+          className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center cursor-pointer"
+          onClick={() => inputRefs.post_graduation_degrees.current.click()}
+        >
           <div className="h-15 w-[250px]">
-            <button
-              className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.post_graduation_degrees.current.click()}
-            >
+            <button className="h-[40px] w-[40px] ml-[104px]">
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
@@ -700,12 +709,12 @@ const EducationCheck = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center">
+        <div
+          className="w-[100%] h-[100px] p-5 border-dashed border-2 border-[#E2E8F0] flex justify-center items-center cursor-pointer"
+          onClick={() => inputRefs.other_certifications.current.click()}
+        >
           <div className="h-15 w-[250px]">
-            <button
-              className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.other_certifications.current.click()}
-            >
+            <button className="h-[40px] w-[40px] ml-[104px]">
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
             <h1 className="text-base font-normal text-[#191919] cursor-pointer">
@@ -754,6 +763,21 @@ const EducationCheck = () => {
               </div>
             </Popup>
           )}
+
+          <div className="bottom-18 flex justify-end mt-10 gap-4">
+            <button
+              className="text-black py-2 px-4 rounded-l"
+              onClick={handleBack}
+            >
+              {t("Back")}
+            </button>
+            <button
+              className={`p-[15px_36px_15px_36px] rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full ${"bg-[#031B59] text-white"}`}
+              onClick={handleSaveNext}
+            >
+              {t("Save & Next")}
+            </button>
+          </div>
         </div>
       </div>
     </div>
