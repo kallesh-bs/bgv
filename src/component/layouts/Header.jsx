@@ -1,20 +1,20 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams, Link } from "react-router-dom";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdAdd } from "react-icons/md";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   setIndividualJobOpening,
   setShowGroup,
-  setUsername
+  setUsername,
 } from "redux/actions/action";
-import { MdAdd } from "react-icons/md";
 // import NotificationScreen from "component/Employee/Dashboard/NotificationScreen";
+import NotificationScreen from "component/dashboard/NotificationScreen";
 import { useTranslation } from "react-i18next";
 import { handleSearchUserForChat } from "redux/appThunk/Employee/chat";
 import { awsURL } from "utils/Constants";
-import NotificationScreen from "component/dashboard/NotificationScreen";
 // import NotificationScreen from "component/employee/dashboard/NotificationScreen";
 
 const Header = () => {
@@ -212,10 +212,10 @@ const Header = () => {
       case `/jobOpening/editJob/${id}`:
         return "Edit Opening";
 
-      case '/verification':
+      case "/verification":
         return "Verification";
 
-      case '/VerficaticationDetails':
+      case "/VerficaticationDetails":
         return "Current page";
 
       case "/verification/addEmployee":
@@ -237,7 +237,7 @@ const Header = () => {
       case `/version`:
         return "Version";
 
-      case '/access':
+      case "/access":
         return "Access Control";
 
       default:
@@ -362,7 +362,9 @@ const Header = () => {
                 </h3>
               </Link>
             )}
-            {["Add Client", clientInformation.name].includes(getheadertitle()) && (
+            {["Add Client", clientInformation.name].includes(
+              getheadertitle()
+            ) && (
               <Link to="/clients">
                 <h3 className="font-normal text-xl text-[#191919] flex items-center">
                   {t("clients")}
@@ -527,7 +529,9 @@ const Header = () => {
           </>
         )}
         <h2 className="text-xl text-[#031B59] font-extrabold ">
-          {getheadertitle() === 'Add Verification Employees' ? 'Add Employees' : getheadertitle()}
+          {getheadertitle() === "Add Verification Employees"
+            ? "Add Employees"
+            : getheadertitle()}
         </h2>
       </div>
       <div className="flex space-x-2">
@@ -567,22 +571,23 @@ const Header = () => {
               </button>
             </div>
           ))}
-        {!getheadertitle() === "Import CSV" ? (!showGroupList ? (
-          <div className="flex items-center justify-center">
-            <button
-              className="h-9 w-9 bg-white shadow-[0px_0px_10px_0px_rgba(3,27,89,0.10)] flex
+        {!getheadertitle() === "Import CSV" ? (
+          !showGroupList ? (
+            <div className="flex items-center justify-center">
+              <button
+                className="h-9 w-9 bg-white shadow-[0px_0px_10px_0px_rgba(3,27,89,0.10)] flex
                 rounded-full items-center justify-center"
-              onClick={handleNotificationClick}
-            >
-              <IoMdNotificationsOutline className="h-5 w-5 rem text-[#A1A1A1] fill-[#A1A1A1] stroke-[#A1A1A1]" />
-            </button>
-          </div>
+                onClick={handleNotificationClick}
+              >
+                <IoMdNotificationsOutline className="h-5 w-5 rem text-[#A1A1A1] fill-[#A1A1A1] stroke-[#A1A1A1]" />
+              </button>
+            </div>
+          ) : (
+            ""
+          )
         ) : (
           ""
-        )) : (
-          ""
-        )
-        }
+        )}
         {userName && (
           <div
             className="w-[350px] absolute top-[64px] bg-white shadow-[rgba(17,_17,_26,_0.1)_0px_0px_4px]
