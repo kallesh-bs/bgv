@@ -15,53 +15,53 @@ const EducationCheck = () => {
     : "";
 
   const [colorChange, setColorChange] = useState({
-    "10th": "bg-[#1A8718]",
-    "12th": "bg-[#1A8718]",
-    Graduation: "bg-[#1A8718]",
-    PostDegree: "bg-[#1A8718]",
-    AnyCertificate: "bg-[#1A8718]",
+    markshseet_10th: "bg-[#1A8718]",
+    markshseet_12th: "bg-[#1A8718]",
+    graduation_degrees: "bg-[#1A8718]",
+    post_graduation_degrees: "bg-[#1A8718]",
+    other_certifications: "bg-[#1A8718]",
   });
   const [iconChange, setIconChange] = useState({
-    "10th": true,
-    "12th": true,
-    Graduation: true,
-    PostDegree: true,
-    AnyCertificate: true,
+    markshseet_10th: true,
+    markshseet_12th: true,
+    graduation_degrees: true,
+    post_graduation_degrees: true,
+    other_certifications: true,
   });
   const { t } = useTranslation();
 
   // State to store files for each section
   const [documents, setDocuments] = useState({
-    "10th": [],
-    "12th": [],
-    Graduation: [],
-    PostDegree: [],
-    AnyCertificate: [],
+    markshseet_10th: [],
+    markshseet_12th: [],
+    graduation_degrees: [],
+    post_graduation_degrees: [],
+    other_certifications: [],
   });
 
   // Ref for file input
   const inputRefs = {
-    "10th": useRef(),
-    "12th": useRef(),
-    Graduation: useRef(),
-    PostDegree: useRef(),
-    AnyCertificate: useRef(),
+    markshseet_10th: useRef(),
+    markshseet_12th: useRef(),
+    graduation_degrees: useRef(),
+    post_graduation_degrees: useRef(),
+    other_certifications: useRef(),
   };
 
   // Dropdown state management
   const [isOpen, setIsOpen] = useState({
-    "10th": false,
-    "12th": false,
-    Graduation: false,
-    PostDegree: false,
-    AnyCertificate: false,
+    markshseet_10th: false,
+    markshseet_12th: false,
+    graduation_degrees: false,
+    post_graduation_degrees: false,
+    other_certifications: false,
   });
   const [selectedOption, setSelectedOption] = useState({
-    "10th": "Select",
-    "12th": "Select",
-    Graduation: "Select",
-    PostDegree: "Select",
-    AnyCertificate: "Select",
+    markshseet_10th: "Select",
+    markshseet_12th: "Select",
+    graduation_degrees: "Select",
+    post_graduation_degrees: "Select",
+    other_certifications: "Select",
   });
   const [deleteButton, setDeleteButton] = useState({ section: "", index: "" });
 
@@ -73,6 +73,7 @@ const EducationCheck = () => {
   };
 
   const handleOptionSelect = async (section, option) => {
+    console.log(section, option);
     setSelectedOption((prevSelectedOptions) => ({
       ...prevSelectedOptions,
       [section]: option,
@@ -83,15 +84,25 @@ const EducationCheck = () => {
     }));
 
     const formdata = new FormData();
-    getDocument.forEach((file) => {
-      formdata.append(
-        "background_verification[address_check_documents][]",
-        file
-      );
-    });
+
+    console.log("documents:", documents);
+    console.log("documents.section:", documents[section]);
+
+    // Ensure documents[section] is an array
+    if (Array.isArray(documents[section])) {
+      documents[section].forEach((file) => {
+        formdata.append(`background_verification[${section}][]`, file);
+        formdata.append(`background_verification[${section}_status]`, option);
+      });
+    } else {
+      console.error("documents[section] is not an array");
+      return;
+    }
+
+    console.log(formdata);
+
     // Determine the API path based on the value of `selectOption`
-    let path = "";
-    path = `${apiUrl.addressCheck}/${userData?.id}`;
+    let path = `${apiUrl.educationCheck}/${userData?.id}`;
     console.log("AddressCheck", path);
 
     // Ensure a valid path was determined
@@ -99,6 +110,7 @@ const EducationCheck = () => {
       console.error("Invalid text value, no API path determined");
       return;
     }
+
     // Log the payload before sending it
     console.log("Payload being sent:", formdata);
     try {
@@ -108,6 +120,7 @@ const EducationCheck = () => {
         },
       });
       console.log(response, status);
+
       // Handle the response based on status
       if (status === 200) {
         swalService.showSuccess({
@@ -177,7 +190,7 @@ const EducationCheck = () => {
 
   return (
     <div className="w-[100%] h-[65vh] pb-7 mt-5 overflow-x-scroll no-scrollbar">
-      {/* Section 10th */}
+      {/* Section markshseet_10th */}
       <div className="w-[100%]">
         <div className="w-[100%] h-[55px] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -185,34 +198,42 @@ const EducationCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange["10th"]} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("10th")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange["markshseet_10th"]} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("markshseet_10th")}
                 >
-                  {iconChange["10th"] ? (
+                  {iconChange["markshseet_10th"] ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
-                  <div className="w-full text-xl">{selectedOption["10th"]}</div>
+                  <div className="w-full text-xl">
+                    {selectedOption["markshseet_10th"]}
+                  </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen["10th"] && (
+                {isOpen["markshseet_10th"] && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                      onClick={() => handleOptionSelect("10th", "Verified")}
+                      onClick={() =>
+                        handleOptionSelect("markshseet_10th", "Verified")
+                      }
                     >
                       {t("verify")}
                     </div>
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                      onClick={() => handleOptionSelect("10th", "Insufficient")}
+                      onClick={() =>
+                        handleOptionSelect("markshseet_10th", "Insufficient")
+                      }
                     >
                       {t("Insufficient")}
                     </div>
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                      onClick={() => handleOptionSelect("10th", "Rejected")}
+                      onClick={() =>
+                        handleOptionSelect("markshseet_10th", "Rejected")
+                      }
                     >
                       {t("reject")}
                     </div>
@@ -226,7 +247,7 @@ const EducationCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs["10th"].current.click()}
+              onClick={() => inputRefs["markshseet_10th"].current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -240,28 +261,30 @@ const EducationCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "10th")}
-              ref={inputRefs["10th"]}
+              onChange={(e) => handleChange(e, "markshseet_10th")}
+              ref={inputRefs["markshseet_10th"]}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents["10th"].map((file, index) => (
+          {documents["markshseet_10th"].map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
               </div>
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
-                  onClick={() => setDeleteButton({ section: "10th", index })}
+                  onClick={() =>
+                    setDeleteButton({ section: "markshseet_10th", index })
+                  }
                 >
                   <RxCross2 />
                 </button>
               </div>
             </div>
           ))}
-          {deleteButton.section === "10th" && (
+          {deleteButton.section === "markshseet_10th" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
@@ -276,7 +299,7 @@ const EducationCheck = () => {
           )}
         </div>
       </div>
-      {/* Section 12th */}
+      {/* Section markshseet_12th */}
       <div className="w-[100%]">
         <div className="w-[100%] h-[55px] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -284,34 +307,42 @@ const EducationCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange["12th"]} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("12th")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange["markshseet_12th"]} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("markshseet_12th")}
                 >
-                  {iconChange["12th"] ? (
+                  {iconChange["markshseet_12th"] ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
-                  <div className="w-full text-xl">{selectedOption["12th"]}</div>
+                  <div className="w-full text-xl">
+                    {selectedOption["markshseet_12th"]}
+                  </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen["12th"] && (
+                {isOpen["markshseet_12th"] && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                      onClick={() => handleOptionSelect("12th", "Verified")}
+                      onClick={() =>
+                        handleOptionSelect("markshseet_12th", "Verified")
+                      }
                     >
                       {t("verify")}
                     </div>
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                      onClick={() => handleOptionSelect("12th", "Insufficient")}
+                      onClick={() =>
+                        handleOptionSelect("markshseet_12th", "Insufficient")
+                      }
                     >
                       {t("Insufficient")}
                     </div>
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                      onClick={() => handleOptionSelect("12th", "Rejected")}
+                      onClick={() =>
+                        handleOptionSelect("markshseet_12th", "Rejected")
+                      }
                     >
                       {t("reject")}
                     </div>
@@ -325,7 +356,7 @@ const EducationCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs["12th"].current.click()}
+              onClick={() => inputRefs["markshseet_12th"].current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -339,21 +370,23 @@ const EducationCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "12th")}
-              ref={inputRefs["12th"]}
+              onChange={(e) => handleChange(e, "markshseet_12th")}
+              ref={inputRefs["markshseet_12th"]}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents["12th"].map((file, index) => (
+          {documents["markshseet_12th"].map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
               </div>
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
-                  onClick={() => setDeleteButton({ section: "12th", index })}
+                  onClick={() =>
+                    setDeleteButton({ section: "markshseet_12th", index })
+                  }
                 >
                   <RxCross2 />
                 </button>
@@ -361,7 +394,7 @@ const EducationCheck = () => {
             </div>
           ))}
 
-          {deleteButton.section === "12th" && (
+          {deleteButton.section === "markshseet_12th" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
@@ -377,7 +410,7 @@ const EducationCheck = () => {
         </div>
       </div>
 
-      {/* Graduation Section */}
+      {/* graduation_degrees Section */}
       <div className="w-[100%]">
         <div className="w-[100%] h-[55px] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -385,25 +418,25 @@ const EducationCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.Graduation} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("Graduation")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.graduation_degrees} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("graduation_degrees")}
                 >
-                  {iconChange.Graduation ? (
+                  {iconChange.graduation_degrees ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
                   <div className="w-full text-xl">
-                    {selectedOption.Graduation}
+                    {selectedOption.graduation_degrees}
                   </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen.Graduation && (
+                {isOpen.graduation_degrees && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("Graduation", "Verified")
+                        handleOptionSelect("graduation_degrees", "Verified")
                       }
                     >
                       {t("verify")}
@@ -411,7 +444,7 @@ const EducationCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("Graduation", "Insufficient")
+                        handleOptionSelect("graduation_degrees", "Insufficient")
                       }
                     >
                       {t("Insufficient")}
@@ -419,7 +452,7 @@ const EducationCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("Graduation", "Rejected")
+                        handleOptionSelect("graduation_degrees", "Rejected")
                       }
                     >
                       {t("reject")}
@@ -434,7 +467,7 @@ const EducationCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.Graduation.current.click()}
+              onClick={() => inputRefs.graduation_degrees.current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -448,14 +481,14 @@ const EducationCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "Graduation")}
-              ref={inputRefs.Graduation}
+              onChange={(e) => handleChange(e, "graduation_degrees")}
+              ref={inputRefs.graduation_degrees}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents.Graduation.map((file, index) => (
+          {documents.graduation_degrees.map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
@@ -463,7 +496,7 @@ const EducationCheck = () => {
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
                   onClick={() =>
-                    setDeleteButton({ section: "Graduation", index })
+                    setDeleteButton({ section: "graduation_degrees", index })
                   }
                 >
                   <RxCross2 />
@@ -472,7 +505,7 @@ const EducationCheck = () => {
             </div>
           ))}
 
-          {deleteButton.section === "Graduation" && (
+          {deleteButton.section === "graduation_degrees" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
@@ -488,7 +521,7 @@ const EducationCheck = () => {
         </div>
       </div>
 
-      {/* PostDegree Section */}
+      {/* post_graduation_degrees Section */}
       <div className="w-[100%]">
         <div className="w-[100%] h-[55px] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
@@ -496,25 +529,28 @@ const EducationCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.PostDegree} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("PostDegree")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.post_graduation_degrees} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("post_graduation_degrees")}
                 >
-                  {iconChange.PostDegree ? (
+                  {iconChange.post_graduation_degrees ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
                   <div className="w-full text-xl">
-                    {selectedOption.PostDegree}
+                    {selectedOption.post_graduation_degrees}
                   </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen.PostDegree && (
+                {isOpen.post_graduation_degrees && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("PostDegree", "Verified")
+                        handleOptionSelect(
+                          "post_graduation_degrees",
+                          "Verified"
+                        )
                       }
                     >
                       {t("verify")}
@@ -522,7 +558,10 @@ const EducationCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("PostDegree", "Insufficient")
+                        handleOptionSelect(
+                          "post_graduation_degrees",
+                          "Insufficient"
+                        )
                       }
                     >
                       {t("Insufficient")}
@@ -530,7 +569,10 @@ const EducationCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("PostDegree", "Rejected")
+                        handleOptionSelect(
+                          "post_graduation_degrees",
+                          "Rejected"
+                        )
                       }
                     >
                       {t("reject")}
@@ -545,7 +587,7 @@ const EducationCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.PostDegree.current.click()}
+              onClick={() => inputRefs.post_graduation_degrees.current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -559,14 +601,14 @@ const EducationCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "PostDegree")}
-              ref={inputRefs.PostDegree}
+              onChange={(e) => handleChange(e, "post_graduation_degrees")}
+              ref={inputRefs.post_graduation_degrees}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents.PostDegree.map((file, index) => (
+          {documents.post_graduation_degrees.map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
@@ -574,7 +616,10 @@ const EducationCheck = () => {
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
                   onClick={() =>
-                    setDeleteButton({ section: "PostDegree", index })
+                    setDeleteButton({
+                      section: "post_graduation_degrees",
+                      index,
+                    })
                   }
                 >
                   <RxCross2 />
@@ -583,7 +628,7 @@ const EducationCheck = () => {
             </div>
           ))}
 
-          {deleteButton.section === "PostDegree" && (
+          {deleteButton.section === "post_graduation_degrees" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
@@ -599,7 +644,7 @@ const EducationCheck = () => {
         </div>
       </div>
 
-      {/* AnyCertificate Section */}
+      {/* other_certifications Section */}
       <div className="w-[100%] h-[20vh]">
         <div className="w-[100%] h-[55px] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between  font-medium text-base">
@@ -607,25 +652,25 @@ const EducationCheck = () => {
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
-                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.AnyCertificate} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
-                  onClick={() => toggleDropdown("AnyCertificate")}
+                  className={`flex items-center w-[200px] md:w-[150px] ${colorChange.other_certifications} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
+                  onClick={() => toggleDropdown("other_certifications")}
                 >
-                  {iconChange.AnyCertificate ? (
+                  {iconChange.other_certifications ? (
                     <GoVerified className="mr-1 text-3xl" />
                   ) : (
                     <RxCross2 className="text-3xl" />
                   )}
                   <div className="w-full text-xl">
-                    {selectedOption.AnyCertificate}
+                    {selectedOption.other_certifications}
                   </div>
                   <MdKeyboardArrowDown className="ml-auto text-3xl" />
                 </div>
-                {isOpen.AnyCertificate && (
+                {isOpen.other_certifications && (
                   <div className="absolute mt-1 bg-white rounded-md shadow-lg p-2 ml-1">
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("AnyCertificate", "Verified")
+                        handleOptionSelect("other_certifications", "Verified")
                       }
                     >
                       {t("verify")}
@@ -633,7 +678,10 @@ const EducationCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("AnyCertificate", "Insufficient")
+                        handleOptionSelect(
+                          "other_certifications",
+                          "Insufficient"
+                        )
                       }
                     >
                       {t("Insufficient")}
@@ -641,7 +689,7 @@ const EducationCheck = () => {
                     <div
                       className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                       onClick={() =>
-                        handleOptionSelect("AnyCertificate", "Rejected")
+                        handleOptionSelect("other_certifications", "Rejected")
                       }
                     >
                       {t("reject")}
@@ -656,7 +704,7 @@ const EducationCheck = () => {
           <div className="h-15 w-[250px]">
             <button
               className="h-[40px] w-[40px] ml-[104px]"
-              onClick={() => inputRefs.AnyCertificate.current.click()}
+              onClick={() => inputRefs.other_certifications.current.click()}
             >
               <BiCloudUpload className="h-[30px] w-[30px] mt-[5px] ml-[5px] text-[#A1A1A1]" />
             </button>
@@ -670,14 +718,14 @@ const EducationCheck = () => {
               type="file"
               multiple
               accept=".doc, .pdf, .jpg, .png, .csv"
-              onChange={(e) => handleChange(e, "AnyCertificate")}
-              ref={inputRefs.AnyCertificate}
+              onChange={(e) => handleChange(e, "other_certifications")}
+              ref={inputRefs.other_certifications}
               hidden
             />
           </div>
         </div>
         <div className="w-full overflow-x-auto no-scrollbar mb-10">
-          {documents.AnyCertificate.map((file, index) => (
+          {documents.other_certifications.map((file, index) => (
             <div key={index} className="w-full h-[40px] text-base flex border">
               <div className="w-[90%]  flex items-center">
                 <h3>{file.name}</h3>
@@ -685,7 +733,7 @@ const EducationCheck = () => {
               <div className="w-[10%] flex justify-end items-center text-2xl">
                 <button
                   onClick={() =>
-                    setDeleteButton({ section: "AnyCertificate", index })
+                    setDeleteButton({ section: "other_certifications", index })
                   }
                 >
                   <RxCross2 />
@@ -693,7 +741,7 @@ const EducationCheck = () => {
               </div>
             </div>
           ))}
-          {deleteButton.section === "AnyCertificate" && (
+          {deleteButton.section === "other_certifications" && (
             <Popup
               title={t("deleteResource")}
               popupBox={cancelDelete}
