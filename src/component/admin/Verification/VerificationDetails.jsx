@@ -8,6 +8,7 @@ import AddressCheck from "./AddressCheck";
 import EducationCheck from "./EducationCheck";
 import EmployementHistoryCheck from "./EmployementHistoryCheck";
 import "./Verfication.css";
+import IdentifyCheck from "./IdentifyCheck";
 
 const VerficationDetails = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -205,13 +206,13 @@ const VerficationDetails = () => {
                 </select>
               </div>
               {identifyOptionTab === "Aadhar Card" && (
-                <AddressCheck selectOption={"Aadhar Card"} />
+                <IdentifyCheck selectOption={"Aadhar Card"} />
               )}
               {identifyOptionTab === "Driving License" && (
-                <AddressCheck selectOption={"Driving License"} />
+                <IdentifyCheck selectOption={"Driving License"} />
               )}
               {identifyOptionTab === "Passport" && (
-                <AddressCheck selectOption={"Passport"} />
+                <IdentifyCheck selectOption={"Passport"} />
               )}
             </div>
           )}
