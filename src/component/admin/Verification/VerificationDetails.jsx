@@ -80,19 +80,17 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(1);
               }}
-              className={`p-2 ${
-                activeTab === 1
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
+              className={`p-2 ${activeTab === 1
+                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                : "text-[#686868]"
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
-                  className={`    text-lg ${
-                    activeTab === 1
-                      ? "text-[#002169] font-bold "
-                      : "text-[#686868]"
-                  } `}
+                  className={`    text-lg ${activeTab === 1
+                    ? "text-[#002169] font-bold "
+                    : "text-[#686868]"
+                    } `}
                 >
                   <div className="flex justify-center items-center gap-2 ">
                     <FaRegUser />
@@ -106,19 +104,17 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(2);
               }}
-              className={`p-2 ${
-                activeTab === 2
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
+              className={`p-2 ${activeTab === 2
+                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                : "text-[#686868]"
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
-                  className={`    text-lg ${
-                    activeTab === 2
-                      ? "text-[#002169] font-bold "
-                      : "text-[#686868]"
-                  }`}
+                  className={`    text-lg ${activeTab === 2
+                    ? "text-[#002169] font-bold "
+                    : "text-[#686868]"
+                    }`}
                 >
                   <div className="flex justify-center items-center gap-2">
                     <FaGraduationCap />
@@ -132,19 +128,17 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(3);
               }}
-              className={`p-2 ${
-                activeTab === 3
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
+              className={`p-2 ${activeTab === 3
+                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                : "text-[#686868]"
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
-                  className={`    text-lg ${
-                    activeTab === 3
-                      ? "text-[#002169] font-bold "
-                      : "text-[#686868]"
-                  }`}
+                  className={`    text-lg ${activeTab === 3
+                    ? "text-[#002169] font-bold "
+                    : "text-[#686868]"
+                    }`}
                 >
                   <div className="flex justify-center items-center gap-2">
                     <CiLocationOn />
@@ -158,11 +152,10 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(4);
               }}
-              className={`p-2 ${
-                activeTab === 4
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
+              className={`p-2 ${activeTab === 4
+                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+                : "text-[#686868]"
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div className={`    lg:text-lg md:text-md `}>
@@ -249,16 +242,16 @@ const VerficationDetails = () => {
                 </select>
               </div>
               {adressOptionTab === "Aadhar Card" && (
-                <AddressCheck selectOption={"Aadhar Card"} />
+                <AddressCheck selectOption={"Aadhar Card"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {adressOptionTab === "Driving License" && (
-                <AddressCheck selectOption={"Driving License"} />
+                <AddressCheck selectOption={"Driving License"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
                 {t("No UI Found")}
               </div>)} */}
               {adressOptionTab === "Passport" && (
-                <AddressCheck selectOption={"Passport"} />
+                <AddressCheck selectOption={"Passport"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {/* (<div className="w-full h-[60vh] flex justify-center items-center text-3xl">
               {t("No UI Found")}            </div>)} */}

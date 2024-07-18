@@ -365,15 +365,15 @@ const Header = () => {
             {["Add Client", clientInformation.name].includes(
               getheadertitle()
             ) && (
-              <Link to="/clients">
-                <h3 className="font-normal text-xl text-[#191919] flex items-center">
-                  {t("clients")}
-                  <span className="text-[#A1A1A1] mx-2">
-                    <RiArrowRightDoubleLine />
-                  </span>
-                </h3>
-              </Link>
-            )}
+                <Link to="/clients">
+                  <h3 className="font-normal text-xl text-[#191919] flex items-center">
+                    {t("clients")}
+                    <span className="text-[#A1A1A1] mx-2">
+                      <RiArrowRightDoubleLine />
+                    </span>
+                  </h3>
+                </Link>
+              )}
             {["Create Opening"].includes(getheadertitle()) && (
               <Link to="/jobOpening">
                 <h3 className="font-normal text-xl text-[#191919] flex items-center">
@@ -571,7 +571,7 @@ const Header = () => {
               </button>
             </div>
           ))}
-        {!getheadertitle() === "Import CSV" ? (
+        {getheadertitle() === "Verification" ? (
           !showGroupList ? (
             <div className="flex items-center justify-center">
               <button
