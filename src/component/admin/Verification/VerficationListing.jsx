@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const VerficationListing = ({ tabValue }) => {
-  const {tab, label} = tabValue;
+  const { tab, label } = tabValue;
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount] = useState(1);
   const { t } = useTranslation();
@@ -135,9 +135,8 @@ const VerficationListing = ({ tabValue }) => {
           </div>
         </div>
         <div
-          className={`overflow-x-scroll  ${
-            isLoading ? "custom_scroller" : "custom_scroll"
-          } h-[35rem] `} >
+          className={`overflow-x-scroll  ${isLoading ? "custom_scroller" : "custom_scroll"
+            } h-[35rem] `} >
           <table className="w-full  h-full p-5 bg-white rounded-lg text-left">
             <thead className="border flex-0 text-left p-2">
               <tr className="h-[3.125rem] text-[#686868] text-sm font-normal bg-[#F2F6FF] h border border-[#E2E8F0]">
@@ -385,6 +384,6 @@ const VerficationListing = ({ tabValue }) => {
 
 export default VerficationListing;
 
-VerficationListing.PropTypes = {
-  tabValue: PropTypes.object,
-};
+// VerficationListing.PropTypes = {
+//   tabValue: PropTypes.object,
+// };

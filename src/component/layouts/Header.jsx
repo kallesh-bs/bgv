@@ -43,202 +43,205 @@ const Header = () => {
 
   const getheadertitle = () => {
     switch (location.pathname) {
-    case "/attendance":
-      return "Attendance";
+      case "/attendance":
+        return "Attendance";
 
-    case "/report":
-      return "Report";
+      case "/report":
+        return "Report";
 
-    case "/status":
-      return "Time Sheet";
+      case "/status":
+        return "Time Sheet";
 
-    case "/leave":
-      return "Leaves";
+      case "/leave":
+        return "Leaves";
 
-    case "/leaves/addLeave":
-      return "Add Leave";
+      case "/leaves/addLeave":
+        return "Add Leave";
 
-    case "/team":
-      return "Team";
+      case "/team":
+        return "Team";
 
-    case "/leave/apply":
-      return "Apply Leave";
+      case "/leave/apply":
+        return "Apply Leave";
 
-    case "/status/apply":
-      return "Fill Time Sheet";
+      case "/status/apply":
+        return "Fill Time Sheet";
 
-    case `/status/apply/${id}`:
-      return "Update Status";
+      case `/status/apply/${id}`:
+        return "Update Status";
 
-    case `/leave/apply/${id}`:
-      return "Update Leave";
+      case `/leave/apply/${id}`:
+        return "Update Leave";
 
-    case "/management":
-      return "Management";
+      case "/management":
+        return "Management";
 
-    case "/management/AddTdsDetails":
-      return "TDS";
+      case "/management/AddTdsDetails":
+        return "TDS";
 
-    case "/management/AssetDetails":
-      return "Asset";
+      case "/management/AssetDetails":
+        return "Asset";
 
-    case `/management/CompanyTaxDetails/${id}`:
-      return "Company Tax";
+      case `/management/CompanyTaxDetails/${id}`:
+        return "Company Tax";
 
-    case "/management/AddCompanyTaxDetails":
-      return "Company Tax";
+      case "/management/AddCompanyTaxDetails":
+        return "Company Tax";
 
-    case "/management/ExpenseDetails":
-      return "Expense";
+      case "/management/ExpenseDetails":
+        return "Expense";
 
-    case "/employees":
-      return "Employees";
+      case "/employees":
+        return "Employees";
 
-    case "/employees/addEmployee":
-      return "Add Employees";
+      case "/employees/addEmployee":
+        return "Add Employees";
 
-    case "/clients":
-      return "Clients";
+      case "/clients":
+        return "Clients";
 
-    case "/clients/addClients":
-      return "Add Client";
+      case "/clients/addClients":
+        return "Add Client";
 
-    case `/status/view/${id}`:
-      return "Task Details";
+      case `/status/view/${id}`:
+        return "Task Details";
 
-    case `/leave/view/${id}`:
-      return "Leave Details";
+      case `/leave/view/${id}`:
+        return "Leave Details";
 
-    case `/employees/profilebasics/${id}`:
-      return "Details";
+      case `/employees/profilebasics/${id}`:
+        return "Details";
 
-    case `/employees/profileBasics/salaryInfo/${id}`:
-      return "Details";
+      case `/employees/profileBasics/salaryInfo/${id}`:
+        return "Details";
 
-    case `/employees/profileBasics/otherInfo/${id}`:
-      return "Details";
+      case `/employees/profileBasics/otherInfo/${id}`:
+        return "Details";
 
-    case `/employees/profileBasics/bankDetails/${id}`:
-      return "Details";
+      case `/employees/profileBasics/bankDetails/${id}`:
+        return "Details";
 
-    case `/employees/profileBasics/documents/${id}`:
-      return "Details";
+      case `/employees/profileBasics/documents/${id}`:
+        return "Details";
 
-    case `/salary/salaryDetails/${id}`:
-      return "Salary Details";
+      case `/salary/salaryDetails/${id}`:
+        return "Salary Details";
 
-    case `/employees/profileBasics/personalInfo/${id}`:
-      return "Details";
+      case `/employees/profileBasics/personalInfo/${id}`:
+        return "Details";
 
-    case `/profileBasics`:
-      return "Profile";
+      case `/profileBasics`:
+        return "Profile";
 
-    case "/companyProfile":
-      return "Company Profile";
+      case "/companyProfile":
+        return "Company Profile";
 
-    case "/profileBasics/personalInfo":
-      return "Personal Information";
+      case "/profileBasics/personalInfo":
+        return "Personal Information";
 
-    case "/profileBasics/otherInfo":
-      return "Other Information";
+      case "/profileBasics/otherInfo":
+        return "Other Information";
 
-    case "/profileBasics/documents":
-      return "Documents";
+      case "/profileBasics/documents":
+        return "Documents";
 
-    case "/profileBasics/salaryInfo":
-      return "Salary Information";
+      case "/profileBasics/salaryInfo":
+        return "Salary Information";
 
-    case "/profileBasics/bankDetails":
-      return "Bank Details";
+      case "/profileBasics/bankDetails":
+        return "Bank Details";
 
-    case "/jobOpening":
-      return "Job Opening";
+      case "/jobOpening":
+        return "Job Opening";
 
-    case "/interview":
-      return "Interview";
+      case "/interview":
+        return "Interview";
 
-    case "/invoices":
-      return "Invoices";
+      case "/invoices":
+        return "Invoices";
 
-    case `/invoices/editInvoices/${id}`:
-      return "Incoice Details";
+      case `/invoices/editInvoices/${id}`:
+        return "Incoice Details";
 
-    case "/management/addProvidentFund":
-      return "PF";
+      case "/management/addProvidentFund":
+        return "PF";
 
-    case "/invoices/addInvoices":
-      return "Add Invoice";
+      case "/invoices/addInvoices":
+        return "Add Invoice";
 
-    case "/jobOpening/addNewOpening":
-      return "Create Opening";
+      case "/jobOpening/addNewOpening":
+        return "Create Opening";
 
-    case "/profileBasics/changePassword":
-      return userData?.role === "employee" ? "Change Password" : "Details";
+      case "/profileBasics/changePassword":
+        return userData?.role === "employee" ? "Change Password" : "Details";
 
-    case "/salary":
-      return "Salary";
+      case "/salary":
+        return "Salary";
 
-    case "/settings":
-      return "Settings";
+      case "/settings":
+        return "Settings";
 
-    case "/settings/changePassword":
-      return "Settings";
+      case "/settings/changePassword":
+        return "Settings";
 
-    case "/settings/manage":
-      return "Settings";
+      case "/settings/manage":
+        return "Settings";
 
-    case "/chat":
-      if (!showGroupList) {
-        return "Chat";
-      } else {
-        return "Groups";
-      }
+      case "/chat":
+        if (!showGroupList) {
+          return "Chat";
+        } else {
+          return "Groups";
+        }
 
-    case "/profilebasics":
-      return "Profile";
+      case "/profilebasics":
+        return "Profile";
 
-    case `/clients/Name/${id}`:
-      return clientInformation.name;
+      case `/clients/Name/${id}`:
+        return clientInformation.name;
 
-    case "/projects":
-      return "Projects";
+      case "/projects":
+        return "Projects";
 
-    case "/profileBasics/Documents":
-      return "Documents";
+      case "/profileBasics/Documents":
+        return "Documents";
 
-    case `/jobOpening/${id}`:
-      return individualOpening.title;
+      case `/jobOpening/${id}`:
+        return individualOpening.title;
 
-    case `/jobOpening/editJob/${id}`:
-      return "Edit Opening";
+      case `/jobOpening/editJob/${id}`:
+        return "Edit Opening";
 
-    case '/verification':
-      return "Verification";
+      case '/verification':
+        return "Verification";
 
-    case "/verification/addEmployee":
-      return "Add Verification Employees";
+      case '/VerficaticationDetails':
+        return "Current page";
 
-    case "/dashboard":
-      return (
-        <div>
-          <p>Welcome! {getStyledName(capitalize(userData?.full_name))}</p>
-        </div>
-      );
+      case "/verification/addEmployee":
+        return "Add Verification Employees";
 
-    case `/EmployeeCSVfile`:
-      return "Import CSV";
+      case "/dashboard":
+        return (
+          <div>
+            <p>Welcome! {getStyledName(capitalize(userData?.full_name))}</p>
+          </div>
+        );
 
-    case `/verification`:
-      return "BackGround Verfication";
+      case `/EmployeeCSVfile`:
+        return "Import CSV";
 
-    case `/version`:
-      return "Version";
+      case `/verification`:
+        return "BackGround Verfication";
 
-    case '/access':
-      return "Access Control";
+      case `/version`:
+        return "Version";
 
-    default:
-      return "Welcome!";
+      case '/access':
+        return "Access Control";
+
+      default:
+        return "Welcome!";
     }
   };
 
@@ -276,7 +279,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleSearchUser = setTimeout(() => {
-      if(userName !== ""){
+      if (userName !== "") {
         dispatch(handleSearchUserForChat(userName));
       }
     }, 1000);
@@ -402,15 +405,15 @@ const Header = () => {
             {["TDS", "Asset", "Company Tax", "Expense", "PF"].includes(
               getheadertitle()
             ) && (
-              <Link to="/management">
-                <h3 className="font-normal text-xl text-[#191919] flex items-center">
-                  {t("management")}
-                  <span className="text-[#A1A1A1] mx-2">
-                    <RiArrowRightDoubleLine />
-                  </span>
-                </h3>
-              </Link>
-            )}
+                <Link to="/management">
+                  <h3 className="font-normal text-xl text-[#191919] flex items-center">
+                    {t("management")}
+                    <span className="text-[#A1A1A1] mx-2">
+                      <RiArrowRightDoubleLine />
+                    </span>
+                  </h3>
+                </Link>
+              )}
             {["Add Leave"].includes(getheadertitle()) && (
               <Link to="/leave">
                 <h3 className="font-normal text-xl text-[#191919] flex items-center">
@@ -493,6 +496,16 @@ const Header = () => {
             )}
             {["Add Verification Employees"].includes(getheadertitle()) && (
               <Link to="/verification">
+                <h3 className="font-normal text-xl text-[#191919] flex items-center">
+                  {t("verification")}
+                  <span className="text-[#A1A1A1] mx-2">
+                    <RiArrowRightDoubleLine />
+                  </span>
+                </h3>
+              </Link>
+            )}
+            {["Current page"].includes(getheadertitle()) && (
+              <Link to="/VerficaticationDetails">
                 <h3 className="font-normal text-xl text-[#191919] flex items-center">
                   {t("verification")}
                   <span className="text-[#A1A1A1] mx-2">
