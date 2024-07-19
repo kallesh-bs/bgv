@@ -507,7 +507,7 @@ const Header = () => {
               </Link>
             )}
             {["Current page"].includes(getheadertitle()) && (
-              <Link to="/VerficaticationDetails">
+              <Link to="/verification">
                 <h3 className="font-normal text-xl text-[#191919] flex items-center">
                   {t("verification")}
                   <span className="text-[#A1A1A1] mx-2">

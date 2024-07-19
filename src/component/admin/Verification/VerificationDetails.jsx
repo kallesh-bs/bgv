@@ -199,17 +199,17 @@ const VerficationDetails = () => {
                 </select>
               </div>
               {identifyOptionTab === "Aadhar Card" && (
-                <IdentifyCheck selectOption={"Aadhar Card"} />
+                <IdentifyCheck selectOption={"Aadhar Card"} active={activeTab} setActiveTab={setActiveTab}  />
               )}
               {identifyOptionTab === "Driving License" && (
-                <IdentifyCheck selectOption={"Driving License"} />
+                <IdentifyCheck selectOption={"Driving License"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Passport" && (
-                <IdentifyCheck selectOption={"Passport"} />
+                <IdentifyCheck selectOption={"Passport"} active={activeTab} setActiveTab={setActiveTab}  />
               )}
             </div>
           )}
-          {activeTab === 2 && <EducationCheck />}
+          {activeTab === 2 && <EducationCheck active={activeTab} setActiveTab={setActiveTab} />}
           {activeTab === 3 && (
             <div>
               <div className="mt-8 w-[300px]">
@@ -257,7 +257,7 @@ const VerficationDetails = () => {
               {t("No UI Found")}            </div>)} */}
             </div>
           )}
-          {activeTab === 4 && <EmployementHistoryCheck />}
+          {activeTab === 4 && <EmployementHistoryCheck  active={activeTab} setActiveTab={setActiveTab} />}
 
 
         </div>
