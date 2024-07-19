@@ -55,8 +55,16 @@ import {
   SEARCH_LEAVE,
   SET_SHOW_PROFILE,
   SET_EMPLOYEE_NUMBER,
-  SET_CLIENTS_NUMBER
+  SET_CLIENTS_NUMBER,
+  BGV_ALL_EMPLOYEE_DATA
 } from "./types";
+
+export const bgvAllEmpData = (payload) => {
+  return {
+    type: BGV_ALL_EMPLOYEE_DATA,
+    payload,
+  };
+}
 
 export const setleave = (payload) => {
   return {
@@ -869,7 +877,8 @@ export const setProjectList = (Data) => ({
 
 export const setLeaveSearchData = (Data) => ({
   type: SEARCH_LEAVE,
-  payload: Data});
+  payload: Data
+});
 
 export const setSalaryFilterListing = (Data) => ({
   type: "SET_SALARY_FILTER",

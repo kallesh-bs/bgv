@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import VerficationListing from "./VerficationListing";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
+import { useDispatch, useSelector } from 'react-redux';
+import { bgvAllEmpData } from "redux/actions/action";
 
 const Verfication = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.bgvReducer.employeeData);
+
   const [res, setRes] = useState();
   const [tabValue, setTabValue] = useState({
     tab: 5,
@@ -30,6 +35,9 @@ const Verfication = () => {
     try {
       const { response, status } = await Helper.get(path);
       setRes(response);
+      dispatch(bgvAllEmpData(response));
+
+
       let gridItemsTemp = []
       gridItemsTemp.push({ value: response['verified_count'], label: 'Verified Checks', color: "#1A8718" })
       gridItemsTemp.push({ value: response['rejected_count'], label: 'Rejected Checks', color: "#FA3232" })
@@ -45,7 +53,10 @@ const Verfication = () => {
 
   useEffect(() => {
     getAddressCheck();
+    console.log(data);
   }, []);
+
+
 
   return (
     <>
