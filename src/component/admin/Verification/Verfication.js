@@ -8,8 +8,8 @@ import { bgvAllEmpData } from "redux/actions/action";
 const Verfication = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.bgvReducer.employeeData);
+  console.log(data);
 
-  const [res, setRes] = useState();
   const [tabValue, setTabValue] = useState({
     tab: 5,
     label: "",
@@ -34,7 +34,6 @@ const Verfication = () => {
     }
     try {
       const { response, status } = await Helper.get(path);
-      setRes(response);
       dispatch(bgvAllEmpData(response));
 
 
@@ -53,7 +52,7 @@ const Verfication = () => {
 
   useEffect(() => {
     getAddressCheck();
-    console.log(data);
+    console.log("redux data ", data);
   }, []);
 
 
@@ -98,7 +97,8 @@ const Verfication = () => {
           ))}
         </div>
       </div>
-      <VerficationListing tabValue={tabValue} allEmpData={res} />
+      {console.log(data)}
+      <VerficationListing tabValue={tabValue} allEmpData={data} />
     </>
   );
 };

@@ -1,23 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
 import { GoSearch } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { awsURL } from "../../../utils/Constants";
 import Paginate from "../Employee/Paginate";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
+import { bgvAllEmpData } from "redux/actions/action";
 
 const VerficationListing = ({ tabValue, allEmpData }) => {
+  const dispatch = useDispatch();
   const { tab, label } = tabValue;
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount] = useState(1);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.leaveReducer);
+  const searchFilterRef = useRef();
 
   let dummyData = [];
-  if (allEmpData) {
+  if (Object.keys(allEmpData).length > 0) {
     dummyData = allEmpData?.total_check.map(obj => {
       return { ...obj, name: obj.full_name, full_name: undefined, img: `${awsURL}/images/penetration-tester.png`, contactNo: "123-456-7890", doj: obj.date_of_joining, date_of_joining: undefined };
     })
@@ -135,6 +140,37 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
     Rejected: "#FA3232",
   };
 
+  const handleSearchFilter = async () => {
+    let searchFilterData = searchFilterRef.current.value;
+    let path = `${apiUrl.background_verification}?query=${searchFilterData}`;
+
+    // Ensure a valid path was determined
+    if (!path) {
+      console.error("Invalid text value, no API path determined");
+      return;
+    }
+    try {
+      const { response, status } = await Helper.get(path);
+      // setRes(response);
+      dispatch(bgvAllEmpData(response));
+    }
+    catch (error) {
+      console.error("Error in handleAddressCheck:", error);
+    }
+  }
+
+  const debounce = (func, delay) => {
+    let timer;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func();
+      }, delay);
+    };
+  }
+
+  const searchFilterDebounceFunction = debounce(handleSearchFilter, 300);
+
   return (
     <>
       <div
@@ -154,8 +190,10 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
                 <input
                   placeholder="Search"
                   className="outline-none w-[11.5rem] ml-2"
+                  ref={searchFilterRef}
+                  onChange={searchFilterDebounceFunction}
                 />
-                <GoSearch className="w-[1.375rem] h-[1.375rem]" />
+                <GoSearch className="w-[1.375rem] h-[1.375rem] cursor-pointer" onClick={handleSearchFilter} />
               </div>
             </div>
             <button
