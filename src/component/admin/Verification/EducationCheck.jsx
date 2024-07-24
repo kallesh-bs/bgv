@@ -198,7 +198,7 @@ const EducationCheck = ({ active, setActiveTab }) => {
   };
 
   return (
-    <div className="w-full h-[60vh] mt-5 overflow-y-scroll  no-scrollbar  ">
+    <div className="w-full h-[56vh] mt-5 overflow-y-scroll  no-scrollbar  ">
       {/* Section markshseet_10th */}
       <div className="w-[100%]">
         <div className="w-[100%] h-[55px] flex">
