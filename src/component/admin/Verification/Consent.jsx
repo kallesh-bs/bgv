@@ -18,9 +18,9 @@ const Consent = ({ setCurrentStep, changetab }) => {
   }, [checked]);
 
   return (
-    <div className="p-6  w-full overflow-y-auto no-scrollbar h-full">
-        <div className="mt-6">
-          <p className="w-[46vw]  text-wrap">
+    <div className=" w-full h-full">
+        <div>
+          <p className="w-[56vw] pt-5 text-sm">
           I here by Lorem Ipsum is simply dummy text of the printing and typesetting industry.
            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
             unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -42,38 +42,25 @@ I here by Lorem Ipsum is simply dummy text of the printing and typesetting indu
     PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-      <form>
-        <div className="p-2 mt-6 flex gap-8">
+        <div className="w-full p-[14px_0px_0px_0px] mt-6 flex items-center gap-4">
+          <div>
           <input
             type="checkbox"
             name="isChecked"
             checked={checked}
             onChange={() => setChecked(!checked)}
-            className="checkbox"
+            className="checkbox w-[20px] h-[20px]"
           />
-          <label className="checkbox-label font-bold">
-            {t("consentTickBox")}
-          </label>
+          </div>
+          <div>
+         <div className="w-full text-[#191919] text-base">
+            <p>
+            I hereby give an undertaking that the data and information given in the application and enclosures are true
+             to the best of my knowledge and belief and I
+            </p>
+         </div>
+          </div>
         </div>
-
-        <div className="flex justify-end static">
-          <button
-            className="mt-10 h-[2.813rem] w-[7.625rem] p-2
-              text-gray-500"
-              onClick={()=>setCurrentStep(4)}
-          >
-            {t("back")}
-          </button>
-          <button
-            type="button"
-            disabled={!checked}
-            className={`mt-10 h-[2.813rem] w-[7.625rem] p-2 rounded-full 
-              ${checked ? 'bg-[#23275E] text-white' : 'bg-gray-400 text-gray-700'}`}
-          >
-            {t("submit")}
-          </button>
-        </div>
-      </form>
     </div>
   );
 };
