@@ -1,16 +1,14 @@
-import React, { useState, useTransition } from 'react'
+import React, { useState } from 'react'
 import { CiLocationOn } from 'react-icons/ci';
 import { FiPhone } from 'react-icons/fi';
-import { MdContacts, MdOutlineAlternateEmail, MdOutlineCameraAlt } from 'react-icons/md';
+import { MdOutlineAlternateEmail, MdOutlineCameraAlt } from 'react-icons/md';
 import { RiContactsLine } from 'react-icons/ri';
 import ProfileAvtar from './ProfileAvtar';
-import { useSelector } from 'react-redux';
 
 const ProfileCard = () => {
     const [img , setImg]=useState()
     const [hover , setHover] = useState(false)
-  const user = useSelector((state) => state?.profileReducer?.profileData);
-
+  const user = JSON.parse(localStorage.getItem("userLoginToken"))
 
   return (
     <div
@@ -23,7 +21,7 @@ const ProfileCard = () => {
                     className="w-[12rem] h-[8rem] text-6xl text-white flex items-center
                       justify-center flex-wrap md:hidden sm:hidden lg:hidden xl:flex"
                   >
-                    {user?.profile_picture_url ? (
+                    {user?.profile_picture ? (
                       <div
                         onMouseEnter={() => {
                           setHover(true);
@@ -37,28 +35,32 @@ const ProfileCard = () => {
                         className="rounded-[50%]"
                       >
                         <label
-                          className="h-full w-full cursor-pointer flex items-center justify-center rounded-full"
+                          className="h-full w-full relative cursor-pointer flex items-center justify-center rounded-full"
                           htmlFor="company_profile"
                         >
                           <img
-                            className="h-[7rem] w-[7rem] rounded-[50%] relative "
-                            src={user?.profile_picture_url}
+                            className=" h-[7rem] w-[7rem] rounded-[50%] relative "
+                            src={user?.profile_picture}
                             alt="profile"
                           />
-                          {hover && (
-                            <div
-                              className="absolute bg-slate-400 bg-opacity-70 h-[7rem] w-[7rem] flex
-                                justify-center items-center rounded-full text-[#F2F6FF]"
-                            >
-                              <div className="flex flex-col items-center justify-center text-[1rem]">
-                                <div>
-                                  <MdOutlineCameraAlt className="h-[1.25rem] w-[1.25rem]" />
-                                </div>
-                                <div>CHANGE</div>
-                                <div>PROFILE</div>
-                              </div>
-                            </div>
-                          )}
+                           <div className="absolute  bottom-0 right-0 flex items-end justify-end z-20">
+                          <label
+                            className="h-9 w-9 cursor-pointer flex items-center justify-center rounded-full bg-white"
+                            htmlFor="company_profile"
+                          >
+                            <MdOutlineCameraAlt
+                              className="text-[#031B59] w-full h-full p-2
+                            hover:scale-110 transition-transform"
+                            />
+                          </label>
+                          <input
+                            className="hidden"
+                            type="file"
+                            name="company_profile"
+                            id="company_profile"
+                            onChange={(e) => setImg(e.target.files[0])}
+                          />
+                        </div>
                           <input
                             className="hidden"
                             type="file"
@@ -76,6 +78,7 @@ const ProfileCard = () => {
                           name={user?.full_name ? user?.full_name : "Employee"}
                           width="7rem"
                           height="7rem"
+                          src={img}
                         />
                         <div className="absolute  bottom-0 right-0 flex items-end justify-end z-20">
                           <label
