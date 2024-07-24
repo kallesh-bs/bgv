@@ -60,7 +60,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(2);
             }}
-            className={`w-full font-bold text-base p-[14px_16px_14px_16px]   ${activeTab === 2
+            className={`w-full font-bold text-base p-[16px_16px_16px_16px]   ${activeTab === 2
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
               : "text-[#686868]"
               }`}
