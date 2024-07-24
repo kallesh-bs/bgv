@@ -64,20 +64,7 @@ const EducationCheck = ({ active, setActiveTab }) => {
 {staticData.map((item)=> <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{item}<RxCross2/></div>)}
           </div>
       </div>
-
-      {/* post_graduation_degrees Section */}
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
-          <h1>{t("PostDegree")}</h1>
-            <ExtraActions docStatus={doc3} setDocStatus={setDoc3} />
-          </div>
-        </div>
-        <div>
-{staticData.map((item)=> <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{item}<RxCross2/></div>)}
-          </div>
-      </div>
-
+      
       {/* other_certifications Section */}
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
