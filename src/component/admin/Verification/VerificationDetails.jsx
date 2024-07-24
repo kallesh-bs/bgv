@@ -30,73 +30,119 @@ const VerficationDetails = () => {
   };
   return (
     <>
-      <div className="w-full h-full  ">    
-          <div className="w-full h-[65px]  rounded-lg border flex items-center justify-start ">
-            <button
-              onClick={function () {
-                handleTabClick(1);
-              }}
-              className={` w-full h-full  p-[14px_16px_14px_16px]   ${activeTab === 1
-                ? "text-[#002169]  bg-[#F2F6FF]"
-                : "text-[#686868]"
-                } flex justify-center font-bold text-sm items-center gap-2`} >   
-                     <FaRegUser />
-                    <h1>{t("checkIden")}</h1>
-            </button>
+      <div className="w-full h-full  p-[0px_0px_0px_0px]  ">
+        <div className="w-[100%]  border flex items-center justify-start ">
+          <button
+            onClick={function () {
+              handleTabClick(1);
+            }}
+            className={` p-[14px_16px_14px_16px]   ${activeTab === 1
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              }`}
+          >
+            <Link rel="stylesheet" href="#">
+              <div
+                className={`    text-lg ${activeTab === 1
+                  ? "text-[#002169] font-bold "
+                  : "text-[#686868]"
+                  } `}
+              >
+                <div className="flex justify-center items-center gap-2 ">
+                  <FaRegUser />
+                  <h1>{t("checkIden")}</h1>
+                </div>
+              </div>
+            </Link>
+          </button>
 
-            <button
-              onClick={function () {
-                handleTabClick(2);
-              }}
-              className={` w-full h-full p-[14px_16px_14px_16px]   ${activeTab === 2
-                ? "text-[#002169] font-bold bg-[#F2F6FF]"
-                : "text-[#686868]"
-                } flex font-bold text-sm justify-center items-center gap-2`}
-            >
-                    <FaGraduationCap />
-                    <h1>{t("checkEdu")}</h1>
-            </button>
+          <button
+            onClick={function () {
+              handleTabClick(2);
+            }}
+            className={`p-[14px_16px_14px_16px]   ${activeTab === 2
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              }`}
+          >
+            <Link rel="stylesheet" href="#">
+              <div
+                className={`    text-lg ${activeTab === 2
+                  ? "text-[#002169] font-bold "
+                  : "text-[#686868]"
+                  }`}
+              >
+                <div className="flex justify-center items-center gap-2">
+                  <FaGraduationCap />
+                  <h1>{t("checkEdu")}</h1>
+                </div>
+              </div>
+            </Link>
+          </button>
 
-            <button
-              onClick={function () {
-                handleTabClick(3);
-              }}
-              className={` w-full h-full p-[14px_16px_14px_16px]   ${activeTab === 3
-                ? "text-[#002169] font-bold bg-[#F2F6FF]"
-                : "text-[#686868]"
-                } flex justify-center items-center gap-2 text-sm font-bold`}
-            >
-                    <CiLocationOn />
-                    <h1>{t("checkadd")}</h1>
-            </button>
+          <button
+            onClick={function () {
+              handleTabClick(3);
+            }}
+            className={`p-[14px_16px_14px_16px]   ${activeTab === 3
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              }`}
+          >
+            <Link rel="stylesheet" href="#">
+              <div
+                className={`    text-lg ${activeTab === 3
+                  ? "text-[#002169] font-bold bg-[#F2F6FF]"
+                  : "text-[#686868]"
+                  }`}
+              >
+                <div className="flex justify-center items-center gap-2">
+                  <CiLocationOn />
+                  <h1>{t("checkadd")}</h1>
+                </div>
+              </div>
+            </Link>
+          </button>
 
-            <button
-              onClick={function () {
-                handleTabClick(4);
-              }}
-              className={` w-full h-full p-[14px_16px_14px_16px]  ${activeTab === 4
-                ? "text-[#002169] font-bold bg-[#F2F6FF]"
-                : "text-[#686868]"
-                } flex justify-center items-center font-bold text-sm gap-2 `}
-            >
-                    <PiBagSimpleLight />
-                    <h1>{t("EmploymentHistory")}</h1>
-            </button>
-            <button
-              onClick={function () {
-                handleTabClick(5);
-              }}
-              className={` w-full p-[14px_16px_14px_16px]  ${activeTab === 5
-                ? "text-[#002169] font-bold bg-[#F2F6FF]"
-                : "text-[#686868]"
-                } flex justify-center items-center gap-2 font-bold text-sm`}
-            >
+          <button
+            onClick={function () {
+              handleTabClick(4);
+            }}
+            className={`p-[14px_16px_14px_16px] ${activeTab === 4
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              }`}
+          >
+            <Link rel="stylesheet" href="#">
+              <div className={`    lg:text-lg md:text-md `}>
+                <div className="flex justify-center items-center gap-2">
+                  <PiBagSimpleLight />
+                  <h1>{t("EmploymentHistory")}</h1>
+                </div>
+              </div>
+            </Link>
+          </button>
+          <button
+            onClick={function () {
+              handleTabClick(5);
+            }}
+            className={`p-[14px_16px_14px_16px] ${activeTab === 5
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              }`}
+          >
+            <Link rel="stylesheet" href="#">
+              <div className={`    lg:text-lg md:text-md `}>
+                <div className="flex justify-center items-center gap-2">
                   <IoNewspaperOutline />
-                    <h1>Consent</h1>
-            </button>
-          </div>
+                  <h1>Consent</h1>
+                </div>
+              </div>
+            </Link>
+          </button>
+        </div>
         <div className="w-full h-full">
-        {activeTab === 1 && (
+          {activeTab === 1 && (
             <div>
               <div className="mt-8 w-[300px]">
                 <select
@@ -128,13 +174,13 @@ const VerficationDetails = () => {
                 </select>
               </div>
               {identifyOptionTab === "Aadhar Card" && (
-                <IdentifyCheck selectOption={"Aadhar Card"} active={activeTab} setActiveTab={setActiveTab}  />
+                <IdentifyCheck selectOption={"Aadhar Card"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Driving License" && (
                 <IdentifyCheck selectOption={"Driving License"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Passport" && (
-                <IdentifyCheck selectOption={"Passport"} active={activeTab} setActiveTab={setActiveTab}  />
+                <IdentifyCheck selectOption={"Passport"} active={activeTab} setActiveTab={setActiveTab} />
               )}
             </div>
           )}
@@ -186,9 +232,9 @@ const VerficationDetails = () => {
               {t("No UI Found")}            </div>)} */}
             </div>
           )}
-          {activeTab === 4 && <EmployementHistoryCheck  active={activeTab} setActiveTab={setActiveTab} />}
+          {activeTab === 4 && <EmployementHistoryCheck active={activeTab} setActiveTab={setActiveTab} />}
 
-          {activeTab === 5 && <Consent   setCurrentStep={setActiveTab}  />}
+          {activeTab === 5 && <Consent setCurrentStep={setActiveTab} />}
 
         </div>
 

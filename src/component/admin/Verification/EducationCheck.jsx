@@ -8,8 +8,11 @@ import { RxCross2 } from "react-icons/rx";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
 import swalService from "utils/SwalServices";
+import { GrMore } from "react-icons/gr";
+import ExtraActions from "./ExtraActions";
 
 const EducationCheck = ({ active, setActiveTab }) => {
+  const [docStatus, setDocStatus] = useState("Pending Verification")
   const userData = localStorage.getItem("userLoginToken")
     ? JSON.parse(localStorage.getItem("userLoginToken"))
     : "";
@@ -204,7 +207,7 @@ const EducationCheck = ({ active, setActiveTab }) => {
         <div className="w-[100%] h-[55px] flex">
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
             <h1>{t("10th")}</h1>
-            <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
+            {/* <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">
                 <div
                   className={`flex items-center w-[200px] md:w-[150px] ${colorChange["markshseet_10th"]} text-white w-[131px] h-[40px] rounded-[25px] p-[5px_10px_5px_10px]`}
@@ -249,7 +252,8 @@ const EducationCheck = ({ active, setActiveTab }) => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
+            <ExtraActions docStatus={docStatus} setDocStatus={setDocStatus} />
           </div>
         </div>
         <div

@@ -80,7 +80,7 @@ const ProfileCard = () => {
                           height="7rem"
                           src={img}
                         />
-                        <div className="absolute  bottom-0 right-0 flex items-end justify-end z-20">
+                        <div className="absolute  bottom-0 right-0 flex items-end justify-end ">
                           <label
                             className="h-9 w-9 cursor-pointer flex items-center justify-center rounded-full bg-white"
                             htmlFor="company_profile"
