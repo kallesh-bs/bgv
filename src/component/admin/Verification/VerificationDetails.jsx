@@ -9,6 +9,8 @@ import EducationCheck from "./EducationCheck";
 import EmployementHistoryCheck from "./EmployementHistoryCheck";
 import "./Verfication.css";
 import IdentifyCheck from "./IdentifyCheck";
+import { IoNewspaperOutline } from "react-icons/io5";
+import Consent from "./Consent";
 
 const VerficationDetails = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -28,60 +30,14 @@ const VerficationDetails = () => {
   };
   return (
     <>
-      <div className="w-[96%] h-[92vh]  p-[0px_0px_0px_0px]  ">
-        {/* <div>
-          <div className="w-[100%] h-[128px] rounded-[0px_0px_16px_16px] shadow-xl  p-[10px_0px_10px_0px] ">
-            <div className="flex  gap-[20px] ">
-              <div className="w-[50px] h-[60px] rounded-[136px] border-2" id="verficationImage">
-              </div>
-              <div className="w-[90%] h-[0px] gap-[4px] ">
-                <h1 className=" font-bold text-xl">{t("camRain")} </h1>
-                <p>{t("designation")}</p>
-              </div>
-              <div className="w-[170px] h-[30px] flex gap-[15px]  ">
-                <div className="text-3xl">
-                  <LuUser2 />
-                </div>
-                <div className="text-3xl">
-                  <FaGraduationCap />
-
-                </div>
-                <div className="text-3xl">
-                  <CiLocationOn />
-
-                </div>
-                <div className="text-3xl">
-                  <PiBagSimpleLight />
-
-                </div>
-              </div>
-            </div>
-            <div className=" bg-[rgb(3,27,89)] w-[100%] h-[40px] gap-[20px] flex rounded-[0px_0px_16px_16px]
-             lg:p-[10px_21px_10px_65px] md:p-[10px_21px_10px_45px]  mt-[18px] ">
-              <div className="text-[white] flex  justify-center items-center gap-2">
-                <GrLocationPin />
-                <h4>{t("Jp,Rj")}</h4>
-              </div>
-              <div className="text-[white] justify-center items-center flex gap-2">
-                <RxCalendar />
-                <h4>{t('2,sep')}</h4>
-              </div>
-              <div className="text-[white] text-2xl flex justify-center items-center  gap-2 w-[50px] h-[20px]">
-                <MdOutlineBloodtype />
-                <h1>o+</h1>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-        <div className="w-[100%] h-[82.3%] mt-0 rounded-[20px] shadow-xl p-[5px_21px_20px_21px] gap-[22px]">
-          <div className="w-[100%] flex items-center justify-start md:space-x-2  lg:space-x-12">
+      <div className="w-full h-full  p-[0px_0px_0px_0px]  ">    
+          <div className="w-[100%]  border flex items-center justify-start ">
             <button
               onClick={function () {
                 handleTabClick(1);
               }}
-              className={`p-2 ${activeTab === 1
-                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+              className={` p-[14px_16px_14px_16px]   ${activeTab === 1
+                ? "text-[#002169] font-bold bg-[#F2F6FF]"
                 : "text-[#686868]"
                 }`}
             >
@@ -104,8 +60,8 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(2);
               }}
-              className={`p-2 ${activeTab === 2
-                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+              className={`p-[14px_16px_14px_16px]   ${activeTab === 2
+                ? "text-[#002169] font-bold bg-[#F2F6FF]"
                 : "text-[#686868]"
                 }`}
             >
@@ -128,15 +84,15 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(3);
               }}
-              className={`p-2 ${activeTab === 3
-                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+              className={`p-[14px_16px_14px_16px]   ${activeTab === 3
+                ? "text-[#002169] font-bold bg-[#F2F6FF]"
                 : "text-[#686868]"
                 }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
                   className={`    text-lg ${activeTab === 3
-                    ? "text-[#002169] font-bold "
+                    ? "text-[#002169] font-bold bg-[#F2F6FF]"
                     : "text-[#686868]"
                     }`}
                 >
@@ -152,8 +108,8 @@ const VerficationDetails = () => {
               onClick={function () {
                 handleTabClick(4);
               }}
-              className={`p-2 ${activeTab === 4
-                ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
+              className={`p-[14px_16px_14px_16px] ${activeTab === 4
+                ? "text-[#002169] font-bold bg-[#F2F6FF]"
                 : "text-[#686868]"
                 }`}
             >
@@ -166,8 +122,27 @@ const VerficationDetails = () => {
                 </div>
               </Link>
             </button>
+            <button
+              onClick={function () {
+                handleTabClick(5);
+              }}
+              className={`p-[14px_16px_14px_16px] ${activeTab === 5
+                ? "text-[#002169] font-bold bg-[#F2F6FF]"
+                : "text-[#686868]"
+                }`}
+            >
+              <Link rel="stylesheet" href="#">
+                <div className={`    lg:text-lg md:text-md `}>
+                  <div className="flex justify-center items-center gap-2">
+                  <IoNewspaperOutline />
+                    <h1>Consent</h1>
+                  </div>
+                </div>
+              </Link>
+            </button>
           </div>
-          {activeTab === 1 && (
+        <div className="w-full h-full">
+        {activeTab === 1 && (
             <div>
               <div className="mt-8 w-[300px]">
                 <select
@@ -259,6 +234,7 @@ const VerficationDetails = () => {
           )}
           {activeTab === 4 && <EmployementHistoryCheck  active={activeTab} setActiveTab={setActiveTab} />}
 
+          {activeTab === 5 && <Consent   setCurrentStep={setActiveTab}  />}
 
         </div>
 

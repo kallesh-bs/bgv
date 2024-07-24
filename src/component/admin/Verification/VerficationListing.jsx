@@ -10,6 +10,9 @@ import Paginate from "../Employee/Paginate";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
 import { bgvAllEmpData } from "redux/actions/action";
+import SidePopup from "component/common/SidePopup";
+import ProfileCard from "component/common/ProfileCard";
+import DocumetDropDown from "./DocumetDropDown";
 
 const VerficationListing = ({ tabValue, allEmpData }) => {
   const dispatch = useDispatch();
@@ -20,6 +23,7 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.leaveReducer);
   const searchFilterRef = useRef();
+  const [handlePopup , setHandlePopup] = useState(false)
 
   let dummyData = [];
   if (Object.keys(allEmpData).length > 0) {
@@ -29,7 +33,7 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
   }
 
 
-  // const dummyData = [
+ 
   //   {
   //     id: 1,
   //     img: `${awsURL}/images/penetration-tester.png`,
@@ -233,7 +237,7 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
                 </th>
               </tr>
             </thead>
-            {tab === 1 && (
+          
               <tbody className="p-2 text-sm text-left font-normal flex-0">
                 {dummyData.map((employee, index) => (
                   <tr
@@ -282,7 +286,8 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
                       <button
                         className="mt-[15px]"
                         onClick={() => {
-                          navigate("/VerficaticationDetails");
+                          setHandlePopup(true)
+                          // navigate("/VerficaticationDetails");
                         }}
                       >
                         <FaEye fontSize="20px" className="mr-[6px]" />
@@ -291,244 +296,7 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
                   </tr>
                 ))}
               </tbody>
-            )}
-
-            {tab === 2 && (
-              <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData.map((employee, index) => (
-                  <tr
-                    className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
-                    key={index}
-                  >
-                    <td
-                      className={`min-w-[5.5rem] p-2 sticky left-0
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <div className="flex items-center gap-[12px]">
-                        <img
-                          src={employee.img}
-                          alt="Employee"
-                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
-                        />
-                        <div>
-                          <div className="font-medium text-[14px] text-[#031B59]">
-                            {employee.name}
-                          </div>
-                          <div className="text-[14px] text-[#A1A1A1]">
-                            {employee.email}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.designation}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.contactNo}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.doj}
-                    </td>
-                    <td
-                      className="min-w-[12.7rem] p-2 text-center"
-                      style={{ color: statusColors[employee.status] }}
-                    >
-                      {employee.status}
-                    </td>
-                    <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <button
-                        className="mt-[15px]"
-                        onClick={() => {
-                          navigate("/VerficaticationDetails");
-                        }}
-                      >
-                        <FaEye fontSize="20px" className="mr-[6px]" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            {tab === 3 && (
-              <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData.map((employee, index) => (
-                  <tr
-                    className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
-                    key={index}
-                  >
-                    <td
-                      className={`min-w-[5.5rem] p-2 sticky left-0
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <div className="flex items-center gap-[12px]">
-                        <img
-                          src={employee.img}
-                          alt="Employee"
-                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
-                        />
-                        <div>
-                          <div className="font-medium text-[14px] text-[#031B59]">
-                            {employee.name}
-                          </div>
-                          <div className="text-[14px] text-[#A1A1A1]">
-                            {employee.email}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.designation}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.contactNo}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.doj}
-                    </td>
-                    <td
-                      className="min-w-[12.7rem] p-2 text-center"
-                      style={{ color: statusColors[employee.status] }}
-                    >
-                      {employee.status}
-                    </td>
-                    <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <button
-                        className="mt-[15px]"
-                        onClick={() => {
-                          navigate("/VerficaticationDetails");
-                        }}
-                      >
-                        <FaEye fontSize="20px" className="mr-[6px]" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            {tab === 4 && (
-              <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData.map((employee, index) => (
-                  <tr
-                    className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
-                    key={index}
-                  >
-                    <td
-                      className={`min-w-[5.5rem] p-2 sticky left-0
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <div className="flex items-center gap-[12px]">
-                        <img
-                          src={employee.img}
-                          alt="Employee"
-                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
-                        />
-                        <div>
-                          <div className="font-medium text-[14px] text-[#031B59]">
-                            {employee.name}
-                          </div>
-                          <div className="text-[14px] text-[#A1A1A1]">
-                            {employee.email}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.designation}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.contactNo}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.doj}
-                    </td>
-                    <td
-                      className="min-w-[12.7rem] p-2 text-center"
-                      style={{ color: statusColors[employee.status] }}
-                    >
-                      {employee.status}
-                    </td>
-                    <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <button
-                        className="mt-[15px]"
-                        onClick={() => {
-                          navigate("/VerficaticationDetails");
-                        }}
-                      >
-                        <FaEye fontSize="20px" className="mr-[6px]" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            {tab === 5 && (
-              <tbody className="p-2 text-sm text-left font-normal flex-0">
-                {dummyData.map((employee, index) => (
-                  <tr
-                    className="h-[3.125rem] even:bg-[#F8FAFC] text-[#031B59] border border-[#E2E8F0]"
-                    key={index}
-                  >
-                    <td
-                      className={`min-w-[5.5rem] p-2 sticky left-0
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <div className="flex items-center gap-[12px]">
-                        <img
-                          src={employee.img}
-                          alt="Employee"
-                          className="w-[25px] h-[25px] border border-[#031B59] rounded-full"
-                        />
-                        <div>
-                          <div className="font-medium text-[14px] text-[#031B59]">
-                            {employee.name}
-                          </div>
-                          <div className="text-[14px] text-[#A1A1A1]">
-                            {employee.email}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.designation}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.contactNo}
-                    </td>
-                    <td className="min-w-[12.7rem] p-2 text-center">
-                      {employee.doj}
-                    </td>
-                    <td
-                      className="min-w-[12.7rem] p-2 text-center"
-                      style={{ color: statusColors[employee.status] }}
-                    >
-                      {employee.status}
-                    </td>
-                    <td
-                      className={`lg:w-[5rem] p-2 pb-7 sticky right-0 flex justify-start
-          ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"}`}
-                    >
-                      <button
-                        className="mt-[15px]"
-                        onClick={() => {
-                          navigate("/VerficaticationDetails");
-                        }}
-                      >
-                        <FaEye fontSize="20px" className="mr-[6px]" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            )}
+          
           </table>
         </div>
 
@@ -554,6 +322,10 @@ const VerficationListing = ({ tabValue, allEmpData }) => {
             </div>
           )}
         </div>
+        {handlePopup && <SidePopup
+         children={<ProfileCard/>}
+          handleCancel={setHandlePopup} 
+          grandChild={<DocumetDropDown/>}/>}
       </div>
     </>
   );
