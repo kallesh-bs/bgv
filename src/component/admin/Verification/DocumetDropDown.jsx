@@ -10,7 +10,7 @@ const DocumetDropDown = () => {
    const [handleDropDown, setHandleDropDown] = useState(false)
    return (
       <div className={`rounded-xl ${handleDropDown && "border"} h-full mt-2  `}>
-         <div className={`w-full bg-${!handleDropDown && "[#031B59]  text-white "} p-3 items-center rounded-xl   flex justify-between`}>
+         <div className={`w-full bg-${!handleDropDown && "[#031B59]  text-white "} p-3 px-4 items-center rounded-xl   flex justify-between`}>
             <div className='flex gap-2 items-center'>
                {handleDropDown && <div className='cursor-pointer' onClick={() => setHandleDropDown(!handleDropDown)}>
                   <FaArrowLeftLong />
