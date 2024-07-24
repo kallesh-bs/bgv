@@ -191,3 +191,28 @@ export const conditionalFunctions = (index,value) => {
     return false ;
   }
 };
+
+export const profileName = (name) => {
+  let fullName = name
+    ? name
+      ?.split(" ")
+      ?.map((word) => word[0])
+      ?.join("")
+      ?.toUpperCase()
+    : null;
+
+  return fullName;
+};
+
+export const getColorFromFullName = (name) => {
+  const hashCode = name
+    ?.toUpperCase()
+    ?.split("")
+    ?.reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
+  const color = `#${(hashCode & 0x00ffffff)
+    .toString(16)
+    .toUpperCase()
+    .padStart(6, "0")}`;
+
+  return color;
+};

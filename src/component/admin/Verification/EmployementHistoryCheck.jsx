@@ -185,11 +185,11 @@ const EmployementHistoryCheck = ({ setActiveTab, active }) => {
   };
 
   return (
-    <div className="w-[100%] h-[65vh] pb-7 mt-5 overflow-x-scroll no-scrollbar">
+    <div className="w-[100%] h-[60vh]  mt-5 overflow-x-scroll no-scrollbar">
       {/* relieving_letters Section */}
       <div className="w-[100%]">
         <div className="w-[100%] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%]  flex justify-between font-medium text-base">
             <h1>{t("Relieving letter")}</h1>
             <div className="xl:w-[20%] lg:w-[30%] md:w-[40%] h-[55px] flex justify-center items-center text-lg">
               <div className="relative">

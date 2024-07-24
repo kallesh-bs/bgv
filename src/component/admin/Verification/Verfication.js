@@ -7,21 +7,14 @@ import { bgvAllEmpData } from "redux/actions/action";
 
 const Verfication = () => {
   const dispatch = useDispatch();
+  const [userData , setUserData] =useState() 
   const data = useSelector((state) => state.bgvReducer.employeeData);
-  console.log(data);
 
   const [tabValue, setTabValue] = useState({
     tab: 5,
     label: "",
   });
-  // const gridItems = [
-  //   { value: 169, label: "Total Checks", color: " #67147C" },
-  //   { value: 12, label: "Verified Checks", color: "#1A8718" },
-  //   { value: 12, label: "Inprogress Checks", color: "#576CA2" },
-  //   { value: 12, label: "Insufficent Checks", color: "#FF981E" },
-  //   { value: 12, label: "Rejected Checks", color: "#FA3232" },
-  // ];
-
+ 
   const [gridItems, setGridItems] = useState([]);
 
   async function getAddressCheck() {
@@ -34,7 +27,11 @@ const Verfication = () => {
     }
     try {
       const { response, status } = await Helper.get(path);
-      dispatch(bgvAllEmpData(response));
+      if (status === 200 || status === 201) {
+        setUserData((pev)=> (pev = response))
+        dispatch(bgvAllEmpData(response));
+        
+      }
 
 
       let gridItemsTemp = []
@@ -97,8 +94,7 @@ const Verfication = () => {
           ))}
         </div>
       </div>
-      {console.log(data)}
-      <VerficationListing tabValue={tabValue} allEmpData={data} />
+      {userData && <VerficationListing tabValue={tabValue} allEmpData={userData} /> }
     </>
   );
 };
