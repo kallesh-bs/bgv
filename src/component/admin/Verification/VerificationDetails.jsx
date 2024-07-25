@@ -30,13 +30,13 @@ const VerficationDetails = () => {
   };
   return (
     <>
-      <div className="w-full h-full  p-[0px_0px_0px_0px]  ">
-        <div className="w-[100%]  border flex items-center justify-start ">
+      <div className="w-full h-full   ">
+        <div className="w-[100%] rounded-lg  border flex items-center justify-start ">
           <button
             onClick={function () {
               handleTabClick(1);
             }}
-            className={` p-[14px_16px_14px_16px]   ${activeTab === 1
+            className={` w-full p-[18px_16px_18px_16px]   ${activeTab === 1
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
               : "text-[#686868]"
               }`}
@@ -48,7 +48,7 @@ const VerficationDetails = () => {
                   : "text-[#686868]"
                   } `}
               >
-                <div className="flex justify-center items-center gap-2 ">
+                <div className="flex font-bold text-sm justify-center items-center gap-2 ">
                   <FaRegUser />
                   <h1>{t("checkIden")}</h1>
                 </div>
@@ -60,7 +60,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(2);
             }}
-            className={`p-[14px_16px_14px_16px]   ${activeTab === 2
+            className={`w-full font-bold text-base p-[16px_16px_16px_16px]   ${activeTab === 2
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
               : "text-[#686868]"
               }`}
@@ -72,7 +72,7 @@ const VerficationDetails = () => {
                   : "text-[#686868]"
                   }`}
               >
-                <div className="flex justify-center items-center gap-2">
+                <div className="flex font-bold text-sm  justify-center items-center gap-2">
                   <FaGraduationCap />
                   <h1>{t("checkEdu")}</h1>
                 </div>
@@ -84,7 +84,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(3);
             }}
-            className={`p-[14px_16px_14px_16px]   ${activeTab === 3
+            className={`w-full p-[18px_16px_18px_16px]   ${activeTab === 3
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
               : "text-[#686868]"
               }`}
@@ -96,7 +96,7 @@ const VerficationDetails = () => {
                   : "text-[#686868]"
                   }`}
               >
-                <div className="flex justify-center items-center gap-2">
+                <div className="flex font-bold text-sm  justify-center items-center gap-2">
                   <CiLocationOn />
                   <h1>{t("checkadd")}</h1>
                 </div>
@@ -108,13 +108,13 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(4);
             }}
-            className={`p-[14px_16px_14px_16px] ${activeTab === 4
+            className={`w-full p-[18px_16px_18px_16px] ${activeTab === 4
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
               : "text-[#686868]"
               }`}
           >
             <Link rel="stylesheet" href="#">
-              <div className={`    lg:text-lg md:text-md `}>
+              <div className={`    font-bold text-sm  `}>
                 <div className="flex justify-center items-center gap-2">
                   <PiBagSimpleLight />
                   <h1>{t("EmploymentHistory")}</h1>
@@ -126,13 +126,13 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(5);
             }}
-            className={`p-[14px_16px_14px_16px] ${activeTab === 5
+            className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
               : "text-[#686868]"
               }`}
           >
             <Link rel="stylesheet" href="#">
-              <div className={`    lg:text-lg md:text-md `}>
+              <div className={` font-bold text-sm  `}>
                 <div className="flex justify-center items-center gap-2">
                   <IoNewspaperOutline />
                   <h1>Consent</h1>
