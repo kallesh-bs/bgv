@@ -43,7 +43,7 @@ export default function VerficationListing({ tabValue, allEmpData }) {
   const { userPermission } = usePermissions(mappedPermissionObj.User);
   console.log(allEmpData);
 
-  const pageCounte = Math.ceil(allEmpData.length / 3);
+  // const pageCounte = Math.ceil(allEmpData.length / 3);
 
   const handleDisable = async (id) => {
     if (!enable) {
@@ -234,7 +234,7 @@ export default function VerficationListing({ tabValue, allEmpData }) {
               </div>{" "}
               <Paginate
                 currentPage={currentPage}
-                initialPageCount={pageCounte}
+                initialPageCount={pageCount}
                 pageRangeDisplayed={5}
                 next=">"
                 previous="<"

@@ -7,7 +7,7 @@ export const fetchBgvEmployeeData =
     dispatch(isLoading(true));
     const path = `background_verification?&page=${
       currentPage || 1
-    } &per_page=${3} &query=${searchItem || ""}`;
+    } &per_page=${10} &query=${searchItem || ""}`;
     try {
       const { response } = await Helper.get(path);
       if (response.message === "No records found") {
