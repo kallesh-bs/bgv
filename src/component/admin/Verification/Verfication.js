@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import VerficationListing from "./VerficationListing";
-import useFetchbgvData from "./useFetchbgvData";
 
 const Verfication = () => {
   const dispatch = useDispatch();
   const allEmpData = useSelector((state) => state.bgvReducer.employeeData);
+  const totalChecks = useSelector(
+    (state) => state.bgvReducer.employeeData.total_check
+  );
   const [bgvStatus, setbgvStatus] = useState("");
 
   console.log(allEmpData);
+  console.log(totalChecks);
   console.log(bgvStatus);
 
   const [tabValue, setTabValue] = useState({
@@ -19,8 +22,6 @@ const Verfication = () => {
 
   async function getAddressCheck() {
     try {
-      console.log(allEmpData);
-
       let gridItemsTemp = [];
       gridItemsTemp.push({
         value: allEmpData["total_check"].length
@@ -60,8 +61,6 @@ const Verfication = () => {
       console.error("Error in handleAddressCheck:", error);
     }
   }
-
-  useFetchbgvData();
 
   useEffect(() => {
     if (allEmpData) {
@@ -112,7 +111,14 @@ const Verfication = () => {
         </div>
       </div>
 
-      <VerficationListing tabValue={tabValue} allEmpData={allEmpData} />
+      <VerficationListing
+        tabValue={tabValue}
+        allEmpData={
+          bgvStatus
+            ? totalChecks.filter((check) => check.status === bgvStatus)
+            : totalChecks
+        }
+      />
     </>
   );
 };

@@ -171,9 +171,7 @@ const VerificationTable = ({
         {!isLoading && (
           <tbody className="p-2 text-sm text-left font-normal   flex-0">
             {employeeData &&
-              employeeData.total_check?.map((data, index) =>
-                renderRow(data, index)
-              )}
+              employeeData?.map((data, index) => renderRow(data, index))}
           </tbody>
         )}
       </table>
