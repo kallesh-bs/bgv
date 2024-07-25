@@ -41,6 +41,27 @@ export default function VerficationListing({ tabValue, allEmpData }) {
   const { isLoading, pageCount } = useSelector((state) => state.leaveReducer);
   const { userPermission } = usePermissions(mappedPermissionObj.User);
 
+  const statusColors = {
+    Hold: "#67147C",
+    Verified: "#1A8718",
+    Inprogress: "#576CA2",
+    Insufficient: "#FF981E",
+    Rejected: "#FA3232",
+  };
+
+  // const { isLoading } = useSelector((state) => state.leaveReducer);
+  // const searchFilterRef = useRef();
+  // const [handlePopup, setHandlePopup] = useState(false)
+
+  // let dummyData = [];
+  // if (Object.keys(allEmpData).length > 0) {
+  //   dummyData = allEmpData?.total_check.map(obj => {
+  //     return { ...obj, name: obj.full_name, full_name: undefined, img: `${awsURL}/images/penetration-tester.png`, contactNo: "123-456-7890", doj: obj.date_of_joining, date_of_joining: undefined };
+  //   })
+  // }
+
+  const [sidePopUpData, setSidePopUpData] = useState({});
+
   const handleDisable = async (id) => {
     if (!enable) {
       const path = apiUrl.disable + id;
@@ -116,6 +137,31 @@ export default function VerficationListing({ tabValue, allEmpData }) {
     onSpotChange,
     openPopUp,
   });
+
+  const handleSidePopUpData = async (userId) => {
+    let path = `${apiUrl.background_verification}/${userId}`;
+    console.log(path);
+
+    // Ensure a valid path was determined
+    if (!path) {
+      console.error("Invalid text value, no API path determined");
+      return;
+    }
+    try {
+      const { response, status } = await Helper.get(path);
+      // dispatch(bgvAllEmpData(response));
+      console.log(response.background_verification
+      );
+
+      setSidePopUpData(async () => {
+        await setSidePopUpData(response.background_verification)
+      })
+    }
+    catch (error) {
+      console.error("Error in handleAddressCheck:", error);
+    }
+  }
+
 
   return (
     <div

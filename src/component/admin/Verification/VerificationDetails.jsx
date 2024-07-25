@@ -12,11 +12,13 @@ import { IoNewspaperOutline } from "react-icons/io5";
 import Consent from "./Consent";
 import "./Verfication.css";
 
-const VerficationDetails = () => {
+const VerficationDetails = ({ sidePopUpData }) => {
   const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
   const [identifyOptionTab, setIdentifyOptionTab] = useState(0);
   const [adressOptionTab, setAddressOptionTab] = useState(0);
+
+
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
@@ -28,6 +30,9 @@ const VerficationDetails = () => {
   const handleIdentifyOptionClick = (value) => {
     setIdentifyOptionTab(value);
   };
+
+  // const identityCheckData = sidePopUpData['background_verification'];
+  // console.log(identityCheckData);
   return (
     <>
       <div className="w-[96%] h-[92vh]  p-[0px_0px_0px_0px]  ">
@@ -163,25 +168,13 @@ const VerficationDetails = () => {
                 </select>
               </div>
               {identifyOptionTab === "Aadhar Card" && (
-                <IdentifyCheck
-                  selectOption={"Aadhar Card"}
-                  active={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+                <IdentifyCheck selectOption={"Aadhar Card"} sidePopUpData={sidePopUpData} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Driving License" && (
-                <IdentifyCheck
-                  selectOption={"Driving License"}
-                  active={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+                <IdentifyCheck selectOption={"Driving License"} sidePopUpData={sidePopUpData} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Passport" && (
-                <IdentifyCheck
-                  selectOption={"Passport"}
-                  active={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+                <IdentifyCheck selectOption={"Passport"} sidePopUpData={sidePopUpData} active={activeTab} setActiveTab={setActiveTab} />
               )}
             </div>
           )}
