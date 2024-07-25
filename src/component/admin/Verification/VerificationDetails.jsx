@@ -8,6 +8,8 @@ import AddressCheck from "./AddressCheck";
 import EducationCheck from "./EducationCheck";
 import EmployementHistoryCheck from "./EmployementHistoryCheck";
 import IdentifyCheck from "./IdentifyCheck";
+import { IoNewspaperOutline } from "react-icons/io5";
+import Consent from "./Consent";
 import "./Verfication.css";
 
 const VerficationDetails = () => {
@@ -245,12 +247,10 @@ const VerficationDetails = () => {
               {t("No UI Found")}            </div>)} */}
             </div>
           )}
-          {activeTab === 4 && (
-            <EmployementHistoryCheck
-              active={activeTab}
-              setActiveTab={setActiveTab}
-            />
-          )}
+          {activeTab === 4 && <EmployementHistoryCheck active={activeTab} setActiveTab={setActiveTab} />}
+
+          {activeTab === 5 && <Consent setCurrentStep={setActiveTab} />}
+
         </div>
       </div>
     </>

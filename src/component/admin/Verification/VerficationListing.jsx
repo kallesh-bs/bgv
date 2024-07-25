@@ -15,6 +15,7 @@ import AddEmployee from "./AddEmployee";
 import EyeProfile from "./EyeProfile";
 import Paginate from "./Paginate";
 import VerificationTable from "./VerificationTable";
+import useFetchbgvData from "./useFetchbgvData";
 
 export default function VerficationListing({ tabValue, allEmpData }) {
   const dispatch = useDispatch();
@@ -109,12 +110,12 @@ export default function VerficationListing({ tabValue, allEmpData }) {
     setFilterTableValue(filterTableDefaultValue);
   };
 
-  // useFetchbgvData({
-  //   query: searchItem,
-  //   currentPage,
-  //   onSpotChange,
-  //   openPopUp,
-  // });
+  useFetchbgvData({
+    query: searchItem,
+    currentPage,
+    onSpotChange,
+    openPopUp,
+  });
 
   return (
     <div

@@ -1,9 +1,14 @@
+import ProfileCard from "component/common/ProfileCard";
+import SidePopup from "component/common/SidePopup";
 import LoaderComp from "component/loader/LoaderComp";
 import PropTypes from "prop-types";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { convertDateFormat } from "utils/date";
+import DocumetDropDown from "./DocumetDropDown";
 import Employeebrief from "./Employeebrief";
 
 const VerificationTable = ({
@@ -16,15 +21,20 @@ const VerificationTable = ({
   setEnable,
   userPermission,
 }) => {
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [userId, setUserId] = useState(1);
+  const [pageCount] = useState(1);
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.leaveReducer);
+  const searchFilterRef = useRef();
+  const [handlePopup, setHandlePopup] = useState(false);
 
   const renderRow = (data, index) => {
     const handleEmpEye = (data) => {
       setOpenPopUp(true);
     };
-
-    const temp = () => {};
 
     const statusColors = {
       hold: "#67147C",
@@ -87,7 +97,8 @@ const VerificationTable = ({
           <button
             className="mr-[6px]"
             onClick={() => {
-              handleEmpEye(data);
+              setUserId(data.id);
+              setHandlePopup(!handlePopup);
             }}
           >
             <FaEye fontSize="20px" />
@@ -170,6 +181,13 @@ const VerificationTable = ({
         <div className="flex items-center  justify-center h-[80vh] w-full">
           <LoaderComp />
         </div>
+      )}
+      {handlePopup && (
+        <SidePopup
+          children={<ProfileCard userId={userId} />}
+          handleCancel={setHandlePopup}
+          grandChild={<DocumetDropDown userId={userId} />}
+        />
       )}
     </div>
   );

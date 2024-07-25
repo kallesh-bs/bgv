@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import VerficationListing from "./VerficationListing";
+import useFetchbgvData from "./useFetchbgvData";
 
 const Verfication = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,6 @@ const Verfication = () => {
     tab: 1,
     label: "",
   });
-
   const [gridItems, setGridItems] = useState([]);
 
   async function getAddressCheck() {
@@ -60,6 +60,8 @@ const Verfication = () => {
       console.error("Error in handleAddressCheck:", error);
     }
   }
+
+  useFetchbgvData();
 
   useEffect(() => {
     if (allEmpData) {
