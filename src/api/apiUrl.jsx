@@ -210,6 +210,21 @@ const apiUrl = {
   hireDeveloper: "developers",
   bulkUploadUpdate: "users/update_user/",
   resetPassword: "api/reset_password",
+
+  //verification
+  background_verification: "background_verification",
+  addressCheck: "address_check",
+  identityCheck: "identity_check",
+  educationCheck: "education_check",
+  employementHistoryCheck: "employement_history_check",
+  backgroundVerification: "background_verification",
+  profileCompletion: "background_verification/profile_completion",
+  removeDocument: "background_verification/remove_document",
+  marksSheet_10:"markshseet_10th",
+  markshseet_10th_status:"markshseet_10th_status",
+  marksSheet_12:"markshseet_12th",
+  marksSheet_10:"markshseet_10th",
+
 };
 
 export default apiUrl;

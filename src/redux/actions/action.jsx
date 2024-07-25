@@ -1,62 +1,115 @@
 import {
+  ALL_LEAVES,
+  BGV_ALL_EMPLOYEE_DATA,
+  BGV_EMPLOYEE_DATA_BY_ID,
+  BGV_FILE_UPLOAD,
+  COMPANY_PROFILE,
+  NOTIFY_USER,
+  ON_HOLD_BY_EMPLOYEE_ID,
+  PAGE_COUNT,
+  PROFILE_COMPLETION_BY_ID,
+  REMOVE_DOCUMENT,
+  SEARCH_LEAVE,
+  SET_ACTIVECHAT,
+  SET_ALL_FEEDBACK_DATA,
   SET_ALL_LEAVE_TYPE,
+  SET_ATTENDANCE,
+  SET_BROADCASTEDMESSAGE,
+  SET_CHAT_USERS_STATUS,
+  SET_CHATS,
+  SET_CLIENTS_NUMBER,
+  SET_EMPLOYEE_NUMBER,
+  SET_EXPENSE_DATA,
+  SET_FILES,
+  SET_GROUP_CHATS,
+  SET_INDIVIDUAL_INTERVIEW_DATA,
+  SET_INTERVIEW_DATA,
+  SET_INTERVIEW_ID,
+  SET_INVOICE_BYID,
+  SET_JOB_OPENING_DATA,
+  SET_MESSAGES,
   SET_MONTHLY_CLIENTS,
   SET_MONTHLY_EMPLOYEES,
   SET_MONTHLY_REVENUE,
   SET_MONTHLY_WORKINGHOURS,
+  SET_MY_FEEDBACK_DATA,
+  SET_MY_STATUS,
+  SET_NOTIFICATION,
+  SET_NOTIFICATION_UPDATE,
   SET_OVERIVEW_REVIEW,
   SET_OVERVIEW_REVENUE,
+  SET_PROJECT_LIST,
   SET_PUNCH_IN_DATA,
+  SET_ROOMID,
   SET_SEARCH_RESULT,
+  SET_SEARCH_RESULT_FOR_CHAT,
+  SET_SENDMESSAGES,
+  SET_SERVICE_AVAILABLE_DATA,
+  SET_SHOW_GROUP_LIST,
+  SET_SHOW_PROFILE,
   SET_SHOW_TOAST,
   SET_TOTAL_AVG,
   SET_TOTAL_EMPLOYEES,
+  SET_UPDATE_CHATS,
+  SET_USERLIST,
+  SET_USERNAME,
   SET_YEARLY_WORKINGHOURS,
   SET_YOUR_AVG,
+  SINGLE_ASSET_DATA,
+  SINGLE_COMPANY_DATA,
+  SINGLE_PF_DATA,
+  SINGLE_TDS_DATA,
+  STORE_FILE_DATA,
   TIMER_DATA,
   TOTAL_WORKING_DAYS_LEAVES,
-  ALL_LEAVES,
-  PAGE_COUNT,
-  SET_SERVICE_AVAILABLE_DATA,
-  SET_USERNAME,
-  SET_NOTIFICATION,
-  SET_CHATS,
-  SET_GROUP_CHATS,
-  SET_ACTIVECHAT,
-  SET_MESSAGES,
-  SET_SENDMESSAGES,
-  SET_BROADCASTEDMESSAGE,
-  SET_USERLIST,
-  COMPANY_PROFILE,
-  SET_INDIVIDUAL_INTERVIEW_DATA,
-  SET_INTERVIEW_DATA,
-  SET_ALL_FEEDBACK_DATA,
-  SET_INTERVIEW_ID,
-  SET_ATTENDANCE,
-  SET_SHOW_GROUP_LIST,
-  SET_NOTIFICATION_UPDATE,
-  SET_SEARCH_RESULT_FOR_CHAT,
-  SET_MY_FEEDBACK_DATA,
-  SET_JOB_OPENING_DATA,
   UPDATE_JOB_OPENING,
-  SET_EXPENSE_DATA,
-  SINGLE_COMPANY_DATA,
-  SINGLE_TDS_DATA,
-  SINGLE_PF_DATA,
-  SINGLE_ASSET_DATA,
-  SET_FILES,
-  SET_ROOMID,
-  SET_CHAT_USERS_STATUS,
-  STORE_FILE_DATA,
-  SET_MY_STATUS,
-  SET_PROJECT_LIST,
-  SET_UPDATE_CHATS,
-  SET_INVOICE_BYID,
-  SEARCH_LEAVE,
-  SET_SHOW_PROFILE,
-  SET_EMPLOYEE_NUMBER,
-  SET_CLIENTS_NUMBER
 } from "./types";
+
+export const bgvAllEmpData = (payload) => {
+  return {
+    type: BGV_ALL_EMPLOYEE_DATA,
+    payload,
+  };
+};
+
+export const bgvFileUpload = (payload) => {
+  return {
+    type: BGV_FILE_UPLOAD,
+    payload,
+  };
+};
+export const bgvEmployeeDataById = (payload) => {
+  return {
+    type: BGV_EMPLOYEE_DATA_BY_ID,
+    payload,
+  };
+};
+export const notifyUser = (payload) => {
+  return {
+    type: NOTIFY_USER,
+    payload,
+  };
+};
+export const holdByEmployeeId = (payload) => {
+  return {
+    type: ON_HOLD_BY_EMPLOYEE_ID,
+    payload,
+  };
+};
+
+export const profileCompletionById = (payload) => {
+  return {
+    type: PROFILE_COMPLETION_BY_ID,
+    payload,
+  };
+};
+
+export const removeDocument = (payload) => {
+  return {
+    type: REMOVE_DOCUMENT,
+    payload,
+  };
+};
 
 export const setleave = (payload) => {
   return {
@@ -144,13 +197,12 @@ export const setstatus = (payload) => {
 
 export const setStatusByNameAndDate = (payload) => {
   return {
-    type: 'SEARCH_STATUS_NAME_DATE',
+    type: "SEARCH_STATUS_NAME_DATE",
     payload,
   };
 };
 
 export const setjobOpening = (payload) => {
-
   return {
     type: SET_JOB_OPENING_DATA,
     payload,
@@ -158,7 +210,6 @@ export const setjobOpening = (payload) => {
 };
 
 export const updatejobOpening = (payload) => {
-
   return {
     type: UPDATE_JOB_OPENING,
     payload,
@@ -312,7 +363,6 @@ export const setAssetsData = (payload) => {
 };
 
 export const setCompanyTaxData = (payload) => {
-
   return {
     type: "SET_COMPANY_TAX_DATA",
     payload,
@@ -831,7 +881,7 @@ export const getPFDataByID = (payload) => {
 };
 
 export const setSalaryStructure = (payload) => ({
-  type: 'SET_SALARY_STRUCTURE',
+  type: "SET_SALARY_STRUCTURE",
   payload,
 });
 
@@ -843,12 +893,12 @@ export const getAssetsDataById = (payload) => {
 };
 
 export const addAssetSuccess = (response) => ({
-  type: 'ADD_ASSET_SUCCESS',
+  type: "ADD_ASSET_SUCCESS",
   payload: response,
 });
 
 export const editAssetSuccess = (response) => ({
-  type: 'EDIT_ASSET_SUCCESS',
+  type: "EDIT_ASSET_SUCCESS",
   payload: response,
 });
 
@@ -869,7 +919,8 @@ export const setProjectList = (Data) => ({
 
 export const setLeaveSearchData = (Data) => ({
   type: SEARCH_LEAVE,
-  payload: Data});
+  payload: Data,
+});
 
 export const setSalaryFilterListing = (Data) => ({
   type: "SET_SALARY_FILTER",

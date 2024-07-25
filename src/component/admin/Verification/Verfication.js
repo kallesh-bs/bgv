@@ -1,24 +1,78 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import VerficationListing from "./VerficationListing";
 
 const Verfication = () => {
+  const dispatch = useDispatch();
+  const allEmpData = useSelector((state) => state.bgvReducer.employeeData);
+  const totalChecks = useSelector(
+    (state) => state.bgvReducer.employeeData.total_check
+  );
+  const [bgvStatus, setbgvStatus] = useState("");
+
+  console.log(allEmpData);
+  console.log(totalChecks);
+  console.log(bgvStatus);
+
   const [tabValue, setTabValue] = useState({
     tab: 1,
     label: "",
   });
-  const gridItems = [
-    { value: 169, label: "Total Checks", color: " #67147C" },
-    { value: 12, label: "Verified Checks", color: "#1A8718" },
-    { value: 12, label: "Inprogress Checks", color: "#576CA2" },
-    { value: 12, label: "Insufficent Checks", color: "#FF981E" },
-    { value: 12, label: "Rejected Checks", color: "#FA3232" },
-  ];
+  const [gridItems, setGridItems] = useState([]);
+
+  async function getAddressCheck() {
+    try {
+      let gridItemsTemp = [];
+      gridItemsTemp.push({
+        value: allEmpData["total_check"].length
+          ? allEmpData["total_check"].length
+          : 0,
+        label: "Total Checks",
+        color: "#67147C",
+        status: "",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["verified_count"],
+        label: "Verified Checks",
+        color: "#1A8718",
+        status: "verified",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["inprogress_count"],
+        label: "Inprogress Checks",
+        color: "#576CA2",
+        status: "in_progress",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["insufficient_count"],
+        label: "Insufficent Checks",
+        color: "#FF981E",
+        status: "insufficient",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["rejected_count"],
+        label: "Rejected Checks",
+        color: "#FA3232",
+        status: "rejected",
+      });
+
+      setGridItems(gridItemsTemp);
+    } catch (error) {
+      console.error("Error in handleAddressCheck:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (allEmpData) {
+      getAddressCheck();
+    }
+  }, [allEmpData]);
 
   return (
     <>
       <div className="w-full h-fit flex items-center">
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 w-full p-5">
-          {gridItems.map((item, index) => (
+          {gridItems?.map((item, index) => (
             <div
               key={index}
               className={`h-[8rem] w-full p-5 flex flex-col col-span-1 rounded-[20px] cursor-pointer shadow-[0px_0px_20px_0px_rgba(3,27,89,0.10)] mt-2`}
@@ -28,12 +82,13 @@ const Verfication = () => {
                 borderWidth: tabValue.tab === index + 1 ? "1px" : "0px",
                 borderStyle: tabValue.tab === index + 1 ? "solid" : "none",
               }}
-              onClick={() =>
+              onClick={() => {
                 setTabValue({
                   tab: index + 1,
                   label: item.label,
-                })
-              }
+                });
+                setbgvStatus(item.status);
+              }}
             >
               <div>
                 <h6 className="text-bold text-[40px]  font-black">
@@ -55,7 +110,15 @@ const Verfication = () => {
           ))}
         </div>
       </div>
-      <VerficationListing tabValue={tabValue} />
+
+      <VerficationListing
+        tabValue={tabValue}
+        allEmpData={
+          bgvStatus
+            ? totalChecks.filter((check) => check.status === bgvStatus)
+            : totalChecks
+        }
+      />
     </>
   );
 };
