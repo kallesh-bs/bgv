@@ -173,9 +173,8 @@ export default function VerficationListing({ tabValue, allEmpData }) {
                 >
                   <div
                     className={`flex h-[3.5rem] p-[1rem_1.875rem] justify-center items-center gap-[0.5rem]
-                  rounded-[2.5rem] ${
-                    submitOnce ? "bg-[#6a7daf]" : " bg-[#031B59]"
-                  } font-inter text-[1rem] font-bold leading-normal text-white`}
+                  rounded-[2.5rem] ${submitOnce ? "bg-[#6a7daf]" : " bg-[#031B59]"
+                      } font-inter text-[1rem] font-bold leading-normal text-white`}
                   >
                     {enable ? t("enable") : t("disable")}
                   </div>
@@ -194,9 +193,9 @@ export default function VerficationListing({ tabValue, allEmpData }) {
           <AddButton
             currentResource={mappedPermissionObj.User}
             title={t("addemployees")}
-            // onClick={() => {
-            //   setAddEmployeePop(true);
-            // }}
+          // onClick={() => {
+          //   setAddEmployeePop(true);
+          // }}
           />
         </div>
       </div>
