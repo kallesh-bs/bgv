@@ -26,7 +26,7 @@ import { MyTeamsReducer } from "./MyTeamsReducer";
 import { interviewReducer } from "./interviewReducer";
 import { invoiceReducer } from "./invoiceReducer";
 import employeeImportReducer from "./employeeImportReducer";
-import { bgvReducer } from "./bgvAllEmpData";
+import { bgvReducer } from "./bgvReducer";
 
 const reducer = combineReducers({
   leaveReducer: leaveReducer,

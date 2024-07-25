@@ -148,7 +148,8 @@ export const isSameSender = (messages, m, i, userId) => {
 export const isLastMessage = (messages, i, userId) => {
   return (
     i === messages.length - 1 &&
-    (messages[messages.length - 1]?.senderId !== userId || messages[messages.length - 1]?.senderId === userId) &&
+    (messages[messages.length - 1]?.senderId !== userId ||
+      messages[messages.length - 1]?.senderId === userId) &&
     messages[messages.length - 1]?.senderId
   );
 };
@@ -165,29 +166,54 @@ export const getChatName = (activeChat, activeUser) => {
   return activeChat?.isGroup
     ? activeChat?.chatName
     : activeChat?.users[0]?.id === activeUser.id
-      ? activeChat?.users[1]?.name
-      : activeChat?.users[0]?.name;
+    ? activeChat?.users[1]?.name
+    : activeChat?.users[0]?.name;
 };
 
 export const getChatPhoto = (activeChat, activeUser) => {
   return activeChat?.isGroup
     ? activeChat.photo
     : activeChat?.users[0]?.id === activeUser?.id
-      ? activeChat?.users[1]?.profilePic
-      : activeChat?.users[0]?.profilePic;
+    ? activeChat?.users[1]?.profilePic
+    : activeChat?.users[0]?.profilePic;
 };
 
-export const conditionalFunctions = (index,value) => {
-  switch(index){
-  case 0 :
-    return Boolean(value.match(/[A-Z]/));
-  case 1 :
-    return Boolean(value.match(/[a-z]/));
-  case 2 :
-    return Boolean(value.match(/[0-9]/));
-  case 3 :
-    return value.length >= 8;
-  default:
-    return false ;
+export const conditionalFunctions = (index, value) => {
+  switch (index) {
+    case 0:
+      return Boolean(value.match(/[A-Z]/));
+    case 1:
+      return Boolean(value.match(/[a-z]/));
+    case 2:
+      return Boolean(value.match(/[0-9]/));
+    case 3:
+      return value.length >= 8;
+    default:
+      return false;
   }
+};
+
+export const getColorFromFullName = (name) => {
+  const hashCode = name
+    ?.toUpperCase()
+    ?.split("")
+    ?.reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
+  const color = `#${(hashCode & 0x00ffffff)
+    .toString(16)
+    .toUpperCase()
+    .padStart(6, "0")}`;
+
+  return color;
+};
+
+export const profileName = (name) => {
+  let fullName = name
+    ? name
+        ?.split(" ")
+        ?.map((word) => word[0])
+        ?.join("")
+        ?.toUpperCase()
+    : null;
+
+  return fullName;
 };

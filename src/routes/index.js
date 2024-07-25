@@ -1,22 +1,20 @@
-import React from "react";
-import { Routes, Route } from "react-router";
-import { BrowserRouter } from "react-router-dom";
-import Layout from "../component/layouts/Layout";
-import AuthGuard from "../component/authGuard/AuthGuard.js";
-import AddEmployee from "../component/admin/Employee/AddEmployee";
-import LayoutWeb from "../component/layouts/LayoutWeb.jsx";
 import Verfication from "component/admin/Verification/Verfication";
-import Home from "pages/Home";
-import Login from "pages/auth/Login";
-import Forgot from "pages/auth/Forgot";
+import VerficationDetails from "component/admin/Verification/VerificationDetails";
 import CheckMail from "pages/auth/CheckMail";
+import Forgot from "pages/auth/Forgot";
+import Login from "pages/auth/Login";
 import OtpVerification from "pages/auth/OtpVerification";
 import ResetPassword from "pages/auth/ResetPassword";
+import Home from "pages/Home";
 import Page404 from "pages/Page404";
-import VerficationDetails from "component/admin/Verification/VerificationDetails";
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import AddEmployee from "../component/admin/Employee/AddEmployee";
+import AuthGuard from "../component/authGuard/AuthGuard.js";
+import Layout from "../component/layouts/Layout";
+import LayoutWeb from "../component/layouts/LayoutWeb.jsx";
 
 export const MainRoutes = () => {
-
   const unprotectedRoutes2 = [
     {
       path: "/login",
@@ -59,7 +57,7 @@ export const MainRoutes = () => {
       path: "/",
       component: Home,
       name: "Home",
-    }
+    },
   ];
 
   const protectedRoutes = [
@@ -69,14 +67,14 @@ export const MainRoutes = () => {
       component: { admin: AddEmployee },
       role: ["admin"],
     },
-    
+
     {
       path: "/verification",
       name: "Verfication",
       component: { admin: Verfication },
       role: ["admin"],
     },
-    
+
     {
       path: "/VerficaticationDetails",
       name: "VerificationDetails",

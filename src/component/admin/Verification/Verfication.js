@@ -1,61 +1,71 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import VerficationListing from "./VerficationListing";
-import apiUrl from "api/apiUrl";
-import Helper from "api/Helper";
-import { useDispatch, useSelector } from 'react-redux';
-import { bgvAllEmpData } from "redux/actions/action";
 
 const Verfication = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.bgvReducer.employeeData);
-  console.log(data);
+  const allEmpData = useSelector((state) => state.bgvReducer.employeeData);
+  const [bgvStatus, setbgvStatus] = useState("");
+
+  console.log(allEmpData);
+  console.log(bgvStatus);
 
   const [tabValue, setTabValue] = useState({
-    tab: 5,
+    tab: 1,
     label: "",
   });
-  // const gridItems = [
-  //   { value: 169, label: "Total Checks", color: " #67147C" },
-  //   { value: 12, label: "Verified Checks", color: "#1A8718" },
-  //   { value: 12, label: "Inprogress Checks", color: "#576CA2" },
-  //   { value: 12, label: "Insufficent Checks", color: "#FF981E" },
-  //   { value: 12, label: "Rejected Checks", color: "#FA3232" },
-  // ];
 
   const [gridItems, setGridItems] = useState([]);
 
   async function getAddressCheck() {
-    let path = `${apiUrl.background_verification}/`;
-
-    // Ensure a valid path was determined
-    if (!path) {
-      console.error("Invalid text value, no API path determined");
-      return;
-    }
     try {
-      const { response, status } = await Helper.get(path);
-      dispatch(bgvAllEmpData(response));
+      console.log(allEmpData);
 
+      let gridItemsTemp = [];
+      gridItemsTemp.push({
+        value: allEmpData["total_check"].length
+          ? allEmpData["total_check"].length
+          : 0,
+        label: "Total Checks",
+        color: "#67147C",
+        status: "",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["verified_count"],
+        label: "Verified Checks",
+        color: "#1A8718",
+        status: "verified",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["inprogress_count"],
+        label: "Inprogress Checks",
+        color: "#576CA2",
+        status: "in_progress",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["insufficient_count"],
+        label: "Insufficent Checks",
+        color: "#FF981E",
+        status: "insufficient",
+      });
+      gridItemsTemp.push({
+        value: allEmpData["rejected_count"],
+        label: "Rejected Checks",
+        color: "#FA3232",
+        status: "rejected",
+      });
 
-      let gridItemsTemp = []
-      gridItemsTemp.push({ value: response['verified_count'], label: 'Verified Checks', color: "#1A8718" })
-      gridItemsTemp.push({ value: response['rejected_count'], label: 'Rejected Checks', color: "#FA3232" })
-      gridItemsTemp.push({ value: response['inprogress_count'], label: 'Inprogress Checks', color: "#576CA2" })
-      gridItemsTemp.push({ value: response['insufficient_count'], label: 'Insufficent Checks', color: "#FF981E" })
-      gridItemsTemp.push({ value: response['total_check'].length, label: 'Total Checks', color: "#67147C" })
-      setGridItems(gridItemsTemp)
-    }
-    catch (error) {
+      setGridItems(gridItemsTemp);
+    } catch (error) {
       console.error("Error in handleAddressCheck:", error);
     }
   }
 
   useEffect(() => {
-    getAddressCheck();
-    console.log("redux data ", data);
-  }, []);
-
-
+    if (allEmpData) {
+      getAddressCheck();
+    }
+  }, [allEmpData]);
 
   return (
     <>
@@ -71,12 +81,13 @@ const Verfication = () => {
                 borderWidth: tabValue.tab === index + 1 ? "1px" : "0px",
                 borderStyle: tabValue.tab === index + 1 ? "solid" : "none",
               }}
-              onClick={() =>
+              onClick={() => {
                 setTabValue({
                   tab: index + 1,
                   label: item.label,
-                })
-              }
+                });
+                setbgvStatus(item.status);
+              }}
             >
               <div>
                 <h6 className="text-bold text-[40px]  font-black">
@@ -85,10 +96,11 @@ const Verfication = () => {
               </div>
               <div className="w-full h-full flex justify-between items-end">
                 <h2
-                  className={`text-[16px] flex items-end ${tabValue.tab === index + 1
-                    ? "underline font-normal"
-                    : "font-normal"
-                    }`}
+                  className={`text-[16px] flex items-end ${
+                    tabValue.tab === index + 1
+                      ? "underline font-normal"
+                      : "font-normal"
+                  }`}
                 >
                   {item.label}
                 </h2>
@@ -97,8 +109,8 @@ const Verfication = () => {
           ))}
         </div>
       </div>
-      {console.log(data)}
-      <VerficationListing tabValue={tabValue} allEmpData={data} />
+
+      <VerficationListing tabValue={tabValue} allEmpData={allEmpData} />
     </>
   );
 };
