@@ -11,11 +11,11 @@ import ToastServices from "ToastServices";
 import apiUrl from "../../../api/apiUrl";
 import { isShowDialogBoxChange } from "../../../redux/actions/action";
 import { filterTableDefaultValue } from "../../../utils/Constants";
-import AddEmployee from "./AddEmployee";
+import AddEmployee from "../Employee/AddEmployee";
 import EyeProfile from "./EyeProfile";
 import Paginate from "./Paginate";
-import VerificationTable from "./VerificationTable";
 import useFetchbgvData from "./useFetchbgvData";
+import VerificationTable from "./VerificationTable";
 
 export default function VerficationListing({ tabValue, allEmpData }) {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ export default function VerficationListing({ tabValue, allEmpData }) {
   const [enable, setEnable] = useState(false);
   const [searchItem, setSearchItem] = useState("");
   const [openOptions, setOpenOptions] = useState(false);
+  const [showAddEmployeePopup, setShowAddEmployeePopup] = useState(false);
   const [filterTableValue, setFilterTableValue] = useState(
     filterTableDefaultValue
   );
@@ -40,6 +41,9 @@ export default function VerficationListing({ tabValue, allEmpData }) {
   );
   const { isLoading, pageCount } = useSelector((state) => state.leaveReducer);
   const { userPermission } = usePermissions(mappedPermissionObj.User);
+  console.log(allEmpData);
+
+  // const pageCounte = Math.ceil(allEmpData.length / 3);
 
   const statusColors = {
     Hold: "#67147C",
@@ -137,7 +141,12 @@ export default function VerficationListing({ tabValue, allEmpData }) {
     openPopUp,
   });
 
-
+  const handleAddEmployeeClick = () => {
+    setShowAddEmployeePopup(true);
+  };
+  const Handleclose = () => {
+    setShowAddEmployeePopup(false);
+  };
 
   return (
     <div
@@ -215,9 +224,9 @@ export default function VerficationListing({ tabValue, allEmpData }) {
           <AddButton
             currentResource={mappedPermissionObj.User}
             title={t("addemployees")}
-          // onClick={() => {
-          //   setAddEmployeePop(true);
-          // }}
+            onClick={() => {
+              handleAddEmployeeClick();
+            }}
           />
         </div>
       </div>
@@ -237,10 +246,10 @@ export default function VerficationListing({ tabValue, allEmpData }) {
       )}
       {!isLoading && userPermission?.viewAll && (
         <div className="w-full bg-white flex justify-between items-center">
-          {allEmpData && allEmpData.total_check?.length > 0 ? (
+          {allEmpData && allEmpData?.length > 0 ? (
             <>
               <div className="text-[#031B59] font-medium">
-                Showing {currentPage} of {10}
+                Showing {currentPage} of {3}
               </div>{" "}
               <Paginate
                 currentPage={currentPage}
@@ -257,6 +266,12 @@ export default function VerficationListing({ tabValue, allEmpData }) {
             </div>
           )}
         </div>
+      )}
+      {showAddEmployeePopup && (
+        <AddEmployee
+          setShowAddEmployeePopup={setShowAddEmployeePopup}
+          handleAddEmployeeClick={Handleclose}
+        />
       )}
     </div>
   );

@@ -15,6 +15,8 @@ import Helper from "api/Helper";
 import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
 import { setSidePopUpNavTab } from "redux/actions/action";
 
+import { fetchVerficationUserData } from "redux/appThunk/Admin/Verfication";
+
 const VerificationTable = ({
   employeeData,
   finalFilteredValue,
@@ -34,6 +36,7 @@ const VerificationTable = ({
   const { isLoading } = useSelector((state) => state.leaveReducer);
   const searchFilterRef = useRef();
   const [handlePopup, setHandlePopup] = useState(false);
+  const [handleLoading , setHandleLoading]=useState(false)
 
   const renderRow = (data, index) => {
 
@@ -111,6 +114,10 @@ const VerificationTable = ({
                 handleSidePopUpData(dispatch, data.id)
                 handleEmpEye()
                 dispatch(setSidePopUpNavTab(1))
+
+              setUserId(data.id);
+              setHandlePopup(!handlePopup);
+              dispatch(fetchVerficationUserData(data.id , setHandleLoading ,setHandlePopup))
               }
             }
           >
@@ -184,9 +191,7 @@ const VerificationTable = ({
         {!isLoading && (
           <tbody className="p-2 text-sm text-left font-normal   flex-0">
             {employeeData &&
-              employeeData.total_check?.map((data, index) =>
-                renderRow(data, index)
-              )}
+              employeeData?.map((data, index) => renderRow(data, index))}
           </tbody>
         )}
       </table>
@@ -200,6 +205,7 @@ const VerificationTable = ({
           children={<ProfileCard userId={userId} />}
           handleCancel={setHandlePopup}
           grandChild={<DocumetDropDown userId={userId} />}
+          isLoading={handleLoading}
         />
       )}
     </div>

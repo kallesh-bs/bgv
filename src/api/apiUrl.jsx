@@ -224,6 +224,7 @@ const apiUrl = {
   markshseet_10th_status:"markshseet_10th_status",
   marksSheet_12:"markshseet_12th",
   marksSheet_10:"markshseet_10th",
+  verficationPath:"background_verification"
 
 };
 

@@ -26,6 +26,7 @@ import { MyTeamsReducer } from "./MyTeamsReducer";
 import { interviewReducer } from "./interviewReducer";
 import { invoiceReducer } from "./invoiceReducer";
 import employeeImportReducer from "./employeeImportReducer";
+import { VerificationReducer } from "./VerificationReducer";
 import { bgvReducer } from "./bgvReducer";
 
 const reducer = combineReducers({
@@ -56,7 +57,8 @@ const reducer = combineReducers({
   MyTeamsReducer: MyTeamsReducer,
   interviewReducer: interviewReducer,
   file: employeeImportReducer,
-  bgvReducer: bgvReducer
+  bgvReducer: bgvReducer,
+  VerificationReducer: VerificationReducer
 });
 
 export default reducer;
