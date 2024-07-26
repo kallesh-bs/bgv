@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { convertDateFormat } from "utils/date";
 import DocumetDropDown from "./DocumetDropDown";
 import Employeebrief from "./Employeebrief";
+import { fetchVerficationUserData } from "redux/appThunk/Admin/Verfication";
 
 const VerificationTable = ({
   employeeData,
@@ -30,6 +31,7 @@ const VerificationTable = ({
   const { isLoading } = useSelector((state) => state.leaveReducer);
   const searchFilterRef = useRef();
   const [handlePopup, setHandlePopup] = useState(false);
+  const [handleLoading , setHandleLoading]=useState(false)
 
   const renderRow = (data, index) => {
     const handleEmpEye = (data) => {
@@ -99,6 +101,7 @@ const VerificationTable = ({
             onClick={() => {
               setUserId(data.id);
               setHandlePopup(!handlePopup);
+              dispatch(fetchVerficationUserData(data.id , setHandleLoading ,setHandlePopup))
             }}
           >
             <FaEye fontSize="20px" />
@@ -185,6 +188,7 @@ const VerificationTable = ({
           children={<ProfileCard userId={userId} />}
           handleCancel={setHandlePopup}
           grandChild={<DocumetDropDown userId={userId} />}
+          isLoading={handleLoading}
         />
       )}
     </div>
