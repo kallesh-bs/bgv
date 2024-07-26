@@ -48,6 +48,7 @@ import {
   SET_SHOW_GROUP_LIST,
   SET_SHOW_PROFILE,
   SET_SHOW_TOAST,
+  SET_SIDE_POPUP_NAV_TAB,
   SET_TOTAL_AVG,
   SET_TOTAL_EMPLOYEES,
   SET_UPDATE_CHATS,
@@ -81,6 +82,12 @@ export const bgvFileUpload = (payload) => {
 export const bgvEmployeeDataById = (payload) => {
   return {
     type: BGV_EMPLOYEE_DATA_BY_ID,
+    payload,
+  };
+};
+export const setSidePopUpNavTab = (payload) => {
+  return {
+    type: SET_SIDE_POPUP_NAV_TAB,
     payload,
   };
 };

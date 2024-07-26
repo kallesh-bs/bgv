@@ -11,8 +11,11 @@ import IdentifyCheck from "./IdentifyCheck";
 import { IoNewspaperOutline } from "react-icons/io5";
 import Consent from "./Consent";
 import "./Verfication.css";
+import { useDispatch } from "react-redux";
+import { setSidePopUpNavTab } from "redux/actions/action";
 
 const VerficationDetails = () => {
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
   const [identifyOptionTab, setIdentifyOptionTab] = useState(0);
@@ -39,20 +42,19 @@ const VerficationDetails = () => {
             <button
               onClick={function () {
                 handleTabClick(1);
+                dispatch(setSidePopUpNavTab(1))
               }}
-              className={`p-2 ${
-                activeTab === 1
+              className={`p-2 ${activeTab === 1
                   ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
                   : "text-[#686868]"
-              }`}
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
-                  className={`    text-lg ${
-                    activeTab === 1
+                  className={`    text-lg ${activeTab === 1
                       ? "text-[#002169] font-bold "
                       : "text-[#686868]"
-                  } `}
+                    } `}
                 >
                   <div className="flex justify-center items-center gap-2 ">
                     <FaRegUser />
@@ -65,20 +67,19 @@ const VerficationDetails = () => {
             <button
               onClick={function () {
                 handleTabClick(2);
+                dispatch(setSidePopUpNavTab(2))
               }}
-              className={`p-2 ${
-                activeTab === 2
+              className={`p-2 ${activeTab === 2
                   ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
                   : "text-[#686868]"
-              }`}
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
-                  className={`    text-lg ${
-                    activeTab === 2
+                  className={`    text-lg ${activeTab === 2
                       ? "text-[#002169] font-bold "
                       : "text-[#686868]"
-                  }`}
+                    }`}
                 >
                   <div className="flex justify-center items-center gap-2">
                     <FaGraduationCap />
@@ -91,20 +92,19 @@ const VerficationDetails = () => {
             <button
               onClick={function () {
                 handleTabClick(3);
+                dispatch(setSidePopUpNavTab(3))
               }}
-              className={`p-2 ${
-                activeTab === 3
+              className={`p-2 ${activeTab === 3
                   ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
                   : "text-[#686868]"
-              }`}
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div
-                  className={`    text-lg ${
-                    activeTab === 3
+                  className={`    text-lg ${activeTab === 3
                       ? "text-[#002169] font-bold "
                       : "text-[#686868]"
-                  }`}
+                    }`}
                 >
                   <div className="flex justify-center items-center gap-2">
                     <CiLocationOn />
@@ -117,12 +117,12 @@ const VerficationDetails = () => {
             <button
               onClick={function () {
                 handleTabClick(4);
+                dispatch(setSidePopUpNavTab(4))
               }}
-              className={`p-2 ${
-                activeTab === 4
+              className={`p-2 ${activeTab === 4
                   ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
                   : "text-[#686868]"
-              }`}
+                }`}
             >
               <Link rel="stylesheet" href="#">
                 <div className={`    lg:text-lg md:text-md `}>

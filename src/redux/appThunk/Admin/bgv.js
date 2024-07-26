@@ -26,7 +26,7 @@ export const fetchBgvEmployeeData =
 
 
 
-export const handleSidePopUpData = async (dispatch, userId) =>  {
+export const handleSidePopUpData = async (dispatch, userId) => {
 
   let path = `${apiUrl.background_verification}/${userId}`;
   console.log(path);

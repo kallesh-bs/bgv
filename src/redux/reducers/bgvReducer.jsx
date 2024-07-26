@@ -6,6 +6,7 @@ import {
   ON_HOLD_BY_EMPLOYEE_ID,
   PROFILE_COMPLETION_BY_ID,
   REMOVE_DOCUMENT,
+  SET_SIDE_POPUP_NAV_TAB,
 } from "redux/actions/types";
 
 const initialstate = {
@@ -13,6 +14,7 @@ const initialstate = {
   isLoading: true,
   employeeDataById: {},
   profileCompletionById: {},
+  sidePopUpDocNavTab: 1
 };
 
 export const bgvReducer = (state = initialstate, { type, payload }) => {
@@ -31,6 +33,11 @@ export const bgvReducer = (state = initialstate, { type, payload }) => {
       return {
         ...state,
         employeeDataById: payload,
+      };
+    case SET_SIDE_POPUP_NAV_TAB:
+      return {
+        ...state,
+        sidePopUpDocNavTab: payload,
       };
     case PROFILE_COMPLETION_BY_ID:
       return {

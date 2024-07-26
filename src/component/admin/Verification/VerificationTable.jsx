@@ -13,6 +13,7 @@ import Employeebrief from "./Employeebrief";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
 import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
+import { setSidePopUpNavTab } from "redux/actions/action";
 
 const VerificationTable = ({
   employeeData,
@@ -109,6 +110,7 @@ const VerificationTable = ({
               () => {
                 handleSidePopUpData(dispatch, data.id)
                 handleEmpEye()
+                dispatch(setSidePopUpNavTab(1))
               }
             }
           >
