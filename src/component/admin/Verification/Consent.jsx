@@ -1,10 +1,11 @@
-import { t } from "i18next";
 import React, { useState , useEffect} from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-const Consent = ({ setCurrentStep, changetab }) => {
+const Consent = () => {
 
   const [checked, setChecked] = useState(false);
+  const {userData } = useSelector((reducer)=> reducer.VerificationReducer)
 
   useEffect(() => {
     const savedChecked = localStorage.getItem('consentChecked');
@@ -42,7 +43,7 @@ I here by Lorem Ipsum is simply dummy text of the printing and typesetting indu
     PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-        <div className="w-full p-[14px_0px_0px_0px] mt-6 flex items-center gap-4">
+      { !userData?.Conset &&  <div className="w-full p-[14px_0px_0px_0px] mt-6 flex items-center gap-4">
           <div>
           <input
             type="checkbox"
@@ -60,7 +61,7 @@ I here by Lorem Ipsum is simply dummy text of the printing and typesetting indu
             </p>
          </div>
           </div>
-        </div>
+        </div>}
     </div>
   );
 };

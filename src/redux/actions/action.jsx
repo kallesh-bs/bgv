@@ -946,3 +946,13 @@ export const totalClientsNumber = (payload) => ({
   type: SET_CLIENTS_NUMBER,
   payload,
 });
+
+export const userProfileData = (payload) => ({
+  type: "SET_USER_DATA",
+  payload,
+});
+
+export const getVerificationTabName = (payload) => ({
+  type: "SET_TAB_NAME",
+  payload,
+});
