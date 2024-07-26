@@ -13,6 +13,7 @@ import Consent from "./Consent";
 import "./Verfication.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getVerificationTabName } from "redux/actions/action";
+import { setSidePopUpNavTab } from "redux/actions/action";
 
 const VerficationDetails = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -45,6 +46,7 @@ const VerficationDetails = () => {
   const handleIdentifyOptionClick = (value) => {
     setIdentifyOptionTab(value);
   };
+
   return (
     <>
       <div className="w-full h-full   ">
@@ -54,7 +56,7 @@ const VerficationDetails = () => {
             onClick={function () {
               dispatch(getVerificationTabName("Identify Check"))
               handleTabClick(1);
-             
+              dispatch(setSidePopUpNavTab(1))
             }}
             className={` w-full  p-[18px_16px_18px_16px]   ${activeTab === 1
               ? "text-[#002169] font-bold bg-[#F2F6FF]"
@@ -69,6 +71,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(2);
               dispatch(getVerificationTabName( "Education check"))
+              dispatch(setSidePopUpNavTab(2))
             }}
             disabled={handleButton}
             className={`w-full font-bold text-base p-[16px_16px_16px_16px]   ${activeTab === 2
@@ -84,6 +87,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(3);
               dispatch(getVerificationTabName("Address Check"))
+              dispatch(setSidePopUpNavTab(3))
             }}
             disabled={handleButton}
             className={`w-full p-[18px_16px_18px_16px]   ${activeTab === 3
@@ -99,6 +103,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(4);
               dispatch(getVerificationTabName("Employment History"))
+              dispatch(setSidePopUpNavTab(4))
             }}
             disabled={handleButton}
             className={`w-full p-[18px_16px_18px_16px] ${activeTab === 4
@@ -114,6 +119,7 @@ const VerficationDetails = () => {
             onClick={function () {
               handleTabClick(5);
               dispatch(getVerificationTabName("Consent"))
+              dispatch(setSidePopUpNavTab(5))
             }}
             disabled={handleButton}
             className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
@@ -160,25 +166,13 @@ const VerficationDetails = () => {
                 </select>
               </div>
               {identifyOptionTab === "Aadhar Card" && (
-                <IdentifyCheck
-                  selectOption={"Aadhar Card"}
-                  active={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+                <IdentifyCheck selectOption={"Aadhar Card"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Driving License" && (
-                <IdentifyCheck
-                  selectOption={"Driving License"}
-                  active={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+                <IdentifyCheck selectOption={"Driving License"} active={activeTab} setActiveTab={setActiveTab} />
               )}
               {identifyOptionTab === "Passport" && (
-                <IdentifyCheck
-                  selectOption={"Passport"}
-                  active={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+                <IdentifyCheck selectOption={"Passport"} active={activeTab} setActiveTab={setActiveTab} />
               )}
             </div>
           )}

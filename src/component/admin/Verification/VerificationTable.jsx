@@ -10,6 +10,11 @@ import { useNavigate } from "react-router-dom";
 import { convertDateFormat } from "utils/date";
 import DocumetDropDown from "./DocumetDropDown";
 import Employeebrief from "./Employeebrief";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
+import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
+import { setSidePopUpNavTab } from "redux/actions/action";
+
 import { fetchVerficationUserData } from "redux/appThunk/Admin/Verfication";
 
 const VerificationTable = ({
@@ -34,9 +39,14 @@ const VerificationTable = ({
   const [handleLoading , setHandleLoading]=useState(false)
 
   const renderRow = (data, index) => {
-    const handleEmpEye = (data) => {
-      setOpenPopUp(true);
+
+
+
+    function handleEmpEye() {
+      // setOpenPopUp(true);
+      setHandlePopup(!handlePopup);
     };
+
 
     const statusColors = {
       hold: "#67147C",
@@ -46,6 +56,7 @@ const VerificationTable = ({
       rejected: "#FA3232",
       consent_denied: "#D9534F",
     };
+
 
     return (
       <tr
@@ -98,16 +109,22 @@ const VerificationTable = ({
         >
           <button
             className="mr-[6px]"
-            onClick={() => {
+            onClick={
+              () => {
+                handleSidePopUpData(dispatch, data.id)
+                handleEmpEye()
+                dispatch(setSidePopUpNavTab(1))
+
               setUserId(data.id);
               setHandlePopup(!handlePopup);
               dispatch(fetchVerficationUserData(data.id , setHandleLoading ,setHandlePopup))
-            }}
+              }
+            }
           >
             <FaEye fontSize="20px" />
           </button>
         </td>
-      </tr>
+      </tr >
     );
   };
 

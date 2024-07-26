@@ -45,6 +45,26 @@ export default function VerficationListing({ tabValue, allEmpData }) {
 
   // const pageCounte = Math.ceil(allEmpData.length / 3);
 
+  const statusColors = {
+    Hold: "#67147C",
+    Verified: "#1A8718",
+    Inprogress: "#576CA2",
+    Insufficient: "#FF981E",
+    Rejected: "#FA3232",
+  };
+
+  // const { isLoading } = useSelector((state) => state.leaveReducer);
+  // const searchFilterRef = useRef();
+  // const [handlePopup, setHandlePopup] = useState(false)
+
+  // let dummyData = [];
+  // if (Object.keys(allEmpData).length > 0) {
+  //   dummyData = allEmpData?.total_check.map(obj => {
+  //     return { ...obj, name: obj.full_name, full_name: undefined, img: `${awsURL}/images/penetration-tester.png`, contactNo: "123-456-7890", doj: obj.date_of_joining, date_of_joining: undefined };
+  //   })
+  // }
+
+
   const handleDisable = async (id) => {
     if (!enable) {
       const path = apiUrl.disable + id;
@@ -184,9 +204,8 @@ export default function VerficationListing({ tabValue, allEmpData }) {
                 >
                   <div
                     className={`flex h-[3.5rem] p-[1rem_1.875rem] justify-center items-center gap-[0.5rem]
-                  rounded-[2.5rem] ${
-                    submitOnce ? "bg-[#6a7daf]" : " bg-[#031B59]"
-                  } font-inter text-[1rem] font-bold leading-normal text-white`}
+                  rounded-[2.5rem] ${submitOnce ? "bg-[#6a7daf]" : " bg-[#031B59]"
+                      } font-inter text-[1rem] font-bold leading-normal text-white`}
                   >
                     {enable ? t("enable") : t("disable")}
                   </div>
