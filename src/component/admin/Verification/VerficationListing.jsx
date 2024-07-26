@@ -60,7 +60,6 @@ export default function VerficationListing({ tabValue, allEmpData }) {
   //   })
   // }
 
-  const [sidePopUpData, setSidePopUpData] = useState({});
 
   const handleDisable = async (id) => {
     if (!enable) {
@@ -138,29 +137,6 @@ export default function VerficationListing({ tabValue, allEmpData }) {
     openPopUp,
   });
 
-  const handleSidePopUpData = async (userId) => {
-    let path = `${apiUrl.background_verification}/${userId}`;
-    console.log(path);
-
-    // Ensure a valid path was determined
-    if (!path) {
-      console.error("Invalid text value, no API path determined");
-      return;
-    }
-    try {
-      const { response, status } = await Helper.get(path);
-      // dispatch(bgvAllEmpData(response));
-      console.log(response.background_verification
-      );
-
-      setSidePopUpData(async () => {
-        await setSidePopUpData(response.background_verification)
-      })
-    }
-    catch (error) {
-      console.error("Error in handleAddressCheck:", error);
-    }
-  }
 
 
   return (

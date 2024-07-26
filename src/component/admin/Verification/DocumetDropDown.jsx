@@ -5,10 +5,9 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import NotifyPopUp from './NotifyPopUp';
 
 
-const DocumetDropDown = ({ sidePopUpData }) => {
+const DocumetDropDown = () => {
    const [isNotifyPopUp, setNotifyPopUp] = useState(false);
    const [handleDropDown, setHandleDropDown] = useState(false)
-   // console.log(sidePopUpData);
    return (
       <div className={`rounded-xl ${handleDropDown && "border"} h-full mt-2  `}>
          <div className={`w-full bg-${!handleDropDown && "[#031B59]  text-white "} p-3 px-4 items-center rounded-xl   flex justify-between`}>
@@ -28,7 +27,7 @@ const DocumetDropDown = ({ sidePopUpData }) => {
          </div>
          <div className='mt-2 h-full px-4'>
             {handleDropDown &&
-               <VerficationDetails sidePopUpData={sidePopUpData} />
+               <VerficationDetails />
             }
          </div>
       </div>

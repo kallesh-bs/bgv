@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { convertDateFormat } from "utils/date";
 import DocumetDropDown from "./DocumetDropDown";
 import Employeebrief from "./Employeebrief";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
+import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
 
 const VerificationTable = ({
   employeeData,
@@ -32,9 +35,14 @@ const VerificationTable = ({
   const [handlePopup, setHandlePopup] = useState(false);
 
   const renderRow = (data, index) => {
-    const handleEmpEye = (data) => {
-      setOpenPopUp(true);
+
+
+
+    function handleEmpEye() {
+      // setOpenPopUp(true);
+      setHandlePopup(!handlePopup);
     };
+
 
     const statusColors = {
       hold: "#67147C",
@@ -44,6 +52,7 @@ const VerificationTable = ({
       rejected: "#FA3232",
       consent_denied: "#D9534F",
     };
+
 
     return (
       <tr
@@ -96,15 +105,17 @@ const VerificationTable = ({
         >
           <button
             className="mr-[6px]"
-            onClick={() => {
-              setUserId(data.id);
-              setHandlePopup(!handlePopup);
-            }}
+            onClick={
+              () => {
+                handleSidePopUpData(dispatch, data.id)
+                handleEmpEye()
+              }
+            }
           >
             <FaEye fontSize="20px" />
           </button>
         </td>
-      </tr>
+      </tr >
     );
   };
 
