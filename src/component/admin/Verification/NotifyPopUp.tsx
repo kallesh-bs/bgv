@@ -30,7 +30,7 @@ function NotifyPopUp({
                             <div className="text-[#191919] font-extrabold text-[24px] text-justify">
                                 <p>{`Notify the user as "${tabName}" is Insufficient or rejected?`}</p>
                             </div>
-                            {tabName !== "Conset" && <div className="flex flex-col text-[16px]">
+                            {tabName !== "Consent" && <div className="flex flex-col text-[16px]">
                                 <label><p className="text-[#313135] ">Add your comments</p></label>
                                 <textarea className="p-2 min-h-[150px] cols-50 border-2 border-solid border-[#DEE4EB] text-justify" placeholder="Enter your reasons here" />
                             </div>}

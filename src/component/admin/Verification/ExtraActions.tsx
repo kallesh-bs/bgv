@@ -109,9 +109,10 @@ function ExtraActions({ nodata, doc_status_column, doc_column }:{ nodata:boolean
         }
         // console.log(doc_status);
         console.log(doc_column);
+        const multipart= true;
         try {
             const { response, status }:any = await Helper.post(
-                formData, path);
+                formData, path, multipart);
             // dispatch(bgvAllEmpData(response));
             console.log(response);
 

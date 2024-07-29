@@ -31,6 +31,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
   const [handlePopup, setHandlePopup] = useState(false);
   const [handleLoading , setHandleLoading]=useState(false)
   const dispatch = useDispatch();
+  const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
 
   // const renderRow = (data: IEmployeeData, index: number) => {
   //   const handleEmpEye = (data: IEmployeeData) => {
@@ -115,8 +116,9 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
               () => {
                 handleSidePopUpData(dispatch, data.id)
                 handleEmpEye()
-                dispatch(setSidePopUpNavTab(1))
-
+                // dispatch(setSidePopUpNavTab(1))
+                
+                {Object.keys(empDataById).length !== 13 ? dispatch(setSidePopUpNavTab(1)):dispatch(setSidePopUpNavTab(5))}
               setUserId(data.id);
               setHandlePopup(!handlePopup);
               // dispatch(fetchVerficationUserData(data.id , setHandleLoading ,setHandlePopup))

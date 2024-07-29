@@ -15,32 +15,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVerificationTabName } from "redux/actions/action";
 import { setSidePopUpNavTab } from "redux/actions/action";
 import { IoNewspaperOutline } from "react-icons/io5";
+import { object } from "prop-types";
 
 // Define the component
 const VerficationDetails: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<number>(1);
+  // const [activeTab, setActiveTab] = useState<number>(1);
+  // const activeTab = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
+  const dispatch = useDispatch()
+  const userData = useSelector((state:any) => state.bgvReducer.employeeDataById)
+  const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
   const [identifyOptionTab, setIdentifyOptionTab] = useState<ITabOption>("Choose~");
   const [adressOptionTab, setAddressOptionTab] = useState<ITabOption>("Choose~");
-  const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
+  // const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
   const [handleButton , setHandleButton] =useState(false) 
-  const dispatch = useDispatch()
+  
+  // Object.keys(userData).length === 13 ? dispatch(setSidePopUpNavTab(1)) : dispatch(setSidePopUpNavTab(5));
 
-//   const [identifyOptionTab, setIdentifyOptionTab] =
-//   useState<ITabOption>("Choose~");
-// const [adressOptionTab, setAddressOptionTab] =
-//   useState<ITabOption>("Choose~");
-
-// const handleTabClick = (tabIndex: number) => {
+  // useEffect(()=>{
+  //   if (userData?.Conset) {
+  //     setActiveTab(1)
+  //     setHandleButton(false)
+  //     dispatch(getVerificationTabName("Identify Check"))
+  //   }else{
+  //     setActiveTab(5)
+  //     setHandleButton(true)
+  //   }
+  // },[])
 
   useEffect(()=>{
-    if (userData?.Conset) {
-      setActiveTab(1)
-      setHandleButton(false)
-      dispatch(getVerificationTabName("Identify Check"))
-    }else{
+    if (Object.keys(userData).length !== 13 ) {
       setActiveTab(5)
       setHandleButton(true)
+    }else{
+      dispatch(getVerificationTabName("Identify Check"))
+      setActiveTab(1)
+      setHandleButton(false)
     }
   },[])
   
@@ -124,7 +134,26 @@ const VerficationDetails: React.FC = () => {
                   <h1>{t("EmploymentHistory")}</h1>
           </button>
 
+          {Object.keys(userData).length !== 13 ? 
           <button
+          onClick={function () {
+            handleTabClick(5);
+            dispatch(getVerificationTabName("Consent"))
+            dispatch(setSidePopUpNavTab(5))
+          }}
+          disabled={handleButton}
+          className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
+            ? "text-[#002169] font-bold bg-[#F2F6FF]"
+            : "text-[#686868]"
+            } flex gap-2 text-[.9rem] font-bold justify-center items-center`}
+        >
+             <IoNewspaperOutline />
+                <h1>Consent</h1>
+        </button>
+        :''
+          }
+
+          {/* <button
             onClick={function () {
               handleTabClick(5);
               dispatch(getVerificationTabName("Consent"))
@@ -138,7 +167,7 @@ const VerficationDetails: React.FC = () => {
           >
                <IoNewspaperOutline />
                   <h1>Consent</h1>
-          </button>
+          </button> */}
 
         </div>
 

@@ -11,19 +11,19 @@ const EmployementHistoryCheck = () => {
   const dispatch = useDispatch();
   const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
   //  State for handle Status DropDown
-  const [doc, setDoc] = useState("Pending Verification")
-  const [doc1, setDoc1] = useState("Pending Verification")
-  const [doc2, setDoc2] = useState("Pending Verification")
-  const staticData = ["Document.pdf", "Document"]
+  // const [doc, setDoc] = useState("Pending Verification")
+  // const [doc1, setDoc1] = useState("Pending Verification")
+  // const [doc2, setDoc2] = useState("Pending Verification")
+  // const staticData = ["Document.pdf", "Document"]
   const { t } = useTranslation();
 
-  const doc_status1 = empDataById['background_verification']['relieving_letters_status'];
-  const data1 = empDataById['background_verification']['relieving_letters'];
+  // const doc_status1 = empDataById['background_verification']['relieving_letters_status'];
+  const data1 = empDataById?.background_verification?.relieving_letters;
 
-  const doc_status2 = empDataById['background_verification']['experience_letters_status'];
+  // const doc_status2 = empDataById['background_verification']['experience_letters_status'];
   const data2 = empDataById['background_verification']['experience_letters'];
 
-  const doc_status3 = empDataById['background_verification']['bank_statements_status'];
+  // const doc_status3 = empDataById['background_verification']['bank_statements_status'];
   const data3 = empDataById['background_verification']['bank_statements'];
 
   async function handleFileDelete(userId:any, url:string, columnName:string) {
