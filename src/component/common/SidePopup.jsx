@@ -1,7 +1,8 @@
+import LoaderComp from 'component/loader/LoaderComp'
 import React from 'react'
 import { RxCross1 } from 'react-icons/rx'
 
-const SidePopup = ({children , handleCancel , grandChild}) => {
+const SidePopup = ({children , handleCancel , grandChild , isLoading}) => {
   return (
     <div>
         <div
@@ -13,7 +14,7 @@ transitionRight"
         className=" w-[60vw] h-full bg-white flex flex-col 
   shadow-[0_0px_20px_0px_rgba(3,27,89,0.10)] px-5 py-3"
       >
-      <div 
+        <div 
       className='h-16 flex justify-end items-center   w-full '
       onClick={()=> handleCancel(false)}
       >
@@ -21,8 +22,14 @@ transitionRight"
       <RxCross1 />
       </div>
       </div>
-   {children}
-   {grandChild}
+     {!isLoading ?  (
+  <div>
+     {children}
+     {grandChild}
+  </div>):
+   <div className="flex w-full h-full justify-center items-center">
+   <LoaderComp />
+ </div> }
       </div>
     </div>
     </div>

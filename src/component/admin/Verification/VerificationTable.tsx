@@ -4,11 +4,17 @@ import LoaderComp from "component/loader/LoaderComp";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { convertDateFormat } from "utils/date";
 import { IEmployeeData, IVerificationTableProps } from "utils/types";
 import DocumetDropDown from "./DocumetDropDown";
 import Employeebrief from "./Employeebrief";
+import apiUrl from "api/apiUrl";
+import Helper from "api/Helper";
+import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
+import { setSidePopUpNavTab } from "redux/actions/action";
+
+import { fetchVerficationUserData } from "redux/appThunk/Admin/Verfication";
 
 const VerificationTable: React.FC<IVerificationTableProps> = ({
   employeeData,
@@ -23,13 +29,27 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
   const { t } = useTranslation();
   const isLoading = useSelector((state: any) => state.leaveReducer.isLoading);
   const [handlePopup, setHandlePopup] = useState(false);
+  const [handleLoading , setHandleLoading]=useState(false)
+  const dispatch = useDispatch();
+
+  // const renderRow = (data: IEmployeeData, index: number) => {
+  //   const handleEmpEye = (data: IEmployeeData) => {
+  //     setOpenPopUp(true);
+  //   };
+
+  //   const statusColors: Record<string, string> = {
 
   const renderRow = (data: IEmployeeData, index: number) => {
-    const handleEmpEye = (data: IEmployeeData) => {
-      setOpenPopUp(true);
+
+
+
+    function handleEmpEye() {
+      // setOpenPopUp(true);
+      setHandlePopup(!handlePopup);
     };
 
-    const statusColors: Record<string, string> = {
+
+    const statusColors : Record<string, string> = {
       hold: "#67147C",
       verified: "#1A8718",
       in_progress: "#576CA2",
@@ -37,6 +57,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
       rejected: "#FA3232",
       consent_denied: "#D9534F",
     };
+
 
     return (
       <tr
@@ -51,7 +72,8 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
           <div
             className="flex items-center"
             onClick={() => {
-              handleEmpEye(data);
+              handleEmpEye();
+              // handleEmpEye(data);
             }}
           >
             <Employeebrief
@@ -89,15 +111,22 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
         >
           <button
             className="mr-[6px]"
-            onClick={() => {
+            onClick={
+              () => {
+                handleSidePopUpData(dispatch, data.id)
+                handleEmpEye()
+                dispatch(setSidePopUpNavTab(1))
+
               setUserId(data.id);
               setHandlePopup(!handlePopup);
-            }}
+              // dispatch(fetchVerficationUserData(data.id , setHandleLoading ,setHandlePopup))
+              }
+            }
           >
             <FaEye fontSize="20px" />
           </button>
         </td>
-      </tr>
+      </tr >
     );
   };
 
@@ -175,9 +204,10 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
       )}
       {handlePopup && (
         <SidePopup
-          children={<ProfileCard userId={userId} />}
+          children={<ProfileCard  />}
           handleCancel={setHandlePopup}
-          grandChild={<DocumetDropDown />}
+          grandChild={<DocumetDropDown userId={userId} />}
+          isLoading={handleLoading}
         />
       )}
     </div>

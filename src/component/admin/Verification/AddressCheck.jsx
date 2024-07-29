@@ -6,18 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
-import { string } from "prop-types";
 
-const AddressCheck = ({ selectOption }:{selectOption:any}) => {
+const AddressCheck = ({ selectOption }) => {
   const dispatch = useDispatch();
-  const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
+  const empDataById = useSelector((state) => state.bgvReducer.employeeDataById);
   const [docStatus, setDocStatus] = useState("Pending Verification")
 
   const { t } = useTranslation();
 
   const staticData = ["Document.pdf", "Document"]
 
-  async function handleFileDelete(userId:number, url:string, columnName:string) {
+  async function handleFileDelete(userId, url, columnName) {
     let path = `${apiUrl.background_verification}/remove_document/${userId}`;
     console.log(path, url, columnName);
 
@@ -56,7 +55,7 @@ const AddressCheck = ({ selectOption }:{selectOption:any}) => {
         </div>
         <div>
           {/* {staticData.map((item)=> <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{item}<RxCross2/></div>)} */}
-          {data ? data.map((item:any) => <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{item.name}<RxCross2 onClick={() => handleFileDelete(empDataById.id, item.url, "address_check_documents")} className="cursor-pointer" /></div>) : <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{'No data'}</div>}
+          {data ? data.map((item) => <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{item.name}<RxCross2 onClick={() => handleFileDelete(empDataById.id, item.url, "address_check_documents")} className="cursor-pointer" /></div>) : <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{'No data'}</div>}
         </div>
       </div>
     </>

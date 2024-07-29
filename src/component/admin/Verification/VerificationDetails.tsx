@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CiLocationOn } from "react-icons/ci";
 import { FaGraduationCap, FaRegUser } from "react-icons/fa";
@@ -11,17 +11,40 @@ import EducationCheck from "./EducationCheck";
 import EmployementHistoryCheck from "./EmployementHistoryCheck";
 import IdentifyCheck from "./IdentifyCheck";
 import "./Verfication.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getVerificationTabName } from "redux/actions/action";
+import { setSidePopUpNavTab } from "redux/actions/action";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 // Define the component
 const VerficationDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(1);
   const { t } = useTranslation();
-  const [identifyOptionTab, setIdentifyOptionTab] =
-    useState<ITabOption>("Choose~");
-  const [adressOptionTab, setAddressOptionTab] =
-    useState<ITabOption>("Choose~");
+  const [identifyOptionTab, setIdentifyOptionTab] = useState<ITabOption>("Choose~");
+  const [adressOptionTab, setAddressOptionTab] = useState<ITabOption>("Choose~");
+  const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
+  const [handleButton , setHandleButton] =useState(false) 
+  const dispatch = useDispatch()
 
-  const handleTabClick = (tabIndex: number) => {
+//   const [identifyOptionTab, setIdentifyOptionTab] =
+//   useState<ITabOption>("Choose~");
+// const [adressOptionTab, setAddressOptionTab] =
+//   useState<ITabOption>("Choose~");
+
+// const handleTabClick = (tabIndex: number) => {
+
+  useEffect(()=>{
+    if (userData?.Conset) {
+      setActiveTab(1)
+      setHandleButton(false)
+      dispatch(getVerificationTabName("Identify Check"))
+    }else{
+      setActiveTab(5)
+      setHandleButton(true)
+    }
+  },[])
+  
+  const handleTabClick = (tabIndex:any) => {
     setActiveTab(tabIndex);
   };
 
@@ -35,99 +58,91 @@ const VerficationDetails: React.FC = () => {
 
   return (
     <>
-      <div className="w-[96%] h-[92vh] p-[0px_0px_0px_0px]">
-        <div className="w-[100%] h-[82.3%] mt-0 rounded-[20px] shadow-xl p-[5px_21px_20px_21px] gap-[22px]">
-          <div className="w-[100%] flex items-center justify-start md:space-x-2 lg:space-x-12">
-            <button
-              onClick={() => handleTabClick(1)}
-              className={`p-2 ${
-                activeTab === 1
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
-            >
-              <Link to="#">
-                <div
-                  className={`text-lg ${
-                    activeTab === 1
-                      ? "text-[#002169] font-bold"
-                      : "text-[#686868]"
-                  }`}
-                >
-                  <div className="flex justify-center items-center gap-2">
-                    <FaRegUser />
-                    <h1>{t("checkIden")}</h1>
-                  </div>
-                </div>
-              </Link>
-            </button>
+      <div className="wE-full h-full   ">
+        <div className="w-full  rounded-lg  border flex  ">
+          <button
+             disabled={handleButton}
+            onClick={function () {
+              dispatch(getVerificationTabName("Identify Check"))
+              handleTabClick(1);
+              dispatch(setSidePopUpNavTab(1))
+            }}
+            className={` w-full  p-[18px_16px_18px_16px]   ${activeTab === 1
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              } flex gap-2 text-[.9rem] whitespace-nowrap  font-bold justify-center items-center`}
+          > 
+                  <FaRegUser />
+                  <h1>{t("checkIden")}</h1>
+          </button>
 
-            <button
-              onClick={() => handleTabClick(2)}
-              className={`p-2 ${
-                activeTab === 2
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
-            >
-              <Link to="#">
-                <div
-                  className={`text-lg ${
-                    activeTab === 2
-                      ? "text-[#002169] font-bold"
-                      : "text-[#686868]"
-                  }`}
-                >
-                  <div className="flex justify-center items-center gap-2">
-                    <FaGraduationCap />
-                    <h1>{t("checkEdu")}</h1>
-                  </div>
-                </div>
-              </Link>
-            </button>
+          <button
+            onClick={function () {
+              handleTabClick(2);
+              dispatch(getVerificationTabName( "Education check"))
+              dispatch(setSidePopUpNavTab(2))
+            }}
+            disabled={handleButton}
+            className={`w-full font-bold text-base p-[16px_16px_16px_16px]   ${activeTab === 2
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              } flex gap-2 text-[.9rem] whitespace-nowrap  font-bold justify-center items-center`}
+          >  
+                  <FaGraduationCap />
+                  <h1>{t("checkEdu")}</h1>
+          </button>
 
-            <button
-              onClick={() => handleTabClick(3)}
-              className={`p-2 ${
-                activeTab === 3
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
-            >
-              <Link to="#">
-                <div
-                  className={`text-lg ${
-                    activeTab === 3
-                      ? "text-[#002169] font-bold"
-                      : "text-[#686868]"
-                  }`}
-                >
-                  <div className="flex justify-center items-center gap-2">
-                    <CiLocationOn />
-                    <h1>{t("checkadd")}</h1>
-                  </div>
-                </div>
-              </Link>
-            </button>
+          <button
+            onClick={function () {
+              handleTabClick(3);
+              dispatch(getVerificationTabName("Address Check"))
+              dispatch(setSidePopUpNavTab(3))
+            }}
+            disabled={handleButton}
+            className={`w-full p-[18px_16px_18px_16px]   ${activeTab === 3
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              } flex gap-2 text-[.9rem] whitespace-nowrap  font-bold justify-center items-center`}
+          >
+                  <CiLocationOn />
+                  <h1>{t("checkadd")}</h1>
+          </button>
 
-            <button
-              onClick={() => handleTabClick(4)}
-              className={`p-2 ${
-                activeTab === 4
-                  ? "text-[#002169] font-bold border-b-4 border-b-[#002169]"
-                  : "text-[#686868]"
-              }`}
-            >
-              <Link to="#">
-                <div className="lg:text-lg md:text-md">
-                  <div className="flex justify-center items-center gap-2">
-                    <PiBagSimpleLight />
-                    <h1>{t("EmploymentHistory")}</h1>
-                  </div>
-                </div>
-              </Link>
-            </button>
-          </div>
+          <button
+            onClick={function () {
+              handleTabClick(4);
+              dispatch(getVerificationTabName("Employment History"))
+              dispatch(setSidePopUpNavTab(4))
+            }}
+            disabled={handleButton}
+            className={`w-full p-[18px_16px_18px_16px] ${activeTab === 4
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              } flex gap-2 text-[.9rem] whitespace-nowrap font-bold justify-center items-center`}
+          >
+                  <PiBagSimpleLight />
+                  <h1>{t("EmploymentHistory")}</h1>
+          </button>
+
+          <button
+            onClick={function () {
+              handleTabClick(5);
+              dispatch(getVerificationTabName("Consent"))
+              dispatch(setSidePopUpNavTab(5))
+            }}
+            disabled={handleButton}
+            className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
+              ? "text-[#002169] font-bold bg-[#F2F6FF]"
+              : "text-[#686868]"
+              } flex gap-2 text-[.9rem] font-bold justify-center items-center`}
+          >
+               <IoNewspaperOutline />
+                  <h1>Consent</h1>
+          </button>
+
+        </div>
+
+        <div className="w-full h-full">
           {activeTab === 1 && (
             <div>
               <div className="mt-8 w-[300px]">
@@ -154,13 +169,13 @@ const VerficationDetails: React.FC = () => {
                 </select>
               </div>
               {identifyOptionTab === "Aadhar Card" && (
-                <IdentifyCheck selectOption="Aadhar Card" />
+                <IdentifyCheck selectOption={"Aadhar Card"} />
               )}
               {identifyOptionTab === "Driving License" && (
-                <IdentifyCheck selectOption="Driving License" />
+                <IdentifyCheck selectOption={"Driving License"}  />
               )}
               {identifyOptionTab === "Passport" && (
-                <IdentifyCheck selectOption="Passport" />
+                <IdentifyCheck selectOption={"Passport"} />
               )}
             </div>
           )}

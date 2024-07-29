@@ -5,6 +5,7 @@ interface AlertOptions {
   text: string;
   icon?: SweetAlertIcon;
   confirmButtonText?: string;
+  timer?:any
 }
 
 interface ConfirmationOptions {
