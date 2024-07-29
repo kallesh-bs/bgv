@@ -217,6 +217,7 @@ const AddEmployee: React.FC<AddEmployeeProps> = ({
                 required
                 name="fullName"
                 id="fullName"
+                placeholder="Enter your name"
                 style={{
                   borderRadius: "4px",
                   borderWidth: "1px",
@@ -247,6 +248,7 @@ const AddEmployee: React.FC<AddEmployeeProps> = ({
                 type="text"
                 name="email"
                 id="email"
+                placeholder="Enter your email"
                 value={formik.values.email}
                 style={{
                   borderRadius: "4px",
@@ -283,6 +285,7 @@ const AddEmployee: React.FC<AddEmployeeProps> = ({
                   type="text"
                   name="contactNo"
                   id="contactNo"
+                  placeholder="Enter your phone number"
                   pattern="[0-9]{10}"
                   maxLength={10}
                   value={formik.values.contactNo}

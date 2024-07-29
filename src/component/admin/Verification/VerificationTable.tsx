@@ -93,6 +93,11 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
               setUserId(data.id);
               setHandlePopup(!handlePopup);
             }}
+            disabled={
+              data.status === "rejected" ||
+              data.status === "insufficient" ||
+              data.status === "consent_denied"
+            }
           >
             <FaEye fontSize="20px" />
           </button>
