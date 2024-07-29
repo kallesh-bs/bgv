@@ -2,15 +2,16 @@ import useDebounce from "hooks/useDebounce";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchBgvEmployeeData } from "redux/appThunk/Admin/bgv";
+import { AppThunkDispatch } from "redux/store"; // Adjust this import according to your store setup
+import { IUseFetchBgvDataProps } from "utils/types";
 
-const useFetchbgvData = ({
+const useFetchBgvData = ({
   query = "",
   currentPage = 1,
   openPopUp = false,
-} = {}) => {
-  const dispatch = useDispatch();
-  let searchQuery = useDebounce(query, 500);
-  console.log("calling bgv all data");
+}: IUseFetchBgvDataProps = {}) => {
+  const dispatch = useDispatch<AppThunkDispatch>();
+  const searchQuery = useDebounce(query, 500);
 
   useEffect(() => {
     const fetchUserData = () => {
@@ -21,7 +22,7 @@ const useFetchbgvData = ({
       }
     };
     fetchUserData();
-  }, [searchQuery, currentPage, openPopUp]);
+  }, [searchQuery, currentPage, openPopUp, dispatch]);
 };
 
-export default useFetchbgvData;
+export default useFetchBgvData;

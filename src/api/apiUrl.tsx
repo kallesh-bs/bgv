@@ -220,11 +220,9 @@ const apiUrl = {
   backgroundVerification: "background_verification",
   profileCompletion: "background_verification/profile_completion",
   removeDocument: "background_verification/remove_document",
-  marksSheet_10:"markshseet_10th",
-  markshseet_10th_status:"markshseet_10th_status",
-  marksSheet_12:"markshseet_12th",
-  marksSheet_10:"markshseet_10th",
-
+  marksSheet_10: "markshseet_10th",
+  markshseet_10th_status: "markshseet_10th_status",
+  marksSheet_12: "markshseet_12th",
 };
 
 export default apiUrl;

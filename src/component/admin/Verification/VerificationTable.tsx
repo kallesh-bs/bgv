@@ -1,42 +1,35 @@
 import ProfileCard from "component/common/ProfileCard";
 import SidePopup from "component/common/SidePopup";
 import LoaderComp from "component/loader/LoaderComp";
-import PropTypes from "prop-types";
-import { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { convertDateFormat } from "utils/date";
+import { IEmployeeData, IVerificationTableProps } from "utils/types";
 import DocumetDropDown from "./DocumetDropDown";
 import Employeebrief from "./Employeebrief";
 
-const VerificationTable = ({
+const VerificationTable: React.FC<IVerificationTableProps> = ({
   employeeData,
   finalFilteredValue,
+  currentPage,
   setId,
   setOpenPopUp,
-  onSpotChange,
-  setOnSpotChange,
   setEnable,
-  userPermission,
+  setCurrentPage,
 }) => {
-  const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [userId, setUserId] = useState(1);
-  const [pageCount] = useState(1);
+  const [userId, setUserId] = useState<number | null>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { isLoading } = useSelector((state) => state.leaveReducer);
-  const searchFilterRef = useRef();
+  const isLoading = useSelector((state: any) => state.leaveReducer.isLoading);
   const [handlePopup, setHandlePopup] = useState(false);
 
-  const renderRow = (data, index) => {
-    const handleEmpEye = (data) => {
+  const renderRow = (data: IEmployeeData, index: number) => {
+    const handleEmpEye = (data: IEmployeeData) => {
       setOpenPopUp(true);
     };
 
-    const statusColors = {
+    const statusColors: Record<string, string> = {
       hold: "#67147C",
       verified: "#1A8718",
       in_progress: "#576CA2",
@@ -67,7 +60,7 @@ const VerificationTable = ({
               names={data?.full_name}
               userEmail={data?.email}
               email={data?.email}
-              designation={data?.designation?.designation}
+              designation={data?.designation}
               data={data}
             />
           </div>
@@ -144,7 +137,7 @@ const VerificationTable = ({
               {t("doj")}
             </th>
             {finalFilteredValue?.map(
-              (value, index) =>
+              (value: any, index: any) =>
                 value.isChecked && (
                   <th
                     key={index}
@@ -184,7 +177,7 @@ const VerificationTable = ({
         <SidePopup
           children={<ProfileCard userId={userId} />}
           handleCancel={setHandlePopup}
-          grandChild={<DocumetDropDown userId={userId} />}
+          grandChild={<DocumetDropDown />}
         />
       )}
     </div>
@@ -192,16 +185,3 @@ const VerificationTable = ({
 };
 
 export default VerificationTable;
-
-VerificationTable.propTypes = {
-  setId: PropTypes.any,
-  finalFilteredValue: PropTypes.array,
-  setOpenPopUp: PropTypes.func.isRequired,
-  onSpotChange: PropTypes.func.isRequired,
-  setOnSpotChange: PropTypes.func.isRequired,
-  employeesType: PropTypes.array.isRequired,
-  setEnable: PropTypes.func.isRequired,
-  currentPage: PropTypes.func.isRequired,
-  setCurrentPage: PropTypes.func.isRequired,
-  userPermission: PropTypes.func.isRequired,
-};

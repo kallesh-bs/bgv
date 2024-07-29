@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import swalService from "../../utils/SwalServices";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   handlePostStatus,
-  handleUpdateStatus
+  handleUpdateStatus,
 } from "redux/appThunk/Employee/chat";
-import { useNavigate } from "react-router-dom";
+import swalService from "../../utils/SwalServices";
 
 const AuthGuard = ({ Component, roleList, name }) => {
   const navigate = useNavigate();
@@ -68,19 +68,17 @@ const AuthGuard = ({ Component, roleList, name }) => {
   }, []);
 
   if (name === "Dashboard") {
-    return (<>
-      <meta name="robots" content="noindex" />
-      <Component role={role} />
-    </>);
+    return (
+      <>
+        <meta name="robots" content="noindex" />
+        <Component role={role} />
+      </>
+    );
   }
 
   const ComponentRendered = Component[role];
 
-  return roleList?.includes(role) ? (
-    <ComponentRendered />
-  ) : (
-    navigate("/404")
-  );
+  return roleList?.includes(role) ? <ComponentRendered /> : navigate("/404");
 };
 
 export default AuthGuard;

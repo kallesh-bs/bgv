@@ -1,12 +1,11 @@
-import React from "react";
-import { GrFormClose } from "react-icons/gr";
-import { useTranslation } from "react-i18next";
-import { useFormik } from "formik";
-import PropTypes from "prop-types";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
-import swalService from "utils/SwalServices";
+import { useFormik } from "formik";
+import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
+import { GrFormClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
+import swalService from "utils/SwalServices";
 
 function AddEmployeePopup({ AddEmployessDialoBox, values }) {
   const checkData = {
