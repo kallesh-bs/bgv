@@ -1,13 +1,26 @@
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";
 import { useFormik } from "formik";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { GrFormClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import swalService from "utils/SwalServices";
 
-function AddEmployeePopup({ AddEmployessDialoBox, values }) {
+interface AddEmployeePopupProps {
+  AddEmployessDialoBox: () => void;
+  values: {
+    fullName: string;
+    email: string;
+    contactNo: string;
+    dob: string;
+    role: string;
+  };
+}
+
+const AddEmployeePopup: React.FC<AddEmployeePopupProps> = ({
+  AddEmployessDialoBox,
+  values,
+}) => {
   const checkData = {
     user: {
       Name: values?.fullName,
@@ -16,6 +29,7 @@ function AddEmployeePopup({ AddEmployessDialoBox, values }) {
       "Date of Birth": values.dob,
     },
   };
+
   const employeedata = {
     user: {
       full_name: values?.fullName,
@@ -25,14 +39,16 @@ function AddEmployeePopup({ AddEmployessDialoBox, values }) {
       role: values?.role,
     },
   };
+
   const { t } = useTranslation();
-  const initialvalues = employeedata && employeedata;
+  const initialValues = employeedata && employeedata;
   const navigate = useNavigate();
-  const Formik = useFormik({
-    initialValues: initialvalues,
+
+  const formik = useFormik({
+    initialValues: initialValues,
     onSubmit: async () => {
       const path = apiUrl.sign;
-      const { response, status } = await Helper.post(employeedata, path);
+      const { response, status }: any = await Helper.post(employeedata, path);
       if (status === 200) {
         swalService.showSuccess({
           icon: "success",
@@ -47,7 +63,6 @@ function AddEmployeePopup({ AddEmployessDialoBox, values }) {
           icon: "error",
           title: "Error!",
           text: "Failed to Add New Employee",
-          showConfirmButton: false,
           timer: 1500,
         });
         AddEmployessDialoBox();
@@ -56,7 +71,7 @@ function AddEmployeePopup({ AddEmployessDialoBox, values }) {
     },
   });
 
-  const { handleSubmit } = Formik;
+  const { handleSubmit } = formik;
 
   return (
     <div className="w-full h-full flex items-center justify-center absolute top-0 left-0 z-50 bg-[rgba(3,27,89,.3)]">
@@ -79,19 +94,17 @@ function AddEmployeePopup({ AddEmployessDialoBox, values }) {
             <div className="w-full px-7 flex flex-col item-center gap-4">
               <div className="w-full flex flex-col border gap-2">
                 {checkData &&
-                  Object.keys(checkData?.user)?.map((val, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="flex w-full items-center gap-4 p-2 "
-                      >
-                        <p className="basis-1/4 w-full">
-                          {val} <span>:</span>
-                        </p>
-                        <p>{checkData.user[`${val}`]}</p>
-                      </div>
-                    );
-                  })}
+                  Object.keys(checkData.user).map((val, index) => (
+                    <div
+                      key={index}
+                      className="flex w-full items-center gap-4 p-2 "
+                    >
+                      <p className="basis-1/4 w-full">
+                        {val} <span>:</span>
+                      </p>
+                      <p>{checkData.user.Name}</p>
+                    </div>
+                  ))}
               </div>
             </div>
             <hr />
@@ -116,13 +129,6 @@ function AddEmployeePopup({ AddEmployessDialoBox, values }) {
       </div>
     </div>
   );
-}
-
-AddEmployeePopup.propTypes = {
-  AddEmployessDialoBox: PropTypes.any,
-  values: PropTypes.any,
-  checkData: PropTypes.object,
-  employeedata: PropTypes.object,
 };
 
 export default AddEmployeePopup;
