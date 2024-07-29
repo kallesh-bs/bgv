@@ -45,7 +45,7 @@
   "scripts": {
     "lint": "eslint src src --fix --ext .js,.jsx, .ts, .tsx",
     "start": "react-scripts --max_old_space_size=4096 start",
-    "debug":"ndb ./src/index.js",
+    "debug": "ndb ./src/index.js",
     "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -75,6 +75,8 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.33.2",

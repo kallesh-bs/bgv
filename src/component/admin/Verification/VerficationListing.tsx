@@ -2,50 +2,47 @@ import Helper from "api/Helper";
 import { AddButton } from "component/common/accessControlUi/Button";
 import Search from "component/common/accessControlUi/Search";
 import usePermissions, { mappedPermissionObj } from "hooks/usePermission";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GrFormClose } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import ToastServices from "ToastServices";
+import { IVerficationListingProps } from "utils/types";
 import apiUrl from "../../../api/apiUrl";
 import { isShowDialogBoxChange } from "../../../redux/actions/action";
-import { filterTableDefaultValue } from "../../../utils/Constants";
-import AddEmployee from "../Employee/AddEmployee";
-import EyeProfile from "./EyeProfile";
+import AddEmployee from "../Employee/AddEmployee.jsx";
 import Paginate from "./Paginate";
 import useFetchbgvData from "./useFetchbgvData";
 import VerificationTable from "./VerificationTable";
 
-export default function VerficationListing({ tabValue, allEmpData }) {
+const VerficationListing: React.FC<IVerficationListingProps> = ({
+  tabValue,
+  allEmpData,
+}) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { t } = useTranslation();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filter, setFilter] = useState(false);
-  const [id, setId] = useState();
-  const [enable, setEnable] = useState(false);
-  const [searchItem, setSearchItem] = useState("");
-  const [openOptions, setOpenOptions] = useState(false);
-  const [showAddEmployeePopup, setShowAddEmployeePopup] = useState(false);
-  const [filterTableValue, setFilterTableValue] = useState(
-    filterTableDefaultValue
-  );
-  const [finalFilteredValue, setFinalFiteredValue] = useState([]);
-  const [addemployeePop, setAddEmployeePop] = useState(false);
-  const [onSpotChange, setOnSpotChange] = useState(false);
-  const [submitOnce, setSubmitOnce] = useState(false);
-  const [openPopUp, setOpenPopUp] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [id, setId] = useState<number | undefined>();
+  const [enable, setEnable] = useState<boolean>(false);
+  const [searchItem, setSearchItem] = useState<string>("");
+  const [showAddEmployeePopup, setShowAddEmployeePopup] =
+    useState<boolean>(false);
+  const [finalFilteredValue] = useState<any[]>([]); // Adjust the type as needed
+  const [addemployeePop, setAddEmployeePop] = useState<boolean>(false);
+
+  const [submitOnce, setSubmitOnce] = useState<boolean>(false);
+  const [openPopUp, setOpenPopUp] = useState<boolean>(false);
+
   const isOpenDialogBoxToggle = useSelector(
-    (state) => state.popUpDialogBox.isShowDialogBox
-  );
-  const { isLoading, pageCount } = useSelector((state) => state.leaveReducer);
+    (state: any) => state.popUpDialogBox.isShowDialogBox
+  ); // Adjust state type
+  const { isLoading, pageCount } = useSelector(
+    (state: any) => state.leaveReducer
+  ); // Adjust state type
   const { userPermission } = usePermissions(mappedPermissionObj.User);
   console.log(allEmpData);
 
-  // const pageCounte = Math.ceil(allEmpData.length / 3);
-
-  const handleDisable = async (id) => {
+  const handleDisable = async (id: number) => {
     if (!enable) {
       const path = apiUrl.disable + id;
       try {
@@ -63,7 +60,6 @@ export default function VerficationListing({ tabValue, allEmpData }) {
         type: "success",
         autoClose: 3000,
       });
-      setOnSpotChange(!onSpotChange);
       setSubmitOnce(false);
     } else {
       const tempObj = {
@@ -86,7 +82,6 @@ export default function VerficationListing({ tabValue, allEmpData }) {
         type: "success",
         autoClose: 3000,
       });
-      setOnSpotChange(!onSpotChange);
       setSubmitOnce(false);
     }
   };
@@ -96,34 +91,16 @@ export default function VerficationListing({ tabValue, allEmpData }) {
     setEnable(false);
   };
 
-  const handleClick = (e, bool) => {
-    const id = Number(e.target.id);
-    const updatedFilterTableValue = filterTableValue?.map((item) =>
-      item.id === id ? { ...item, isChecked: bool } : item
-    );
-    setFilterTableValue(updatedFilterTableValue);
-  };
-
-  const handleSave = () => {
-    setFilter(false);
-    setFinalFiteredValue(filterTableValue);
-  };
-
-  const handleRefresh = () => {
-    setFinalFiteredValue(filterTableDefaultValue);
-    setFilterTableValue(filterTableDefaultValue);
-  };
-
   useFetchbgvData({
     query: searchItem,
     currentPage,
-    onSpotChange,
     openPopUp,
   });
 
   const handleAddEmployeeClick = () => {
     setShowAddEmployeePopup(true);
   };
+
   const Handleclose = () => {
     setShowAddEmployeePopup(false);
   };
@@ -131,23 +108,22 @@ export default function VerficationListing({ tabValue, allEmpData }) {
   return (
     <div
       className="w-[96%] h-[calc(100vh-5.3rem)] bg-white space-y-4 flex flex-col p-5 pb-1
-      rounded-xl shadow-[0_0px_20px_0px_rgba(3,27,89,0.10)] "
+      rounded-xl shadow-[0_0px_20px_0px_rgba(3,27,89,0.10)]"
     >
-      {addemployeePop && <AddEmployee setAddEmployeePop={setAddEmployeePop} />}
-
-      {openPopUp && <EyeProfile setOpenPopUp={setOpenPopUp} />}
+      {addemployeePop && (
+        <AddEmployee setShowAddEmployeePopup={setShowAddEmployeePopup} />
+      )}
       <div className="w-full h-12 bg-white flex justify-between relative">
         <div className="flex justify-center items-center">
           <h2 className="font-extrabold text-xl text-[#031B59]">
-            {/* {t("basic_detail")} */}
-            {tabValue.label ? tabValue.label : "Total Checks"}
+            {tabValue.label || "Total Checks"}
           </h2>
         </div>
 
         {isOpenDialogBoxToggle && (
           <div
             className="w-full h-full flex items-center
-          justify-center fixed top-0 left-0 z-50  bg-[rgba(3,27,89,.2)] op"
+          justify-center fixed top-0 left-0 z-50 bg-[rgba(3,27,89,.2)] op"
           >
             <div
               className="w-[37.5rem] h-[15.75rem] z-60 flex flex-col rounded-br-[2rem]
@@ -178,8 +154,10 @@ export default function VerficationListing({ tabValue, allEmpData }) {
                 </button>
                 <button
                   onClick={() => {
-                    handleDisable(id);
-                    setSubmitOnce(true);
+                    if (id !== undefined) {
+                      handleDisable(id);
+                      setSubmitOnce(true);
+                    }
                   }}
                 >
                   <div
@@ -205,9 +183,7 @@ export default function VerficationListing({ tabValue, allEmpData }) {
           <AddButton
             currentResource={mappedPermissionObj.User}
             title={t("addemployees")}
-            onClick={() => {
-              handleAddEmployeeClick();
-            }}
+            onClick={handleAddEmployeeClick}
           />
         </div>
       </div>
@@ -217,21 +193,18 @@ export default function VerficationListing({ tabValue, allEmpData }) {
           setId={setId}
           finalFilteredValue={finalFilteredValue}
           setOpenPopUp={setOpenPopUp}
-          onSpotChange={onSpotChange}
-          setOnSpotChange={setOnSpotChange}
           setEnable={setEnable}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          userPermission={userPermission}
         />
       )}
       {!isLoading && userPermission?.viewAll && (
         <div className="w-full bg-white flex justify-between items-center">
-          {allEmpData && allEmpData?.length > 0 ? (
+          {allEmpData && allEmpData.length > 0 ? (
             <>
               <div className="text-[#031B59] font-medium">
                 Showing {currentPage} of {3}
-              </div>{" "}
+              </div>
               <Paginate
                 currentPage={currentPage}
                 initialPageCount={pageCount}
@@ -249,11 +222,10 @@ export default function VerficationListing({ tabValue, allEmpData }) {
         </div>
       )}
       {showAddEmployeePopup && (
-        <AddEmployee
-          setShowAddEmployeePopup={setShowAddEmployeePopup}
-          handleAddEmployeeClick={Handleclose}
-        />
+        <AddEmployee setShowAddEmployeePopup={setShowAddEmployeePopup} />
       )}
     </div>
   );
-}
+};
+
+export default VerficationListing;

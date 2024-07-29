@@ -1,15 +1,14 @@
-/* eslint-disable no-unused-vars */
-import PropTypes from "prop-types";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
+import { IPaginateProps } from "utils/types";
 
-export default function Paginate({
+const Paginate: React.FC<IPaginateProps> = ({
   next,
   previous,
   initialPageCount,
   pageRangeDisplayed,
   currentPage,
   setCurrentPage,
-}) {
+}) => {
   const generatePageNumbers = () => {
     const currentPageGroup = Math.ceil(currentPage / pageRangeDisplayed);
     const startPage = (currentPageGroup - 1) * pageRangeDisplayed + 1;
@@ -84,13 +83,6 @@ export default function Paginate({
       </button>
     </div>
   );
-}
-
-Paginate.propTypes = {
-  next: PropTypes.string,
-  previous: PropTypes.string,
-  initialPageCount: PropTypes.number,
-  pageRangeDisplayed: PropTypes.number,
-  currentPage: PropTypes.number,
-  setCurrentPage: PropTypes.func,
 };
+
+export default Paginate;

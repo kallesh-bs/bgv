@@ -6,25 +6,17 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GrFormClose } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { allEmployeeList } from "redux/actions/action";
 import { addEmployeeSchema } from "redux/validator/admin/employee";
 import { convertDateFormat } from "utils/date";
 import swalService from "utils/SwalServices";
 // AddEmployee component definition
-export default function AddEmployee({
-  handleAddEmployeeClick,
-  setShowAddEmployeePopup,
-}) {
+export default function AddEmployee({ setShowAddEmployeePopup }) {
   // Retrieve employee data and dialog box state from the Redux store
   const employeeData = useSelector(
     (state) => state.employeeReducer.employeeData
   );
-  const isOpenDialogBoxToggle = useSelector(
-    (state) => state.popUpDialogBox.isShowDialogBox
-  );
-  // Initialize hooks for navigation, state management, and translation
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [customError, setCustomError] = useState(""); // State for custom validation errors
@@ -36,8 +28,6 @@ export default function AddEmployee({
   // Handlers for form field focus and blur events
   const handleFocus = () => setDivBorder(true);
   const handleContactFocus = () => setDivContactBorder(true);
-  const handleContactBlur = () => setDivContactBorder(false);
-  const handleBlur = () => setDivBorder(false);
   const [isChecked, setIsChecked] = useState(false);
   // Initial values for the form fields
   const initialvalues = {
@@ -166,12 +156,7 @@ export default function AddEmployee({
       setShowPopUp(false); // Close the popup on Escape key press
     }
   };
-  // Function to toggle the visibility of the popup
-  const addEmployessDialoBox = () => {
-    setShowPopUp(false);
-    handleAddEmployeeClick();
-    cancleButton();
-  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center   bg-[rgba(3,27,89,.2)] z-50">
       {/* Popup container */}

@@ -1,56 +1,62 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import useRedux from "hooks/useRedux";
+import React, { useEffect, useState } from "react";
+import { ICheckItem } from "utils/types";
 import VerficationListing from "./VerficationListing";
 
-const Verfication = () => {
-  const dispatch = useDispatch();
-  const allEmpData = useSelector((state) => state.bgvReducer.employeeData);
-  const totalChecks = useSelector(
-    (state) => state.bgvReducer.employeeData.total_check
-  );
-  const [bgvStatus, setbgvStatus] = useState("");
+const Verfication: React.FC = () => {
+  const { appSelector } = useRedux();
 
-  console.log(allEmpData);
-  console.log(totalChecks);
-  console.log(bgvStatus);
+  let { allEmpData, totalChecks } = appSelector((state:any) => ({
+    allEmpData: state.bgvReducer.employeeData,
+    totalChecks: state.bgvReducer.employeeData.total_check,
+  }));
 
-  const [tabValue, setTabValue] = useState({
+  // const allEmpData = useSelector(
+  //   (state: RootState) => state.bgvReducer.employeeData
+  // );
+  // const totalChecks = useSelector(
+  //   (state: RootState) => state.bgvReducer.employeeData.total_check
+  // );
+
+  const [bgvStatus, setBgvStatus] = useState<string>("");
+
+  const [tabValue, setTabValue] = useState<{ tab: number; label: string }>({
     tab: 1,
     label: "",
   });
-  const [gridItems, setGridItems] = useState([]);
+  const [gridItems, setGridItems] = useState<ICheckItem[]>([]);
 
   async function getAddressCheck() {
     try {
-      let gridItemsTemp = [];
+      let gridItemsTemp: ICheckItem[] = [];
       gridItemsTemp.push({
-        value: allEmpData["total_check"].length
-          ? allEmpData["total_check"].length
+        value: allEmpData.total_check.length
+          ? allEmpData.total_check.length
           : 0,
         label: "Total Checks",
         color: "#67147C",
         status: "",
       });
       gridItemsTemp.push({
-        value: allEmpData["verified_count"],
+        value: allEmpData.verified_count,
         label: "Verified Checks",
         color: "#1A8718",
         status: "verified",
       });
       gridItemsTemp.push({
-        value: allEmpData["inprogress_count"],
+        value: allEmpData.inprogress_count,
         label: "Inprogress Checks",
         color: "#576CA2",
         status: "in_progress",
       });
       gridItemsTemp.push({
-        value: allEmpData["insufficient_count"],
-        label: "Insufficent Checks",
+        value: allEmpData.insufficient_count,
+        label: "Insufficient Checks",
         color: "#FF981E",
         status: "insufficient",
       });
       gridItemsTemp.push({
-        value: allEmpData["rejected_count"],
+        value: allEmpData.rejected_count,
         label: "Rejected Checks",
         color: "#FA3232",
         status: "rejected",
@@ -72,7 +78,7 @@ const Verfication = () => {
     <>
       <div className="w-full h-fit flex items-center">
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 w-full p-5">
-          {gridItems?.map((item, index) => (
+          {gridItems.map((item, index) => (
             <div
               key={index}
               className={`h-[8rem] w-full p-5 flex flex-col col-span-1 rounded-[20px] cursor-pointer shadow-[0px_0px_20px_0px_rgba(3,27,89,0.10)] mt-2`}
@@ -87,11 +93,11 @@ const Verfication = () => {
                   tab: index + 1,
                   label: item.label,
                 });
-                setbgvStatus(item.status);
+                setBgvStatus(item.status);
               }}
             >
               <div>
-                <h6 className="text-bold text-[40px]  font-black">
+                <h6 className="text-bold text-[40px] font-black">
                   {item.value}
                 </h6>
               </div>
@@ -115,7 +121,9 @@ const Verfication = () => {
         tabValue={tabValue}
         allEmpData={
           bgvStatus
-            ? totalChecks.filter((check) => check.status === bgvStatus)
+            ? totalChecks.filter(
+                (check: { status: string }) => check.status === bgvStatus
+              )
             : totalChecks
         }
       />
