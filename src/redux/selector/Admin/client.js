@@ -220,3 +220,69 @@ export const formatfeedback = (values, interviewId) => {
 
   return jsonObj;
 };
+
+export const formatBVUserData = (values) => {
+  
+  const jsonObj = {
+    verficationData: {
+
+      userData: values.background_verification,
+
+      idetity_Check: {
+        status: values?.background_verification?.background_verification?.identity_check_documents_status || ""
+        , documents: values?.background_verification?.background_verification?.identity_check_documents || ""
+      },
+
+      Education_Check: {
+        graduation_degrees: {
+          Document: values?.background_verification?.background_verification?.graduation_degrees || "",
+          status: values?.background_verification?.background_verification?.graduation_degrees_status || ""
+        },
+
+        markshseet_10th: {
+          Document: values?.background_verification?.background_verification.markshseet_10th || "",
+          status: values?.background_verification?.background_verification?.markshseet_10th_status || ""
+        },
+
+        markshseet_12th: {
+          Document: values?.background_verification?.background_verification?.markshseet_12th || "",
+          status: values?.background_verification?.background_verification?.markshseet_12th_status || ""
+        },
+
+        other_certifications: {
+          Document: values?.background_verification?.background_verification?.other_certifications || "",
+          status: values?.background_verification?.background_verification?.other_certifications_status || ""
+        },
+
+      },
+      Employement_History: {
+        relieving_letters: {
+          Document: values?.background_verification?.background_verification?.relieving_letters || "",
+          status: values?.background_verification?.background_verification?.relieving_letters_status || ""
+        },
+
+        experience_letters: {
+          Document: values?.background_verification?.background_verification?.experience_letters || "",
+          status: values?.background_verification?.background_verification?.experience_letters_status || ""
+        },
+
+        bank_statements: {
+          Document: values?.background_verification?.background_verification.bank_statements || "",
+          status: values?.background_verification?.background_verification.bank_statements_status || ""
+        }
+      },
+
+      Conset: values.background_verification?.hold,
+
+      address_Check: {
+        status: values?.background_verification?.background_verification?.address_check_documents_status || "",
+        documents: values?.background_verification?.background_verification?.address_check_documents || ""
+      },
+
+
+    },
+  };
+
+  return jsonObj.verficationData;
+};
+
