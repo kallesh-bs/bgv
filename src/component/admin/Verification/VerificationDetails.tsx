@@ -139,7 +139,7 @@ const VerficationDetails: React.FC = () => {
           onClick={function () {
             handleTabClick(5);
             dispatch(getVerificationTabName("Consent"))
-            dispatch(setSidePopUpNavTab(5))
+            // dispatch(setSidePopUpNavTab(5))
           }}
           disabled={handleButton}
           className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
