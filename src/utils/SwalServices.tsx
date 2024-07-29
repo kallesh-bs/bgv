@@ -5,6 +5,7 @@ interface AlertOptions {
   text: string;
   icon?: SweetAlertIcon;
   confirmButtonText?: string;
+  timer?: number;
 }
 
 interface ConfirmationOptions {
@@ -15,7 +16,6 @@ interface ConfirmationOptions {
 interface SuccessOptions extends AlertOptions {
   showConfirmButton?: boolean;
   cancelButtonText?: string;
-  timer?: number; // Ensure timer is strictly a number
 }
 
 interface WarningOptions extends AlertOptions {
@@ -61,7 +61,7 @@ const swalService = {
       showConfirmButton,
       confirmButtonText,
       cancelButtonText,
-      timer, // Ensure timer is a number
+      timer,
     });
   },
 
