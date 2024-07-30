@@ -1,16 +1,9 @@
 import React, { useRef, useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
+import { ISearchProps } from "utils/types";
 
-interface SearchProps {
-  searchItem: string;
-  setSearchItem: (value: string) => void;
-  currentResource?: {
-    viewAll?: boolean;
-  };
-}
-
-const Search: React.FC<SearchProps> = ({
+const Search: React.FC<ISearchProps> = ({
   searchItem,
   setSearchItem,
   currentResource,

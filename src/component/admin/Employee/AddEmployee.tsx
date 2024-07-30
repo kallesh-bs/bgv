@@ -11,20 +11,9 @@ import { RootState } from "redux/store";
 import { addEmployeeSchema } from "redux/validator/admin/employee";
 import { convertDateFormat } from "utils/date";
 import swalService from "utils/SwalServices";
+import { IAddEmployeeData, IAddEmployeeProps } from "utils/types";
 
-interface AddEmployeeProps {
-  setShowAddEmployeePopup: (show: boolean) => void;
-}
-
-interface EmployeeData {
-  fullName: string;
-  contactNo: string;
-  email: string;
-  dob: string;
-  role: string;
-}
-
-const AddEmployee: React.FC<AddEmployeeProps> = ({
+const AddEmployee: React.FC<IAddEmployeeProps> = ({
   setShowAddEmployeePopup,
 }) => {
   const employeeData = useSelector(
@@ -41,7 +30,7 @@ const AddEmployee: React.FC<AddEmployeeProps> = ({
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const handleContactFocus = () => setDivContactBorder(true);
 
-  const initialValues: EmployeeData = {
+  const initialValues: IAddEmployeeData = {
     fullName: "",
     contactNo: "",
     email: "",
@@ -53,8 +42,8 @@ const AddEmployee: React.FC<AddEmployeeProps> = ({
     initialValues,
     validationSchema: addEmployeeSchema,
     onSubmit: async (
-      values: EmployeeData,
-      { setSubmitting }: FormikHelpers<EmployeeData>
+      values: IAddEmployeeData,
+      { setSubmitting }: FormikHelpers<IAddEmployeeData>
     ) => {
       setSubmitting(true);
       await submit();

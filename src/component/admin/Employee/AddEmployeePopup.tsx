@@ -5,19 +5,9 @@ import { useTranslation } from "react-i18next";
 import { GrFormClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import swalService from "utils/SwalServices";
+import { IAddEmployeePopupProps } from "utils/types";
 
-interface AddEmployeePopupProps {
-  AddEmployessDialoBox: () => void;
-  values: {
-    fullName: string;
-    email: string;
-    contactNo: string;
-    dob: string;
-    role: string;
-  };
-}
-
-const AddEmployeePopup: React.FC<AddEmployeePopupProps> = ({
+const AddEmployeePopup: React.FC<IAddEmployeePopupProps> = ({
   AddEmployessDialoBox,
   values,
 }) => {
