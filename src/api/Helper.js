@@ -91,6 +91,7 @@ var Helper = {
       }
     }
     else {
+      console.log("here --------",path,"L---");
       try {
         const url = baseURL + path;
         const res = await fetch(url, {

@@ -4,17 +4,15 @@ import VerficationDetails from './VerificationDetails';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import NotifyPopUp from './NotifyPopUp';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendNotify } from 'redux/appThunk/Admin/Verfication';
 import { setSidePopUpNavTab } from 'redux/actions/action';
+import { VerificationSidePopUpNavTabName } from './types';
 
 
-const DocumetDropDown = ({userId}:{userId:any}) => {
+const DocumetDropDown = () => {
    const [isNotifyPopUp, setNotifyPopUp] = useState(false);
    const [handleDropDown, setHandleDropDown] = useState(false)
    const tabclick = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
-   // const userData = useSelector((state:any) => state.bgvReducer.empDataById)
    const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
-   // console.log(tabclick);
 
    const dispatch = useDispatch()
    useEffect(()=>{
@@ -25,32 +23,30 @@ const DocumetDropDown = ({userId}:{userId:any}) => {
    
    const [isLoading , setIsLoading]=useState(false)
 
-   function sendConsetNotify() {
-      // dispatch(sendNotify(userData?.userData?.id , setIsLoading , setNotifyPopUp))
-   }
+   // const function
 
    return (
       <div className={`rounded-xl ${handleDropDown && "border"} h-full mt-2  `}>
          <div className={`w-full bg-${!handleDropDown && "[#031B59]  text-white "} p-3 px-4 items-center rounded-xl   flex justify-between`}>
             <div className='flex gap-2 items-center'>
-               {handleDropDown && <div className='cursor-pointer' onClick={() => setHandleDropDown(!handleDropDown)}>
-                  <FaArrowLeftLong />
-               </div>}
+               {handleDropDown && 
+                  <div className='cursor-pointer' onClick={() => setHandleDropDown(!handleDropDown)}>
+                     <FaArrowLeftLong />
+                  </div>
+               }
                Documents
             </div>
-            {!handleDropDown && <div
-               className='text-white cursor-pointer'
-               onClick={() => setHandleDropDown(true)}>
+            {!handleDropDown && <div className='text-white cursor-pointer' onClick={() => setHandleDropDown(true)}>
                <FaChevronRight />
             </div>}
             <div className={`text-[#031B59] font-semibold cursor-pointer ${!handleDropDown ? 'hidden' : ''} `} onClick={() => setNotifyPopUp(!isNotifyPopUp)}>Notify</div>
             {isNotifyPopUp ? <NotifyPopUp 
-            isLoading={isLoading}
-            isNotifyPopUp={isNotifyPopUp} 
-            setNotifyPopUp={setNotifyPopUp} 
-            handleNotify={sendConsetNotify}
-
-            tabName={tabclick === 1 ?'Identify Check': tabclick === 2 ? 'Education check' : tabclick === 3 ? 'Address Check': tabclick === 4 ? 'Employment History':'Consent'} /> : ''}
+               isLoading={isLoading}
+               isNotifyPopUp={isNotifyPopUp} 
+               setNotifyPopUp={setNotifyPopUp} 
+               tabName={tabclick === 1 ? VerificationSidePopUpNavTabName.IDENTITY_CHECK_TAB : tabclick === 2 ? VerificationSidePopUpNavTabName.EDUCATION_CHECK_TAB : tabclick === 3 ? VerificationSidePopUpNavTabName.ADDRESS_CHECK_TAB : tabclick === 4 ? VerificationSidePopUpNavTabName.EMPLOYEMENT_HISTORY_CHECK_TAB : VerificationSidePopUpNavTabName.CONSENT_TAB} /> 
+            : ''
+            }
          </div>
          <div className='mt-2 h-full px-4'>
             {handleDropDown &&
