@@ -34,14 +34,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
   const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
   console.log(empDataById);
   
-
-  // const renderRow = (data: IEmployeeData, index: number) => {
-  //   const handleEmpEye = (data: IEmployeeData) => {
-  //     setOpenPopUp(true);
-  //   };
-
-  //   const statusColors: Record<string, string> = {
-    const tabclick = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
+  const tabclick = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
 
   useEffect(()=>{
     {Object.keys(empDataById).length === 13 ? dispatch(setSidePopUpNavTab(1)):dispatch(setSidePopUpNavTab(5))}
@@ -117,7 +110,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
         </td>
         <td
           className={` w-[14rem] p-2 py-5  text-center   
-            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"} `}
+            ${index % 2 === 0 ? "bg-white" : "bg-[#F8FAFC]"} cursor-pointer`}
         >
           <button
             className="mr-[6px]"
@@ -125,9 +118,6 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
               () => {
                 handleSidePopUpData(dispatch, data.id)
                 handleEmpEye()
-                // dispatch(setSidePopUpNavTab(1)
-                
-                
               setUserId(data.id);
               setHandlePopup(!handlePopup);
             }}
@@ -220,7 +210,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
         <SidePopup
           children={<ProfileCard  />}
           handleCancel={setHandlePopup}
-          grandChild={<DocumetDropDown userId={userId} />}
+          grandChild={<DocumetDropDown />}
           isLoading={handleLoading}
         />
       )}

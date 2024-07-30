@@ -19,36 +19,19 @@ import { object } from "prop-types";
 
 // Define the component
 const VerficationDetails: React.FC = () => {
-  // const [activeTab, setActiveTab] = useState<number>(1);
-  // const activeTab = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
   const dispatch = useDispatch()
   const userData = useSelector((state:any) => state.bgvReducer.employeeDataById)
   const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
   const [identifyOptionTab, setIdentifyOptionTab] = useState<ITabOption>("Choose~");
   const [adressOptionTab, setAddressOptionTab] = useState<ITabOption>("Choose~");
-  // const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
   const [handleButton , setHandleButton] =useState(false) 
-  
-  // Object.keys(userData).length === 13 ? dispatch(setSidePopUpNavTab(1)) : dispatch(setSidePopUpNavTab(5));
-
-  // useEffect(()=>{
-  //   if (userData?.Conset) {
-  //     setActiveTab(1)
-  //     setHandleButton(false)
-  //     dispatch(getVerificationTabName("Identify Check"))
-  //   }else{
-  //     setActiveTab(5)
-  //     setHandleButton(true)
-  //   }
-  // },[])
 
   useEffect(()=>{
     if (Object.keys(userData).length !== 13 ) {
       setActiveTab(5)
       setHandleButton(true)
     }else{
-      dispatch(getVerificationTabName("Identify Check"))
       setActiveTab(1)
       setHandleButton(false)
     }
@@ -73,7 +56,6 @@ const VerficationDetails: React.FC = () => {
           <button
              disabled={handleButton}
             onClick={function () {
-              dispatch(getVerificationTabName("Identify Check"))
               handleTabClick(1);
               dispatch(setSidePopUpNavTab(1))
             }}
@@ -89,7 +71,6 @@ const VerficationDetails: React.FC = () => {
           <button
             onClick={function () {
               handleTabClick(2);
-              dispatch(getVerificationTabName( "Education check"))
               dispatch(setSidePopUpNavTab(2))
             }}
             disabled={handleButton}
@@ -105,7 +86,6 @@ const VerficationDetails: React.FC = () => {
           <button
             onClick={function () {
               handleTabClick(3);
-              dispatch(getVerificationTabName("Address Check"))
               dispatch(setSidePopUpNavTab(3))
             }}
             disabled={handleButton}
@@ -121,7 +101,6 @@ const VerficationDetails: React.FC = () => {
           <button
             onClick={function () {
               handleTabClick(4);
-              dispatch(getVerificationTabName("Employment History"))
               dispatch(setSidePopUpNavTab(4))
             }}
             disabled={handleButton}
@@ -138,8 +117,6 @@ const VerficationDetails: React.FC = () => {
           <button
           onClick={function () {
             handleTabClick(5);
-            dispatch(getVerificationTabName("Consent"))
-            // dispatch(setSidePopUpNavTab(5))
           }}
           disabled={handleButton}
           className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
@@ -152,23 +129,6 @@ const VerficationDetails: React.FC = () => {
         </button>
         :''
           }
-
-          {/* <button
-            onClick={function () {
-              handleTabClick(5);
-              dispatch(getVerificationTabName("Consent"))
-              dispatch(setSidePopUpNavTab(5))
-            }}
-            disabled={handleButton}
-            className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
-              ? "text-[#002169] font-bold bg-[#F2F6FF]"
-              : "text-[#686868]"
-              } flex gap-2 text-[.9rem] font-bold justify-center items-center`}
-          >
-               <IoNewspaperOutline />
-                  <h1>Consent</h1>
-          </button> */}
-
         </div>
 
         <div className="w-full h-full">
