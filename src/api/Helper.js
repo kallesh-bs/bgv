@@ -53,7 +53,7 @@ const requestInterceptor = () => {
 };
 
 var Helper = {
-  post: async (jsonObj = {}, path = "", formData = false) => {
+  post: async (jsonObj = {}, path = "", formData = false, multipart = false) => {
     const token = requestInterceptor();
     if (formData) {
       const url = baseURL + path;
@@ -67,7 +67,31 @@ var Helper = {
       });
 
       return responseInterceptor(result, formData);
-    } else {
+    } 
+    else if(multipart){
+      try {
+        const url = baseURL + path;
+        const res = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(jsonObj),
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: token,
+          },
+        });
+
+        if (window.location.pathname !== "/login") {
+          return responseInterceptor(res);
+        }
+
+        return res;
+      } catch (error) {
+        console.log("error", error);
+        swalService.showError({ title: "Error!" });
+      }
+    }
+    else {
+      console.log("here --------",path,"L---");
       try {
         const url = baseURL + path;
         const res = await fetch(url, {

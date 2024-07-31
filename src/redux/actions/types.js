@@ -152,3 +152,5 @@ export const REMOVE_DOCUMENT = "REMOVE_DOCUMENT";
 
 export const NOTIFY_USER = "NOTIFY_USER";
 
+export const SET_SIDE_POPUP_NAV_TAB = "SET_SIDE_POPUP_NAV_TAB";
+

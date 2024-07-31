@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Consent = () => {
 
   const [checked, setChecked] = useState(false);
-  const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
+  const {userData } = useSelector((reducer)=> reducer.VerificationReducer)
 
   useEffect(() => {
     const savedChecked = localStorage.getItem('consentChecked');
@@ -15,7 +15,7 @@ const Consent = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('consentChecked', checked+'');
+    localStorage.setItem('consentChecked', checked);
   }, [checked]);
 
   return (
