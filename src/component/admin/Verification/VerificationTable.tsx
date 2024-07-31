@@ -7,7 +7,7 @@ import { FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { convertDateFormat } from "utils/date";
 import { IEmployeeData, IVerificationTableProps } from "utils/types";
-import DocumetDropDown from "./DocumetDropDown";
+import DocumetDropDown from "./DocumentDropDown";
 import Employeebrief from "./Employeebrief";
 import apiUrl from "api/apiUrl";
 import Helper from "api/Helper";

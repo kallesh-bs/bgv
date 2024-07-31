@@ -8,7 +8,7 @@ import { VerificationDataKey } from "./types";
 const IdentifyCheck = ({ selectOption }:{ selectOption : string}) => {
   const dispatch = useDispatch();
   const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
-  console.log(empDataById);
+  // console.log(empDataById);
   const { t } = useTranslation();
   const data = empDataById[VerificationDataKey.BACKGROUND_VERIFICATION][VerificationDataKey.IDENTITY_CHECK_DOCUMENTS];
 
