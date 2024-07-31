@@ -20,9 +20,7 @@ export interface IVerificationTableProps {
   employeeData: IEmployeeData[];
   finalFilteredValue: any;
   currentPage: number;
-  setId: (id: number) => void;
   setOpenPopUp: (open: boolean) => void;
-  setEnable: (enable: boolean) => void;
   setCurrentPage: (page: number) => void;
 }
 

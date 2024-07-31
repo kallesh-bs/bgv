@@ -2,6 +2,7 @@ import {
   BGV_ALL_EMPLOYEE_DATA,
   BGV_EMPLOYEE_DATA_BY_ID,
   BGV_FILE_UPLOAD,
+  IS_LOADING,
   NOTIFY_USER,
   ON_HOLD_BY_EMPLOYEE_ID,
   PROFILE_COMPLETION_BY_ID,
@@ -14,19 +15,20 @@ const initialstate = {
   isLoading: true,
   employeeDataById: {},
   profileCompletionById: {},
-  sidePopUpDocNavTab: 1
+  sidePopUpDocNavTab: 1,
 };
 
 // Define the action types
 export type BGVAction =
-  | { type: "BGV_ALL_EMPLOYEE_DATA"; payload: any[] } // Replace `any` with the actual type
+  | { type: "BGV_ALL_EMPLOYEE_DATA"; payload: any[] }
   | { type: "BGV_FILE_UPLOAD"; payload: boolean }
-  | { type: "BGV_EMPLOYEE_DATA_BY_ID"; payload: any } // Replace `any` with the actual type
-  | { type: "PROFILE_COMPLETION_BY_ID"; payload: any } // Replace `any` with the actual type
+  | { type: "BGV_EMPLOYEE_DATA_BY_ID"; payload: any }
+  | { type: "PROFILE_COMPLETION_BY_ID"; payload: any }
   | { type: "ON_HOLD_BY_EMPLOYEE_ID"; payload: boolean }
   | { type: "REMOVE_DOCUMENT"; payload: boolean }
   | { type: "NOTIFY_USER"; payload: boolean }
-  | { type: "SET_SIDE_POPUP_NAV_TAB"; payload: boolean };
+  | { type: "SET_SIDE_POPUP_NAV_TAB"; payload: boolean }
+  | { type: "IS_LOADING"; payload: boolean };
 
 export const bgvReducer = (state = initialstate, action: BGVAction) => {
   switch (action.type) {
@@ -66,6 +68,11 @@ export const bgvReducer = (state = initialstate, action: BGVAction) => {
         isLoading: action.payload,
       };
     case NOTIFY_USER:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    case IS_LOADING:
       return {
         ...state,
         isLoading: action.payload,

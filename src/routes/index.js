@@ -9,7 +9,6 @@ import Home from "pages/Home";
 import Page404 from "pages/Page404";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import AddEmployee from "../component/admin/Employee/AddEmployee";
 import AuthGuard from "../component/authGuard/AuthGuard.js";
 import Layout from "../component/layouts/Layout";
 import LayoutWeb from "../component/layouts/LayoutWeb.jsx";
@@ -61,13 +60,6 @@ export const MainRoutes = () => {
   ];
 
   const protectedRoutes = [
-    {
-      path: "/verification/addEmployee",
-      name: "Add employee",
-      component: { admin: AddEmployee },
-      role: ["admin"],
-    },
-
     {
       path: "/verification",
       name: "Verfication",
