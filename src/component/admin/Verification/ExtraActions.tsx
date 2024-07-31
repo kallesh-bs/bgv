@@ -82,9 +82,9 @@ function ExtraActions({ nodata, doc_status_column, doc_column }:ExtraActionsProp
             </div>
             <div className={`absolute bg-[#FFFFFF] border border-[#DEE4EB] w-[250px] top-5 right-[20px] rounded-md px-6 py-2 mt-2 space-y-2 z-50 ${isExtraActionsPopUp ? '' : 'hidden'}`} style={{ display: `${isExtraActionsPopUp ? '' : 'none'}` }}>
                 {nodata ? 
-                    <div className="cursor-pointer" onClick={() => { handleUploadFile() }} >
+                    <div className="cursor-pointer" data-testid="handleUploadFile1" onClick={() => { handleUploadFile() }} >
                         Update/Add new document
-                        <input ref={inputRef} onChange={(e) => handleFileChange(e, empDataById.id, form_column, path_add, dispatch)} type="file" hidden />
+                        <input ref={inputRef} data-testid="handleFileChange1" onChange={(e) => handleFileChange(e, empDataById.id, form_column, path_add, dispatch)} type="file" hidden />
                     </div>
                 :
                     <>
@@ -97,14 +97,14 @@ function ExtraActions({ nodata, doc_status_column, doc_column }:ExtraActionsProp
                         <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.REJECTED, path_add, doc_status_column,dispatch)}}>
                             Reject
                         </div>
-                        <div className="cursor-pointer" onClick={() => { handleUploadFile() }} >
+                        <div className="cursor-pointer" data-testid="handleUploadFile2" onClick={() => { handleUploadFile() }} >
                             Update/Add new document
-                            <input ref={inputRef} onChange={(e) => handleFileChange(e, empDataById.id, form_column, path_add, dispatch)} type="file" hidden />
+                            <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => handleFileChange(e, empDataById.id, form_column, path_add, dispatch)} type="file" hidden />
                         </div>
                     </>
                 }
             </div>
-            <div className="cursor-pointer" onClick={() => setExtraActionPopUp(!isExtraActionsPopUp)} ref={extraActionSideRef}>
+            <div className="cursor-pointer" data-testid="extraActionPopUpbtn" onClick={() => setExtraActionPopUp(!isExtraActionsPopUp)} ref={extraActionSideRef}>
                 <GrMore />
             </div>
         </div>
