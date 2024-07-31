@@ -1,11 +1,10 @@
 import ProfileCard from "component/common/ProfileCard";
 import SidePopup from "component/common/SidePopup";
 import LoaderComp from "component/loader/LoaderComp";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setSidePopUpNavTab } from "redux/actions/action";
 import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
 import { convertDateFormat } from "utils/date";
 import { IEmployeeData, IVerificationTableProps } from "utils/types";
@@ -34,14 +33,14 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
     (state: any) => state.bgvReducer.sidePopUpDocNavTab
   );
 
-  useEffect(() => {
-    {
-      Object.keys(empDataById).length === 13
-        ? dispatch(setSidePopUpNavTab(1))
-        : dispatch(setSidePopUpNavTab(5));
-    }
-    console.log(tabclick);
-  }, [empDataById, dispatch]);
+  // useEffect(() => {
+  //   {
+  //     Object.keys(empDataById).length === 13
+  //       ? dispatch(setSidePopUpNavTab(1))
+  //       : dispatch(setSidePopUpNavTab(5));
+  //   }
+  //   console.log(tabclick);
+  // }, [empDataById, dispatch]);
 
   const renderRow = (data: IEmployeeData, index: number) => {
     function handleEmpEye() {
@@ -116,6 +115,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
               setUserId(data.id);
               setHandlePopup(!handlePopup);
             }}
+            data-testid="eye-button"
             // disabled={
             //   data.status === "rejected" ||
             //   data.status === "insufficient" ||
