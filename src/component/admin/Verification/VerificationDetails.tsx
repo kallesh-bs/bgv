@@ -9,7 +9,7 @@ import AddressCheck from "./AddressCheck";
 import Consent from "./Consent";
 import EducationCheck from "./EducationCheck";
 import EmployementHistoryCheck from "./EmployementHistoryCheck";
-import IdentifyCheck from "./IdentifyCheck";
+import IdentifyCheck from "./IdentityCheck";
 import "./Verfication.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getVerificationTabName } from "redux/actions/action";
