@@ -4,19 +4,19 @@ import { useSelector } from "react-redux";
 
 const Consent = () => {
 
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
 
-  useEffect(() => {
-    const savedChecked = localStorage.getItem('consentChecked');
-    if (savedChecked === 'true') {
-      setChecked(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const savedChecked = localStorage.getItem('consentChecked');
+  //   if (savedChecked === 'true') {
+  //     setChecked(true);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem('consentChecked', checked+'');
-  }, [checked]);
+  // useEffect(() => {
+  //   localStorage.setItem('consentChecked', checked+'');
+  // }, [checked]);
 
   return (
     <div className=" w-full h-full">
@@ -43,14 +43,14 @@ I here by Lorem Ipsum is simply dummy text of the printing and typesetting indu
     PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-      { !userData?.Conset &&  <div className="w-full p-[14px_0px_0px_0px] mt-6 flex items-center gap-4">
+      {  <div className="w-full p-[14px_0px_0px_0px] mt-6 flex items-center gap-4">
           <div>
           <input
             type="checkbox"
             name="isChecked"
-            checked={checked}
-            onChange={() => setChecked(!checked)}
-            className="checkbox w-[20px] h-[20px]"
+            checked={false}
+            className="checkbox w-[20px] h-[20px] "
+            readOnly={true}
           />
           </div>
           <div>
