@@ -1,0 +1,42 @@
+{
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "^component/(.*)$": "<rootDir>/src/component/$1",
+      "^redux/(.*)$": "<rootDir>/src/redux/$1",
+      "^utils/(.*)$": "<rootDir>/src/utils/$1",
+      "^images/(.*)$": "<rootDir>/src/images/$1",
+      "^.+\\.(svg)$": "jest-svg-transformer"
+    },
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+    "testPathIgnorePatterns": ["/node_modules/", "/dist/", "/build/"],
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/coverage",
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/**/*.d.ts",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!src/reportWebVitals.ts",
+      "!src/setupTests.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.json"
+      }
+    }
+  }
+  

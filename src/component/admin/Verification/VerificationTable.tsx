@@ -1,58 +1,54 @@
 import ProfileCard from "component/common/ProfileCard";
 import SidePopup from "component/common/SidePopup";
 import LoaderComp from "component/loader/LoaderComp";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
 import { convertDateFormat } from "utils/date";
 import { IEmployeeData, IVerificationTableProps } from "utils/types";
 import DocumetDropDown from "./DocumentDropDown";
 import Employeebrief from "./Employeebrief";
-import apiUrl from "api/apiUrl";
-import Helper from "api/Helper";
-import { handleSidePopUpData } from "redux/appThunk/Admin/bgv";
-import { setSidePopUpNavTab } from "redux/actions/action";
-
-import { fetchVerficationUserData } from "redux/appThunk/Admin/Verfication";
 
 const VerificationTable: React.FC<IVerificationTableProps> = ({
   employeeData,
   finalFilteredValue,
   currentPage,
-  setId,
   setOpenPopUp,
-  setEnable,
   setCurrentPage,
 }) => {
   const [userId, setUserId] = useState<number | null>(null);
   const { t } = useTranslation();
   const isLoading = useSelector((state: any) => state.leaveReducer.isLoading);
   const [handlePopup, setHandlePopup] = useState(false);
-  const [handleLoading , setHandleLoading]=useState(false)
+  const [handleLoading, setHandleLoading] = useState(false);
   const dispatch = useDispatch();
-  const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
+  const empDataById = useSelector(
+    (state: any) => state.bgvReducer.employeeDataById
+  );
   console.log(empDataById);
-  
-  const tabclick = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
 
-  useEffect(()=>{
-    {Object.keys(empDataById).length === 13 ? dispatch(setSidePopUpNavTab(1)):dispatch(setSidePopUpNavTab(5))}
-    console.log(tabclick);
-    
-  },[empDataById,dispatch])
+  const tabclick = useSelector(
+    (state: any) => state.bgvReducer.sidePopUpDocNavTab
+  );
+
+  // useEffect(() => {
+  //   {
+  //     Object.keys(empDataById).length === 13
+  //       ? dispatch(setSidePopUpNavTab(1))
+  //       : dispatch(setSidePopUpNavTab(5));
+  //   }
+  //   console.log(tabclick);
+  // }, [empDataById, dispatch]);
 
   const renderRow = (data: IEmployeeData, index: number) => {
-
-
-
     function handleEmpEye() {
       // setOpenPopUp(true);
       setHandlePopup(!handlePopup);
-    };
+    }
 
-
-    const statusColors : Record<string, string> = {
+    const statusColors: Record<string, string> = {
       hold: "#67147C",
       verified: "#1A8718",
       in_progress: "#576CA2",
@@ -60,7 +56,6 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
       rejected: "#FA3232",
       consent_denied: "#D9534F",
     };
-
 
     return (
       <tr
@@ -114,13 +109,13 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
         >
           <button
             className="mr-[6px]"
-            onClick={
-              () => {
-                handleSidePopUpData(dispatch, data.id)
-                handleEmpEye()
+            onClick={() => {
+              handleSidePopUpData(dispatch, data.id);
+              handleEmpEye();
               setUserId(data.id);
               setHandlePopup(!handlePopup);
             }}
+            data-testid="eye-button"
             // disabled={
             //   data.status === "rejected" ||
             //   data.status === "insufficient" ||
@@ -130,7 +125,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
             <FaEye fontSize="20px" />
           </button>
         </td>
-      </tr >
+      </tr>
     );
   };
 
@@ -208,7 +203,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
       )}
       {handlePopup && (
         <SidePopup
-          children={<ProfileCard  />}
+          children={<ProfileCard />}
           handleCancel={setHandlePopup}
           grandChild={<DocumetDropDown />}
           isLoading={handleLoading}

@@ -112,13 +112,13 @@ export const ADD_ASSET_SUCCESS = "ADD_ASSET_SUCCESS";
 
 export const EDIT_ASSET_SUCCESS = "EDIT_ASSET_SUCCESS";
 
-export const SET_FILES = 'SET_FILES';
+export const SET_FILES = "SET_FILES";
 
 export const SET_ROOMID = "SET_ROOMID";
 
 export const SET_CHAT_USERS_STATUS = "SET_CHAT_USERS_STATUS";
 
-export const STORE_FILE_DATA = 'STORE_FILE_DATA';
+export const STORE_FILE_DATA = "STORE_FILE_DATA";
 
 export const SET_MY_STATUS = "SET_MY_STATUS";
 
@@ -154,3 +154,4 @@ export const NOTIFY_USER = "NOTIFY_USER";
 
 export const SET_SIDE_POPUP_NAV_TAB = "SET_SIDE_POPUP_NAV_TAB";
 
+export const IS_LOADING = "IS_LOADING";

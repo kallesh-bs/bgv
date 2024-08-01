@@ -20,9 +20,7 @@ export interface IVerificationTableProps {
   employeeData: IEmployeeData[];
   finalFilteredValue: any;
   currentPage: number;
-  setId: (id: number) => void;
   setOpenPopUp: (open: boolean) => void;
-  setEnable: (enable: boolean) => void;
   setCurrentPage: (page: number) => void;
 }
 
@@ -100,4 +98,35 @@ export interface IBgvEmployeeData {
 
 export interface IBgvState {
   employeeData: IBgvEmployeeData;
+}
+
+export interface IAddEmployeeProps {
+  setShowAddEmployeePopup: (show: boolean) => void;
+}
+
+export interface IAddEmployeeData {
+  fullName: string;
+  contactNo: string;
+  email: string;
+  dob: string;
+  role: string;
+}
+
+export interface IAddEmployeePopupProps {
+  AddEmployessDialoBox: () => void;
+  values: {
+    fullName: string;
+    email: string;
+    contactNo: string;
+    dob: string;
+    role: string;
+  };
+}
+
+export interface ISearchProps {
+  searchItem: string;
+  setSearchItem: (value: string) => void;
+  currentResource?: {
+    viewAll?: boolean;
+  };
 }
