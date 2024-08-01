@@ -128,7 +128,7 @@ test("renders LoaderComp when isLoading is true", () => {
   );
 
   // Check if LoaderComp is rendered
-  //   expect(screen.getByText("Loading...")).toBeInTheDocument();
+  // expect(screen.getByText("Loading...")).toBeInTheDocument();
 });
 
 test("handles different employeeDataById states", () => {
@@ -160,7 +160,6 @@ test("handles different employeeDataById states", () => {
     </MemoryRouter>
   );
 
-  // Check if employeeDataById state is used correctly
   //   expect(screen.getByText("John Doe")).toBeInTheDocument();
   //   expect(screen.getByText("Jane Smith")).toBeInTheDocument();
 });
@@ -189,29 +188,3 @@ test("handles different sidePopUpDocNavTab states", () => {
     </MemoryRouter>
   );
 });
-
-// test("handles employee eye button click and sets user ID", () => {
-//   render(
-//     <I18nextProvider i18n={i18n}>
-//       <Provider store={store}>
-//         <VerificationTable
-//           employeeData={mockEmployeeData}
-//           finalFilteredValue={mockFinalFilteredValue}
-//           currentPage={0}
-//           setOpenPopUp={jest.fn()}
-//           setCurrentPage={jest.fn()}
-//         />
-//       </Provider>
-//     </I18nextProvider>
-//   );
-
-//   // Locate and click on the eye button for the second employee
-//   const eyeButtons = screen.getByTestId("eye-button");
-//   fireEvent.click(eyeButtons);
-
-//   // Check if handleSidePopUpData was called with the correct arguments
-//   expect(handleSidePopUpData).toHaveBeenCalledWith(expect.any(Function), 2);
-
-//   expect(screen.getByText(/profile card/i)).toBeInTheDocument();
-
-// });

@@ -11,12 +11,6 @@ const Verfication: React.FC = () => {
     totalChecks: state.bgvReducer.employeeData.total_check,
   }));
 
-  // const allEmpData = useSelector(
-  //   (state: RootState) => state.bgvReducer.employeeData
-  // );
-  // const totalChecks = useSelector(
-  //   (state: RootState) => state.bgvReducer.employeeData.total_check
-  // );
 
   const [bgvStatus, setBgvStatus] = useState<string>("");
 
