@@ -38,9 +38,9 @@ const EducationCheck = () => {
         <div>
           {data1 ? 
               data1.map((item:any) => 
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
-                <RxCross2 onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.MARKS_SHEET_10TH ,dispatch)} className="cursor-pointer" />
+                <RxCross2 data-testid={`deleteFilebtn${item.url}`} onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.MARKS_SHEET_10TH ,dispatch)} className="cursor-pointer" />
               </div>) 
             : 
               <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{'No data'}</div>
@@ -62,9 +62,9 @@ const EducationCheck = () => {
         <div>
           {data2 ? 
               data2.map((item:any) => 
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
-                <RxCross2 onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.MARKS_SHEET_12TH, dispatch)} className="cursor-pointer" />
+                <RxCross2 data-testid={`deleteFilebtn${item.url}`} onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.MARKS_SHEET_12TH, dispatch)} className="cursor-pointer" />
               </div>) 
             : 
               <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{'No data'}</div>
@@ -87,9 +87,9 @@ const EducationCheck = () => {
         <div>
           {data3 ? 
               data3.map((item:any) => 
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
-                <RxCross2 onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.GRADUATION_DEGREES, dispatch)} className="cursor-pointer" />
+                <RxCross2 data-testid={`deleteFilebtn${item.url}`} onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.GRADUATION_DEGREES, dispatch)} className="cursor-pointer" />
               </div>) 
             : 
               <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{'No data'}</div>
@@ -112,9 +112,9 @@ const EducationCheck = () => {
         <div>
           {data4 ? 
               data4.map((item:any) => 
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
-                <RxCross2 onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.OTHER_CERTIFICATIONS, dispatch)} className="cursor-pointer" />
+                <RxCross2 data-testid={`deleteFilebtn${item.url}`} onClick={() => handleFileDelete(empDataById.id, item.url, VerificationDataKey.OTHER_CERTIFICATIONS, dispatch)} className="cursor-pointer" />
               </div>) 
             : 
               <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">{'No data'}</div>

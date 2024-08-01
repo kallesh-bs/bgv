@@ -27,7 +27,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
   const empDataById = useSelector(
     (state: any) => state.bgvReducer.employeeDataById
   );
-  console.log(empDataById);
+  // console.log(empDataById);
 
   const tabclick = useSelector(
     (state: any) => state.bgvReducer.sidePopUpDocNavTab

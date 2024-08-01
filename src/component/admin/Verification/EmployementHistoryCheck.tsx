@@ -53,9 +53,10 @@ const EmployementHistoryCheck = () => {
         <div>
           {data1 ? (
             data1.map((item: any) => (
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
                 <RxCross2
+                  data-testid={`deleteFilebtn${item.url}`}
                   onClick={() =>
                     handleFileDelete(
                       empDataById.id,
@@ -104,9 +105,10 @@ const EmployementHistoryCheck = () => {
         <div>
           {data2 ? (
             data2.map((item: any) => (
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
                 <RxCross2
+                  data-testid={`deleteFilebtn${item.url}`}
                   onClick={() =>
                     handleFileDelete(
                       empDataById.id,
@@ -149,9 +151,10 @@ const EmployementHistoryCheck = () => {
         <div>
           {data3 ? (
             data3.map((item: any) => (
-              <div className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
+              <div key={item.url} className="w-full flex items-center justify-between border p-[10px_14px_10px_10px] mt-3">
                 {item.name}
                 <RxCross2
+                  data-testid={`deleteFilebtn${item.url}`}
                   onClick={() =>
                     handleFileDelete(
                       empDataById.id,

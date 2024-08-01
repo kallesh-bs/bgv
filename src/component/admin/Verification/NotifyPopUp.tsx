@@ -34,6 +34,8 @@ function NotifyPopUp({
                 reason = reasonRef.current.value
             }
             handleNotify(empDataById.id, dispatch, handle, tabclick,reason)
+            console.log("calling");
+            
         }
     }
 
@@ -46,7 +48,7 @@ function NotifyPopUp({
                     (
                         <>
                             <div className="flex justify-end">
-                                <button className="" onClick={() => setNotifyPopUp(!isNotifyPopUp)}>
+                                <button className="" data-testid="notifyPopUpClosebtn" onClick={() => setNotifyPopUp(!isNotifyPopUp)}>
                                     <GrFormClose className="flex w-[2rem] h-[2rem]" />
                                 </button>
                             </div>
@@ -59,7 +61,7 @@ function NotifyPopUp({
                                 <textarea ref={reasonRef} className="p-2 min-h-[150px] cols-50 border-2 border-solid border-[#DEE4EB] text-justify" placeholder="Enter your reasons here" />
                             </div>}
                             <div className="flex justify-end">
-                                <button
+                                <button data-testid="handleUserNotifybtn"
                                     className=" bg-[#031B59] text-white py-[8px] px-[15px] rounded-[20px] my-2" onClick={handleUserNotify}>
                                     {'Notify'}
                                 </button>

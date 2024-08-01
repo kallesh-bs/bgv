@@ -30,16 +30,16 @@ const DocumetDropDown = () => {
          <div className={`w-full bg-${!handleDropDown && "[#031B59]  text-white "} p-3 px-4 items-center rounded-xl   flex justify-between`}>
             <div className='flex gap-2 items-center'>
                {handleDropDown && 
-                  <div className='cursor-pointer' onClick={() => setHandleDropDown(!handleDropDown)}>
+                  <div className='cursor-pointer' data-testid="leftArraowHandleDropDown" onClick={() => setHandleDropDown(!handleDropDown)}>
                      <FaArrowLeftLong />
                   </div>
                }
                Documents
             </div>
-            {!handleDropDown && <div className='text-white cursor-pointer' onClick={() => setHandleDropDown(true)}>
+            {!handleDropDown && <div className='text-white cursor-pointer' data-testid="RightArraowHandleDropDown" onClick={() => setHandleDropDown(true)}>
                <FaChevronRight />
             </div>}
-            <div className={`text-[#031B59] font-semibold cursor-pointer ${!handleDropDown ? 'hidden' : ''} `} onClick={() => setNotifyPopUp(!isNotifyPopUp)}>Notify</div>
+            <div className={`text-[#031B59] font-semibold cursor-pointer ${!handleDropDown ? 'hidden' : ''} `} data-testid="notifyPopUpbtn" onClick={() => setNotifyPopUp(!isNotifyPopUp)}>Notify</div>
             {isNotifyPopUp ? <NotifyPopUp 
                isLoading={isLoading}
                isNotifyPopUp={isNotifyPopUp} 
