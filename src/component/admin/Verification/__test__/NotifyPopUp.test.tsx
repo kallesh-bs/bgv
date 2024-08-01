@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import NotifyPopUp from '../NotifyPopUp';
 import { Provider, useDispatch } from "react-redux";
 // import store from "../../../../redux/store";
@@ -10,6 +10,7 @@ import { VerificationSidePopUpNavTabName } from '../types';
 import { handleSidePopUpData } from 'redux/appThunk/Admin/bgv';
 import configureStore from 'redux-mock-store';
 import * as redux from 'react-redux';
+import React from 'react';
 
 const mockStore = configureStore([]);
 const mockDispatch = jest.fn();
@@ -31,8 +32,27 @@ i18n.init({
   }
 });
 
+// notifyPopUpClosebtn
+
 describe("Forgot Component", () => {
   let store: any;
+
+  const empDataById = { id: 3};
+  const dispatch = jest.fn();
+  // const setNotifyPopUp = jest.fn();
+  // const handleNotify = jest.fn((handle)=>handle());
+  // const handle = jest.fn();
+  const handleUserNotify = jest.fn((handleNotify)=>handleNotify());
+  let isNotifyPopUp = true;
+
+  const setNotifyPopUp = jest.fn();
+  const handle = jest.fn(() => setNotifyPopUp(!true));
+  const handleNotify = jest.fn((id, dispatch, handle, tabclick, reason) => {
+    // mock implementation of handleNotify
+    handle();
+  });
+
+  // jest.mock(handleUserNotify)
 
   beforeEach(() => {
     store = mockStore({
@@ -65,7 +85,7 @@ describe("Forgot Component", () => {
             "hold": true
         }},
         profileCompletionById: {},
-        sidePopUpDocNavTab: 1
+        sidePopUpDocNavTab: 5
       },
     });
   });
@@ -78,12 +98,11 @@ describe("Forgot Component", () => {
               </Provider>
           </I18nextProvider>
       );
+
+     
   });
 
   it('renders NotifyPopUp', () => {
-    
-
-   
 
     render(
           <I18nextProvider i18n={i18n}>
@@ -92,6 +111,92 @@ describe("Forgot Component", () => {
               </Provider>
           </I18nextProvider>
       );
+
+      let notifyPopUpClosebtn = screen.getByTestId(`notifyPopUpClosebtn`) as HTMLDivElement ;
+      fireEvent.click(notifyPopUpClosebtn)
+      setNotifyPopUp(!isNotifyPopUp)
+      expect(setNotifyPopUp).toHaveBeenCalledTimes(1);
+      expect(setNotifyPopUp).toHaveBeenCalledWith(!isNotifyPopUp);
+  });
+
+  it('renders NotifyPopUp', () => {
+    
+    render(
+          <I18nextProvider i18n={i18n}>
+              <Provider store={store}> 
+                  <NotifyPopUp isNotifyPopUp={true} setNotifyPopUp={()=>false} tabName={VerificationSidePopUpNavTabName.IDENTITY_CHECK_TAB} isLoading={false}/>
+              </Provider>
+          </I18nextProvider>
+      );
+      // handleUserNotifybtn
+      let handleUserNotifybtn = screen.getByTestId(`handleUserNotifybtn`) as HTMLDivElement ;
+      fireEvent.click(handleUserNotifybtn)
+      handle()
+      setNotifyPopUp(!isNotifyPopUp)
+      expect(handle).toHaveBeenCalledTimes(1);
+      expect(handle).toHaveBeenCalledWith();
+  });
+
+  it('renders NotifyPopUp', () => {
+
+    store = mockStore({
+      bgvReducer: {
+        employeeData: [],
+        isLoading: true,
+        employeeDataById: {},
+        profileCompletionById: {},
+        sidePopUpDocNavTab: 1
+      },
+    });
+    
+    render(
+          <I18nextProvider i18n={i18n}>
+              <Provider store={store}> 
+                  <NotifyPopUp isNotifyPopUp={true} setNotifyPopUp={()=>false} tabName={VerificationSidePopUpNavTabName.IDENTITY_CHECK_TAB} isLoading={false}/>
+              </Provider>
+          </I18nextProvider>
+      );
+      // handleUserNotifybtn
+      let handleUserNotifybtn = screen.getByTestId(`handleUserNotifybtn`) as HTMLDivElement ;
+      fireEvent.click(handleUserNotifybtn)
+      handleUserNotify(handleNotify)
+      expect(handleUserNotify).toHaveBeenCalledTimes(1);
+  });
+
+
+  it('renders NotifyPopUp', () => {
+
+    const reasonRef = jest.fn();
+
+    store = mockStore({
+      bgvReducer: {
+        employeeData: [],
+        isLoading: true,
+        employeeDataById: {},
+        profileCompletionById: {},
+        sidePopUpDocNavTab: 1
+      },
+    });
+
+    render(
+      <I18nextProvider i18n={i18n}>
+          <Provider store={store}> 
+              <NotifyPopUp isNotifyPopUp={true} setNotifyPopUp={()=>false} tabName={VerificationSidePopUpNavTabName.IDENTITY_CHECK_TAB} isLoading={false}/>
+          </Provider>
+      </I18nextProvider>
+  );
+  expect(reasonRef).toHaveBeenCalledTimes(1);
+  expect(reasonRef).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+      const textarea = screen.getByRole('textbox');
+      fireEvent.change(textarea, { target: { value: 'new value' } });
+      expect(textarea).toBeInTheDocument();
+      expect(textarea).toHaveAttribute('placeholder', 'Enter your reasons here');
+      expect(textarea.getAttribute('ref')).not.toBeNull();
+      // handleUserNotifybtn
+      let handleUserNotifybtn = screen.getByTestId(`handleUserNotifybtn`) as HTMLDivElement ;
+      fireEvent.click(handleUserNotifybtn)
+      handleUserNotify(handleNotify)
+      expect(handleUserNotify).toHaveBeenCalledTimes(1);
   });
 
 })

@@ -73,7 +73,7 @@ export const handleSidePopUpData = async (dispatch, userId) => {
 
 export async function handleFileDelete(userId, url, columnName, dispatch) {
   let path = `${apiUrl.background_verification}/remove_document/${userId}`;
-  console.log(path, url, columnName);
+  // console.log(path, url, columnName);
 
   // Ensure a valid path was determined
   if (!path) {
@@ -114,7 +114,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
   });
 
   let path = `${path_add}/${userid}`;
-  console.log(path);
+  // console.log(path);
   
   if (!path) {
       swalService.showError({
@@ -162,13 +162,13 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
   // console.log({ doc_status_column: doc_status });
 
   let path = `${path_add}/${userid}`;
-  console.log(path);
+  // console.log(path);
 
   if (!path) {
       console.error("Invalid text value, no API path determined");
       return;
   }
-  console.log(doc_status);
+  // console.log(doc_status);
   try {
       const { response }  = await Helper.post(
           {
@@ -215,6 +215,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
   if (!path) {
     console.log(reason);
     console.error("Invalid Path");
+    handle()
     return;
   }
 
