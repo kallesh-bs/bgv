@@ -48,9 +48,9 @@ const Employeebrief: React.FC<IEmployeebriefProps> = ({
       <div
         className="flex flex-col items-start space-y-[2px] cursor-pointer"
         onClick={() => {
-          if (id && data1.includes("status")) {
-            navigate(`/timeSheet/view/${id}`);
-          }
+          // if (id && data1.includes("status")) {
+          //   navigate(`/timeSheet/view/${id}`);
+          // }
         }}
       >
         <h6 className="font-semibold">{names || emailName}</h6>

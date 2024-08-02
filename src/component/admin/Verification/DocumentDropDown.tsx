@@ -16,8 +16,10 @@ const DocumetDropDown = () => {
 
    const dispatch = useDispatch()
    useEffect(()=>{
-      if(Object.keys(empDataById).length !== 13){
-         dispatch(setSidePopUpNavTab(5))
+      if(empDataById){
+         if(Object.keys(empDataById).length !== 13){
+            dispatch(setSidePopUpNavTab(5))
+         }
       }
    },[setSidePopUpNavTab]);
    
