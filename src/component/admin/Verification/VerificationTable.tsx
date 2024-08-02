@@ -18,20 +18,21 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
   setOpenPopUp,
   setCurrentPage,
 }) => {
-  const [userId, setUserId] = useState<number | null>(null);
+  const [userId, setUserId] = useState<number | null>();
   const { t } = useTranslation();
-  const isLoading = useSelector((state: any) => state.leaveReducer.isLoading);
+  // const isLoading = useSelector((state: any) => state.leaveReducer.isLoading);
+  const isLoading = false;
   const [handlePopup, setHandlePopup] = useState(false);
   const [handleLoading, setHandleLoading] = useState(false);
   const dispatch = useDispatch();
-  const empDataById = useSelector(
-    (state: any) => state.bgvReducer.employeeDataById
-  );
+  // const empDataById = useSelector(
+  //   (state: any) => state.bgvReducer.employeeDataById
+  // );
   // console.log(empDataById);
 
-  const tabclick = useSelector(
-    (state: any) => state.bgvReducer.sidePopUpDocNavTab
-  );
+  // const tabclick = useSelector(
+  //   (state: any) => state.bgvReducer.sidePopUpDocNavTab
+  // );
 
   // useEffect(() => {
   //   {
