@@ -3,15 +3,12 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import i18n from "i18next";
-import React from "react";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import Employeebrief from "../Employeebrief";
 
 import configureStore from "redux-mock-store";
-import { MainRoutes } from "routes";
-import { debug } from "console";
 const mockStore = configureStore([]);
 
 i18n.init({
@@ -25,14 +22,11 @@ i18n.init({
   },
 });
 
-describe("Forgot Component", () => {
+describe("Employeebrief Component : ", () => {
   let store: any;
   const navigate = jest.fn();
 
-  it("renders EmployeeBrief <---", () => {
-    const id = "123";
-    const data1 = ["status", "other"];
-    const navigate = jest.fn();
+  it("renders EmployeeBrief with only id : ", () => {
 
     store = mockStore({
       bgvReducer: {
@@ -61,14 +55,7 @@ describe("Forgot Component", () => {
     fireEvent.mouseLeave(divElement);
   });
 
-  it("renders EmployeeBrief-2 <---", () => {
-    const id = "123";
-    const data1 = ["status", "other"];
-    // Object.defineProperty(window.location, "pathname", {
-    //   writable: true,
-    //   value: "/mocked-pathname",
-    // });
-
+  it("renders EmployeeBrief with only id, userEmail, email, imageUrl : ", () => {
     store = mockStore({
       bgvReducer: {
         employeeData: [],
@@ -82,14 +69,14 @@ describe("Forgot Component", () => {
     const { container } = render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-            <Router>
-              <Employeebrief
-                id={3}
-                userEmail={"example@example.com"}
-                email={"example@example.com"}
-                imageUrl="url"
-              />
-            </Router>
+          <Router>
+            <Employeebrief
+              id={3}
+              userEmail={"example@example.com"}
+              email={"example@example.com"}
+              imageUrl="url"
+            />
+          </Router>
         </Provider>
       </I18nextProvider>
     );
@@ -102,7 +89,7 @@ describe("Forgot Component", () => {
     navigate("asds");
   });
 
-  it("renders EmployeeBrief-3 <---", () => {
+  it("renders EmployeeBrief with only id, userEmail, email, names : ", () => {
     const id = "123";
     const data1 = ["status", "other"];
     const navigate = jest.fn();
@@ -137,7 +124,7 @@ describe("Forgot Component", () => {
     )[0];
     expect(d1).toBeInTheDocument();
     fireEvent.mouseEnter(d1);
-    console.log(container.innerHTML);
+    // console.log(container.innerHTML);
     const d2 = container.getElementsByClassName(
       "w-full h-11 flex items-center justify-center"
     )[0];
@@ -148,4 +135,5 @@ describe("Forgot Component", () => {
     fireEvent.mouseEnter(b);
     fireEvent.mouseLeave(b);
   });
+  
 });
