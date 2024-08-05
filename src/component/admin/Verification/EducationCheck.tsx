@@ -12,6 +12,9 @@ const EducationCheck = () => {
 
   const { t } = useTranslation();
 
+  // console.log(empDataById);
+  
+
   const data1 = empDataById[VerificationDataKey.BACKGROUND_VERIFICATION][VerificationDataKey.MARKS_SHEET_10TH];
 
   const data2 = empDataById[VerificationDataKey.BACKGROUND_VERIFICATION][VerificationDataKey.MARKS_SHEET_12TH];

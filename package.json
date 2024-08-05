@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@reduxjs/toolkit": "^1.9.5",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/redux-mock-store": "^1.0.6",
     "actioncable": "^5.2.8-1",
     "formik": "^2.4.2",

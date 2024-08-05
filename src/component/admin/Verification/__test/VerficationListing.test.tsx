@@ -1,11 +1,11 @@
 // VerficationListing.test.tsx
 
 import { fireEvent, render, screen } from "@testing-library/react";
+import '@testing-library/jest-dom'
 import { IVerficationListingProps } from "utils/types";
 import VerficationListing from "../VerficationListing";
-
 // Mock the hooks and components
-jest.mock("./useFetchbgvData", () => ({
+jest.mock("../useFetchbgvData", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
@@ -17,12 +17,12 @@ jest.mock("react-i18next", () => ({
   }),
 }));
 
-jest.mock("./VerificationTable", () => ({
+jest.mock("../VerificationTable", () => ({
   __esModule: true,
   default: () => <div>VerificationTable</div>,
 }));
 
-jest.mock("./Paginate", () => ({
+jest.mock("../Paginate", () => ({
   __esModule: true,
   default: ({ currentPage, setCurrentPage }: any) => (
     <div>

@@ -25,16 +25,18 @@ function NotifyPopUp({
     let reason : string;
     let reasonRef = useRef<HTMLTextAreaElement>(null);
 
+    // console.log(tabclick);a
+    
     const handleUserNotify = ()=>{
         if(tabclick === 5 ){
             handleNotify(empDataById.id, dispatch, handle, tabclick)
         }
         else{
-            if(reasonRef.current){
+            if(reasonRef.current !== null){
                 reason = reasonRef.current.value
             }
             handleNotify(empDataById.id, dispatch, handle, tabclick,reason)
-            console.log("calling");
+            // console.log("calling");
             
         }
     }
@@ -58,7 +60,7 @@ function NotifyPopUp({
                             {tabName !== "Consent" && 
                             <div className="flex flex-col text-[16px]">
                                 <label><p className="text-[#313135] ">Add your comments</p></label>
-                                <textarea ref={reasonRef} className="p-2 min-h-[150px] cols-50 border-2 border-solid border-[#DEE4EB] text-justify" placeholder="Enter your reasons here" />
+                                <textarea data-testid="reasonTextarea" ref={reasonRef} className="p-2 min-h-[150px] cols-50 border-2 border-solid border-[#DEE4EB] text-justify" placeholder="Enter your reasons here" />
                             </div>}
                             <div className="flex justify-end">
                                 <button data-testid="handleUserNotifybtn"
