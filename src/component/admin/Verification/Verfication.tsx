@@ -20,6 +20,9 @@ const Verfication: React.FC = () => {
   });
   const [gridItems, setGridItems] = useState<ICheckItem[]>([]);
 
+  console.log(Boolean(allEmpData));
+  
+
   async function getAddressCheck() {
     try {
       let gridItemsTemp: ICheckItem[] = [];

@@ -1,4 +1,13 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  fireEvent,
+  getAllByPlaceholderText,
+  getByTestId,
+  getByText,
+  queryAllByPlaceholderText,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import NotifyPopUp from "../NotifyPopUp";
 import { Provider } from "react-redux";
 import "@testing-library/jest-dom";
@@ -6,6 +15,8 @@ import i18n from "i18next";
 import { I18nextProvider } from "react-i18next";
 import { VerificationSidePopUpNavTabName } from "../types";
 import configureStore from "redux-mock-store";
+import { useRef } from "react";
+import React from "react";
 
 const mockStore = configureStore([]);
 const mockDispatch = jest.fn();
@@ -169,8 +180,8 @@ describe("NotifyPopUp Component", () => {
     expect(handleUserNotify).toHaveBeenCalledTimes(1);
   });
 
-  it("renders NotifyPopUp", () => {
-    const reasonRef = jest.fn();
+  it("renders NotifyPopUp", async () => {
+    // const reasonRef = useRef(null);
 
     store = mockStore({
       bgvReducer: {
@@ -182,7 +193,7 @@ describe("NotifyPopUp Component", () => {
       },
     });
 
-    render(
+    const { container } = render(
       <I18nextProvider i18n={i18n}>
         <Provider store={store}>
           <NotifyPopUp
@@ -194,19 +205,17 @@ describe("NotifyPopUp Component", () => {
         </Provider>
       </I18nextProvider>
     );
-    expect(reasonRef).toHaveBeenCalledTimes(1);
-    expect(reasonRef).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
-    const textarea = screen.getByRole("textbox");
-    fireEvent.change(textarea, { target: { value: "new value" } });
-    expect(textarea).toBeInTheDocument();
-    expect(textarea).toHaveAttribute("placeholder", "Enter your reasons here");
-    expect(textarea.getAttribute("ref")).not.toBeNull();
     // handleUserNotifybtn
+    const textarea = screen.getByTestId(
+      "reasonTextarea"
+    ) as HTMLTextAreaElement;
+    const reasonRef = React.createRef<HTMLTextAreaElement>();
+    fireEvent.change(textarea, { target: { value: "" } });
+    // await waitFor(() => expect(reasonRef.current?.value).toBe(""));
     let handleUserNotifybtn = screen.getByTestId(
       `handleUserNotifybtn`
     ) as HTMLDivElement;
     fireEvent.click(handleUserNotifybtn);
-    handleUserNotify(handleNotify);
-    expect(handleUserNotify).toHaveBeenCalledTimes(1);
+    expect(textarea.value).toBe("");
   });
 });

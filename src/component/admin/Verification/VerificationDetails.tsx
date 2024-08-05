@@ -16,6 +16,7 @@ import { getVerificationTabName } from "redux/actions/action";
 import { setSidePopUpNavTab } from "redux/actions/action";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { object } from "prop-types";
+import { VerificationDataKey } from "./types";
 
 // Define the component
 const VerficationDetails: React.FC = () => {
@@ -27,13 +28,22 @@ const VerficationDetails: React.FC = () => {
   const [adressOptionTab, setAddressOptionTab] = useState<ITabOption>("Choose~");
   const [handleButton , setHandleButton] =useState(false) 
 
+  // console.log(userData);
+  
+  // console.log(Object.keys(userData).length);
+
+  // console.log(userData);
+  
+  
   useEffect(()=>{
-    if (Object.keys(userData).length !== 13 ) {
-      setActiveTab(5)
-      setHandleButton(true)
+    if (!userData[VerificationDataKey.BACKGROUND_VERIFICATION]){
+        setActiveTab(5)
+        setHandleButton(true)
+        dispatch(setSidePopUpNavTab(5))
     }else{
       setActiveTab(1)
       setHandleButton(false)
+      dispatch(setSidePopUpNavTab(1))
     }
   },[])
   
@@ -54,6 +64,7 @@ const VerficationDetails: React.FC = () => {
       <div className="wE-full h-full   ">
         <div className="w-full  rounded-lg  border flex  ">
           <button
+          data-testid="activeTabbtn1"
              disabled={handleButton}
             onClick={function () {
               handleTabClick(1);
@@ -112,12 +123,25 @@ const VerficationDetails: React.FC = () => {
                   <PiBagSimpleLight />
                   <h1>{t("EmploymentHistory")}</h1>
           </button>
-
-          {Object.keys(userData).length !== 13 ? 
+          {!userData[VerificationDataKey.BACKGROUND_VERIFICATION] ? <button
+          // onClick={function () {
+          //   handleTabClick(5);
+          // }}
+          disabled={handleButton}
+          className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
+            ? "text-[#002169] font-bold bg-[#F2F6FF]"
+            : "text-[#686868]"
+            } flex gap-2 text-[.9rem] font-bold justify-center items-center`}
+        >
+             <IoNewspaperOutline />
+                <h1>Consent</h1>
+        </button>:''}
+        
+          {/* {Object.keys(userData[VerificationDataKey.BACKGROUND_VERIFICATION]).length === 12 ? 
           <button
-          onClick={function () {
-            handleTabClick(5);
-          }}
+          // onClick={function () {
+          //   handleTabClick(5);
+          // }}
           disabled={handleButton}
           className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
             ? "text-[#002169] font-bold bg-[#F2F6FF]"
@@ -128,7 +152,7 @@ const VerficationDetails: React.FC = () => {
                 <h1>Consent</h1>
         </button>
         :''
-          }
+          } */}
         </div>
 
         <div className="w-full h-full">

@@ -205,22 +205,22 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
 }
 
 export const handleNotify = async (userid, dispatch, handle, tabclick, reason="NA") =>{
-  console.log(Boolean(reason));
-  console.log(reason);
+  // console.log(Boolean(reason));
+  // console.log(reason);
   let path = ''
   if(tabclick === 5){
     path = `background_verification/notify_user/?id=${userid}`;
   }
   // console.log(path);
   if (!path) {
-    console.log(reason);
-    console.error("Invalid Path");
+    // console.log(reason);
+    // console.error("Invalid Path");
     handle()
     return;
   }
 
   try {
-    console.log(path);
+    // console.log(path);
     if(tabclick === 5){
       const { response }  = await Helper.post({},path);
 
