@@ -1,12 +1,9 @@
-import Helper from "api/Helper";
 import { useEffect, useRef, useState } from "react"
 import { GoVerified, GoXCircle } from "react-icons/go";
 import { GrCircleQuestion, GrMore } from "react-icons/gr"
 import { useDispatch, useSelector } from "react-redux";
-import { handleFileChange, handleSidePopUpData, handleUpdateDocStatus } from "redux/appThunk/Admin/bgv";
-import swalService from "utils/SwalServices";
 import { ConfirmDailogueBoxActions, VerificationDataKey, VerificationDocStatus } from "./types";
-import { bgvConfirmDialogue, bgvConfirmDialogueValue } from "redux/actions/action";
+import { bgvConfirmDialogueValue } from "redux/actions/action";
 
 export interface ExtraActionsProps {
     nodata: boolean,

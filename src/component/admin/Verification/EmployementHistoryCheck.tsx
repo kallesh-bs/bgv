@@ -29,7 +29,7 @@ const EmployementHistoryCheck = () => {
 
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Relieving letter")}</h1>
             {data1 ? (
               <ExtraActions doc_status_column={VerificationDataKey.RELIEVING_LETTERS_STATUS} doc_column={VerificationDataKey.RELIEVING_LETTERS} nodata={false} />
@@ -60,7 +60,7 @@ const EmployementHistoryCheck = () => {
 
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Experience letter")}</h1>
             {data2 ? (
               <ExtraActions doc_status_column={ VerificationDataKey.EXPERIENCE_LETTERS_STATUS } doc_column={VerificationDataKey.EXPERIENCE_LETTERS} nodata={false} />
@@ -91,7 +91,7 @@ const EmployementHistoryCheck = () => {
 
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Bank Statement")}</h1>
             {data3 ? (
               <ExtraActions doc_status_column={VerificationDataKey.BANK_STATEMENTS_STATUS} doc_column={VerificationDataKey.BANK_STATEMENTS} nodata={false} />

@@ -88,13 +88,6 @@ export const bgvEmployeeDataById = (payload) => {
   };
 };
 
-export const bgvConfirmDialogue = (payload) => {
-  return {
-    type: SET_CONFIRMDIALOGUE,
-    payload,
-  };
-};
-
 export const bgvConfirmDialogueValue = (payload) => {
   return {
     type: SET_CONFIRMDIALOGUE_VALUE,

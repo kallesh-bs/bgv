@@ -1,8 +1,7 @@
 import Helper from "api/Helper";
-import { bgvAllEmpData, bgvConfirmDialogue, bgvConfirmDialogueValue, bgvEmployeeDataById, isLoading } from "redux/actions/action";
+import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, isLoading } from "redux/actions/action";
 import swalService from "utils/SwalServices";
 import apiUrl from "api/apiUrl";
-import { object } from "prop-types";
 
 
 export const fetchBgvEmployeeData =
@@ -86,7 +85,6 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
     }, path);
     if (response.success) {
       dispatch(bgvConfirmDialogueValue(null))
-      dispatch(bgvConfirmDialogue(''))
       swalService.showSuccess({
         icon: "success",
         title: "<p style='color:red'>Removed</p>",
@@ -100,15 +98,12 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
   }
   catch (error) {
     dispatch(bgvConfirmDialogueValue(null))
-    dispatch(bgvConfirmDialogue(''))
     swalService.showError({
       icon: "error",
       title: "Error!",
       text: "Failed to Delete Document",
       timer: 1500,
   });
-  // handleSidePopUpData(dispatch, userId)
-  // dispatch(bgvConfirmDialogueValue(null))
   }
 }
 
@@ -125,8 +120,6 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
     const files = event.target.files === null? [] : Array.from(event.target.files);
     docs = files
   }
-
-  // console.log(event.length);
   
   const documents = new FormData();
   docs.forEach((file) => {
@@ -139,7 +132,6 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
   
   if (!path) {
     dispatch(bgvConfirmDialogueValue(null))
-    dispatch(bgvConfirmDialogue(''))
       swalService.showError({
           icon: "error",
           title: "Error!",
@@ -154,7 +146,6 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       console.log(response);
       if (response.status === 200) {
         dispatch(bgvConfirmDialogueValue(null))
-        dispatch(bgvConfirmDialogue(''))
         handleSidePopUpData(dispatch, userid)
           swalService.showSuccess({
               icon: "success",
@@ -165,7 +156,6 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
           });
       } else {
         dispatch(bgvConfirmDialogueValue(null))
-        dispatch(bgvConfirmDialogue(''))
           swalService.showError({
               icon: "error",
               title: "Error!",
@@ -176,7 +166,6 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
   }
   catch (error) {
     dispatch(bgvConfirmDialogueValue(null))
-    dispatch(bgvConfirmDialogue(''))
     console.log(error);
       swalService.showError({
           icon: "error",

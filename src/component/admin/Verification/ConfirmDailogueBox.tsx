@@ -2,7 +2,7 @@ import { GrFormClose } from "react-icons/gr"
 import { ConfirmDailogueBoxActions } from "./types"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
-import { bgvConfirmDialogue, bgvConfirmDialogueValue } from "redux/actions/action";
+import { bgvConfirmDialogueValue } from "redux/actions/action";
 import { handleFileChange, handleFileDelete, handleUpdateDocStatus } from "redux/appThunk/Admin/bgv";
 
 interface ActionPropType{
@@ -27,7 +27,7 @@ function ConfirmDailogueBox(props:ActionPropType) {
     <>
         <div className="w-[100vw] h-[100vh] flex justify-center items-center  bg-[rgba(3,27,89,.2)] fixed top-0 left-0">
             <div className="bg-[#FFFFFF] p-5 px-10 w-[80%] sm:[50%] lg:w-[40%] space-y-3 rounded-md z-21">
-                <div className="flex justify-end" onClick={()=>{dispatch(bgvConfirmDialogue(''));dispatch(bgvConfirmDialogueValue(null))} }>
+                <div className="flex justify-end" onClick={()=>{dispatch(bgvConfirmDialogueValue(null))} }>
                     <button className="" data-testid="notifyPopUpClosebtn" >
                         <GrFormClose className="flex w-[2rem] h-[2rem]" />
                     </button>

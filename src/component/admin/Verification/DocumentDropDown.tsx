@@ -5,7 +5,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import NotifyPopUp from './NotifyPopUp';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSidePopUpNavTab } from 'redux/actions/action';
-import { VerificationSidePopUpNavTabName } from './types';
+import { VerificationDataKey, VerificationSidePopUpNavTabName } from './types';
 
 
 const DocumetDropDown = () => {
@@ -13,6 +13,7 @@ const DocumetDropDown = () => {
    const [handleDropDown, setHandleDropDown] = useState(false)
    const tabclick = useSelector((state:any) => state.bgvReducer.sidePopUpDocNavTab)
    const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
+   const userData = empDataById
 
    const dispatch = useDispatch()
    useEffect(()=>{
@@ -41,7 +42,7 @@ const DocumetDropDown = () => {
             {!handleDropDown && <div className='text-white cursor-pointer' data-testid="RightArraowHandleDropDown" onClick={() => setHandleDropDown(true)}>
                <FaChevronRight />
             </div>}
-            <div className={`text-[#031B59] font-semibold cursor-pointer ${!handleDropDown ? 'hidden' : ''} `} data-testid="notifyPopUpbtn" onClick={() => setNotifyPopUp(!isNotifyPopUp)}>Notify</div>
+            <div className={`text-[#031B59] font-semibold cursor-pointer ${!handleDropDown ? 'hidden' : ''} ${userData[VerificationDataKey.BACKGROUND_VERIFICATION] && tabclick === 5 ?'hidden':''}`} data-testid="notifyPopUpbtn" onClick={() => setNotifyPopUp(!isNotifyPopUp)} >Notify</div>
             {isNotifyPopUp ? <NotifyPopUp 
                isLoading={isLoading}
                isNotifyPopUp={isNotifyPopUp} 

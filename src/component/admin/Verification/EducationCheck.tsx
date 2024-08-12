@@ -8,12 +8,11 @@ import { ConfirmDailogueBoxActions, VerificationDataKey } from "./types";
 import { BiCloudUpload } from "react-icons/bi";
 import UploadFile from "./UploadFile";
 import ConfirmDailogueBox from "./ConfirmDailogueBox";
-import { bgvConfirmDialogue, bgvConfirmDialogueValue } from "redux/actions/action";
+import { bgvConfirmDialogueValue } from "redux/actions/action";
 
 const EducationCheck = () => {
   const dispatch = useDispatch();
   const empDataById = useSelector((state:any) => state.bgvReducer.employeeDataById);
-  const confirmDialogue = useSelector((state:any) => state.bgvReducer.confirmDialogue);
   const confirmDialogueValue = useSelector((state:any) => state.bgvReducer.confirmDialogueValue);
   console.log(confirmDialogueValue);
   
@@ -39,7 +38,7 @@ const EducationCheck = () => {
       {/* Section markshseet_10th */}
       <div className="w-[100%]">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("10th")}</h1>
             {data1 ?  
                 <ExtraActions doc_status_column={VerificationDataKey.MARKS_SHEET_10TH_STATUS} doc_column={VerificationDataKey.MARKS_SHEET_10TH} nodata={false} /> 
@@ -63,7 +62,7 @@ const EducationCheck = () => {
       {/* Section markshseet_12th */}
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("12th")}</h1>
             {data2 ? 
                 <ExtraActions doc_status_column={VerificationDataKey.MARKS_SHEET_12TH_STATUS} doc_column={VerificationDataKey.MARKS_SHEET_12TH} nodata={false} /> 
@@ -88,7 +87,7 @@ const EducationCheck = () => {
       {/* graduation_degrees Section */}
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Graduation")}</h1>
             {data3 ? 
                 <ExtraActions doc_status_column={VerificationDataKey.GRADUATION_DEGREES_STATUS} doc_column={VerificationDataKey.GRADUATION_DEGREES} nodata={false} /> 
@@ -113,7 +112,7 @@ const EducationCheck = () => {
       {/* other_certifications Section */}
       <div className="w-[100%] mt-2">
         <div className="w-[100%] h-[55px] flex">
-          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] text-2xl flex justify-between items-center font-medium text-base">
+          <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Any other Certification")}</h1>
             {data4 ? 
                 <ExtraActions doc_status_column={VerificationDataKey.OTHER_CERTIFICATIONS_STATUS} doc_column={VerificationDataKey.OTHER_CERTIFICATIONS} nodata={false} /> 
