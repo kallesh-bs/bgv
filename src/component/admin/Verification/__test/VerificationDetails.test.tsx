@@ -191,6 +191,9 @@ test("renders learn react link", () => {
   fireEvent.click(activeTabbtn1);
   activeTabbtn1 = screen.getByText("EmploymentHistory");
   fireEvent.click(activeTabbtn1);
+  activeTabbtn1 = screen.getByText("Consent");
+  fireEvent.click(activeTabbtn1);
+  // Consent
 });
 
 it("renders learn react link", () => {

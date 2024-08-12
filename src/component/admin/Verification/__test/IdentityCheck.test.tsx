@@ -117,6 +117,9 @@ describe("IdentityCheck Component", () => {
         },
         profileCompletionById: {},
         sidePopUpDocNavTab: 1,
+        confirmDialogueValue:{
+          userid:3
+        }
       },
     });
 
@@ -128,7 +131,7 @@ describe("IdentityCheck Component", () => {
       </I18nextProvider>
     );
 
-    let deleteFilebtn = screen.getByTestId("deleteFilebtn") as HTMLDivElement;
+    let deleteFilebtn = screen.getByTestId(`deleteFilebtn${'https://deeporiondemo.s3.ap-south-1.amazonaws.com/sdyu03tcu3tet4oah7nto7y63nel'}`) as HTMLDivElement;
     fireEvent.click(deleteFilebtn);
     handleFileDelete(
       empDataById.id,
