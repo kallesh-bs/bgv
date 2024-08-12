@@ -1,9 +1,11 @@
 import React, { useState , useEffect} from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { VerificationDataKey } from "./types";
 
 const Consent = () => {
 
+  const userData = useSelector((state:any) => state.bgvReducer.employeeDataById)
   // const [checked, setChecked] = useState(false);
   // const {userData } = useSelector((reducer:any)=> reducer.VerificationReducer)
 
@@ -17,6 +19,12 @@ const Consent = () => {
   // useEffect(() => {
   //   localStorage.setItem('consentChecked', checked+'');
   // }, [checked]);
+
+  useEffect(()=>{
+    if(!userData[VerificationDataKey.BACKGROUND_VERIFICATION]){
+
+    }
+  },[]);
 
   return (
     <div className=" w-full h-full">
@@ -48,7 +56,7 @@ I here by Lorem Ipsum is simply dummy text of the printing and typesetting indu
           <input
             type="checkbox"
             name="isChecked"
-            checked={false}
+            checked={!userData[VerificationDataKey.BACKGROUND_VERIFICATION]?false:true}
             className="checkbox w-[20px] h-[20px] "
             readOnly={true}
           />

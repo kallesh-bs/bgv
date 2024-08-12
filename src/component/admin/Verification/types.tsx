@@ -45,3 +45,13 @@ export enum VerificationSidePopUpNavTabName {
   EMPLOYEMENT_HISTORY_CHECK_TAB = "Employement History Check",
   CONSENT_TAB = "Consent"
 }
+
+export type ActionType = 'delete_file' | 'update_file' | 'verified' | 'insufficient' | 'rejected'; 
+
+export enum ConfirmDailogueBoxActions{
+    DELETE_FILE = 'delete_file',
+    UPDATE_FILE = 'update_file',
+    VERIFIED = 'verified',
+    INSUFFICIENT = 'insufficient',
+    REJECTED = 'rejected'
+}

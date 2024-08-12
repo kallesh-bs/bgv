@@ -1,7 +1,8 @@
 import Helper from "api/Helper";
-import { bgvAllEmpData, bgvEmployeeDataById, isLoading } from "redux/actions/action";
+import { bgvAllEmpData, bgvConfirmDialogue, bgvConfirmDialogueValue, bgvEmployeeDataById, isLoading } from "redux/actions/action";
 import swalService from "utils/SwalServices";
 import apiUrl from "api/apiUrl";
+import { object } from "prop-types";
 
 
 export const fetchBgvEmployeeData =
@@ -41,8 +42,6 @@ export const fetchBgvFilterEmployeeData =
       swalService.showError({ title: "Error!" });
     }
   };
-
-
 
 export const handleSidePopUpData = async (dispatch, userId) => {
 
@@ -86,37 +85,61 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
       "column": columnName
     }, path);
     if (response.success) {
+      dispatch(bgvConfirmDialogueValue(null))
+      dispatch(bgvConfirmDialogue(''))
       swalService.showSuccess({
         icon: "success",
-        title: "Added!",
+        title: "<p style='color:red'>Removed</p>",
         text: "Document Deleted successfully",
         showConfirmButton: false,
         timer: 1500,
     });
-      handleSidePopUpData(dispatch, userId)
+    
+    handleSidePopUpData(dispatch, userId)
     }
   }
   catch (error) {
+    dispatch(bgvConfirmDialogueValue(null))
+    dispatch(bgvConfirmDialogue(''))
     swalService.showError({
       icon: "error",
       title: "Error!",
       text: "Failed to Delete Document",
       timer: 1500,
   });
+  // handleSidePopUpData(dispatch, userId)
+  // dispatch(bgvConfirmDialogueValue(null))
   }
 }
 
 export const handleFileChange = async (event, userid, form_column, path_add, dispatch) => {
-  const files = event.target.files === null? [] : Array.from(event.target.files);
-  const formData = new FormData();
-  files.forEach((file) => {
-      formData.append(form_column, file);
+  // const files = event.target.files === null? [] : Array.from(event.target.files);
+  // console.log(files);
+
+  let docs;
+
+  if(event.length){
+    docs = event;
+  }
+  else{
+    const files = event.target.files === null? [] : Array.from(event.target.files);
+    docs = files
+  }
+
+  // console.log(event.length);
+  
+  const documents = new FormData();
+  docs.forEach((file) => {
+      documents.append(form_column, file);
   });
 
   let path = `${path_add}/${userid}`;
-  // console.log(path);
+  console.log(path);
+  
   
   if (!path) {
+    dispatch(bgvConfirmDialogueValue(null))
+    dispatch(bgvConfirmDialogue(''))
       swalService.showError({
           icon: "error",
           title: "Error!",
@@ -125,20 +148,24 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       });
       return;
   }
-  const multipart= true;
+  const formData= true;
   try {
-      const { response, status } = await Helper.post(formData, path, multipart);
+      const { response, status } = await Helper.post(documents,path,formData);
       console.log(response);
       if (response.status === 200) {
+        dispatch(bgvConfirmDialogueValue(null))
+        dispatch(bgvConfirmDialogue(''))
         handleSidePopUpData(dispatch, userid)
           swalService.showSuccess({
               icon: "success",
-              title: "Added!",
+              title: "<p style='color:green'>Uploded</p>",
               text:"Document uploaded successfully",
               showConfirmButton: false,
               timer: 1500,
           });
       } else {
+        dispatch(bgvConfirmDialogueValue(null))
+        dispatch(bgvConfirmDialogue(''))
           swalService.showError({
               icon: "error",
               title: "Error!",
@@ -148,6 +175,8 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       }
   }
   catch (error) {
+    dispatch(bgvConfirmDialogueValue(null))
+    dispatch(bgvConfirmDialogue(''))
     console.log(error);
       swalService.showError({
           icon: "error",
@@ -162,7 +191,9 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
   // console.log({ doc_status_column: doc_status });
 
   let path = `${path_add}/${userid}`;
-  // console.log(path);
+  console.log(doc_status);
+  console.log(doc_status_column);
+  
 
   if (!path) {
       console.error("Invalid text value, no API path determined");
@@ -177,6 +208,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
           
       if (response.success) {
         console.log(response);
+        dispatch(bgvConfirmDialogueValue(null))
         swalService.showSuccess({
             icon: "success",
             title: "Added!",
@@ -186,6 +218,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
         });
         handleSidePopUpData(dispatch, userid)
       }else{
+        dispatch(bgvConfirmDialogueValue(null))
         swalService.showError({
           icon: "error",
           title: "Error!",
@@ -195,6 +228,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
       }
   }
   catch (error) {
+    dispatch(bgvConfirmDialogueValue(null))
       swalService.showError({
           icon: "error",
           title: "Error!",
@@ -208,21 +242,44 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
   // console.log(Boolean(reason));
   // console.log(reason);
   let path = ''
+  let notifyBody = {}
+  console.log(tabclick);
+  
   if(tabclick === 5){
     path = `background_verification/notify_user/?id=${userid}`;
   }
+  else if(tabclick === 4){
+    path = `background_verification/notify_user/?id=${userid}`;
+    notifyBody = {employeement_history_check_reason: reason}
+  }
+  else if(tabclick === 3){
+    path = `background_verification/notify_user/?id=${userid}`;
+    notifyBody = { address_check_reason: reason}
+  }
+  else if(tabclick === 2){
+    path = `background_verification/notify_user/?id=${userid}`;
+    notifyBody = {education_check_reason: reason}
+  }
+  else if(tabclick === 1){
+    path = `background_verification/notify_user/?id=${userid}`;
+    notifyBody = {identity_check_reason: reason}
+  }
   // console.log(path);
   if (!path) {
-    // console.log(reason);
+    console.log(reason);
     // console.error("Invalid Path");
     handle()
     return;
   }
 
+  console.log(notifyBody);
+  
+
   try {
     // console.log(path);
-    if(tabclick === 5){
-      const { response }  = await Helper.post({},path);
+    // if(tabclick === 5){
+    let formData = true
+      const { response }  = await Helper.post(notifyBody,path);
 
       console.log(response);
 
@@ -245,8 +302,8 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
           timer: 1500,
         });
       }
-    }
-    else{
+    // }
+    // else{
       // const { response }  = await Helper.post({},path);
 
       // console.log(response);
@@ -270,7 +327,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
       //     timer: 1500,
       //   });
       // }
-    }
+    // }
   }
   catch (error) {
     console.log(error);

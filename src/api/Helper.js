@@ -53,9 +53,16 @@ const requestInterceptor = () => {
 };
 
 var Helper = {
-  post: async (jsonObj = {}, path = "", formData = false, multipart = false) => {
+  post: async (jsonObj = {}, path = "", formData = false) => {
+    console.log(JSON.stringify(jsonObj));
+    console.log(Boolean(JSON.parse(formData)));
+    // console.log(multipart);
+    
+    
     const token = requestInterceptor();
     if (formData) {
+      console.log("mu-----");
+      
       const url = baseURL + path;
       const result = await fetch(url, {
         method: "POST",
@@ -68,28 +75,28 @@ var Helper = {
 
       return responseInterceptor(result, formData);
     } 
-    else if(multipart){
-      try {
-        const url = baseURL + path;
-        const res = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(jsonObj),
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: token,
-          },
-        });
+    // else if(multipart){
+    //   try {
+    //     const url = baseURL + path;
+    //     const res = await fetch(url, {
+    //       method: "POST",
+    //       body: JSON.stringify(jsonObj),
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //         Authorization: token,
+    //       },
+    //     });
 
-        if (window.location.pathname !== "/login") {
-          return responseInterceptor(res);
-        }
+    //     if (window.location.pathname !== "/login") {
+    //       return responseInterceptor(res);
+    //     }
 
-        return res;
-      } catch (error) {
-        console.log("error", error);
-        swalService.showError({ title: "Error!" });
-      }
-    }
+    //     return res;
+    //   } catch (error) {
+    //     console.log("error", error);
+    //     swalService.showError({ title: "Error!" });
+    //   }
+    // }
     else {
       // console.log("here --------",path,"L---");
       try {
