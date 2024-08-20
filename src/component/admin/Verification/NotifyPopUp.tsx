@@ -50,7 +50,9 @@ function NotifyPopUp({
                     (
                         <>
                             <div className="flex justify-end">
-                                <button className="" data-testid="notifyPopUpClosebtn" onClick={() => setNotifyPopUp(!isNotifyPopUp)}>
+                                {/* <button className="" data-testid="notifyPopUpClosebtn" onClick={() => setNotifyPopUp(!isNotifyPopUp)}> */}
+                                <button className="" data-testid="notifyPopUpClosebtn" onClick={() => handle()}>
+
                                     <GrFormClose className="flex w-[2rem] h-[2rem]" />
                                 </button>
                             </div>

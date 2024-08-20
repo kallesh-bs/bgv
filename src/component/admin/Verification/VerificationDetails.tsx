@@ -123,25 +123,12 @@ const VerficationDetails: React.FC = () => {
                   <PiBagSimpleLight />
                   <h1>{t("EmploymentHistory")}</h1>
           </button>
-          {!userData[VerificationDataKey.BACKGROUND_VERIFICATION] ? <button
-          // onClick={function () {
-          //   handleTabClick(5);
-          // }}
-          disabled={handleButton}
-          className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
-            ? "text-[#002169] font-bold bg-[#F2F6FF]"
-            : "text-[#686868]"
-            } flex gap-2 text-[.9rem] font-bold justify-center items-center`}
-        >
-             <IoNewspaperOutline />
-                <h1>Consent</h1>
-        </button>:''}
-        
-          {/* {Object.keys(userData[VerificationDataKey.BACKGROUND_VERIFICATION]).length === 12 ? 
+          {/* {!userData[VerificationDataKey.BACKGROUND_VERIFICATION] ?  */}
           <button
-          // onClick={function () {
-          //   handleTabClick(5);
-          // }}
+          onClick={function () {
+            handleTabClick(5);
+            dispatch(setSidePopUpNavTab(5))
+          }}
           disabled={handleButton}
           className={`w-full p-[18px_16px_18px_16px] ${activeTab === 5
             ? "text-[#002169] font-bold bg-[#F2F6FF]"
@@ -151,8 +138,8 @@ const VerficationDetails: React.FC = () => {
              <IoNewspaperOutline />
                 <h1>Consent</h1>
         </button>
-        :''
-          } */}
+        {/* // :''} */}
+        
         </div>
 
         <div className="w-full h-full">

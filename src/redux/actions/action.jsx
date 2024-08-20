@@ -64,6 +64,8 @@ import {
   TIMER_DATA,
   TOTAL_WORKING_DAYS_LEAVES,
   UPDATE_JOB_OPENING,
+  SET_CONFIRMDIALOGUE,
+  SET_CONFIRMDIALOGUE_VALUE
 } from "./types";
 
 export const bgvAllEmpData = (payload) => {
@@ -85,6 +87,14 @@ export const bgvEmployeeDataById = (payload) => {
     payload,
   };
 };
+
+export const bgvConfirmDialogueValue = (payload) => {
+  return {
+    type: SET_CONFIRMDIALOGUE_VALUE,
+    payload,
+  };
+};
+
 export const setSidePopUpNavTab = (payload) => {
   return {
     type: SET_SIDE_POPUP_NAV_TAB,

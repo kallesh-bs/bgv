@@ -1,11 +1,9 @@
-import Helper from "api/Helper";
 import { useEffect, useRef, useState } from "react"
 import { GoVerified, GoXCircle } from "react-icons/go";
 import { GrCircleQuestion, GrMore } from "react-icons/gr"
 import { useDispatch, useSelector } from "react-redux";
-import { handleFileChange, handleSidePopUpData, handleUpdateDocStatus } from "redux/appThunk/Admin/bgv";
-import swalService from "utils/SwalServices";
-import { VerificationDataKey, VerificationDocStatus } from "./types";
+import { ConfirmDailogueBoxActions, VerificationDataKey, VerificationDocStatus } from "./types";
+import { bgvConfirmDialogueValue } from "redux/actions/action";
 
 export interface ExtraActionsProps {
     nodata: boolean,
@@ -81,28 +79,25 @@ function ExtraActions({ nodata, doc_status_column, doc_column }:ExtraActionsProp
                 {nodata ? '' : <div>{docStatus === VerificationDocStatus.INPROGRESS || docStatus === VerificationDocStatus.IN_PROGRESS ? VerificationDocStatus.PENDING_VERIFICATION : docStatus}</div>}
             </div>
             <div className={`absolute bg-[#FFFFFF] border border-[#DEE4EB] w-[250px] top-5 right-[20px] rounded-md px-6 py-2 mt-2 space-y-2 z-50 ${isExtraActionsPopUp ? '' : 'hidden'}`} style={{ display: `${isExtraActionsPopUp ? '' : 'none'}` }}>
-                {nodata ? 
-                    <div className="cursor-pointer" data-testid="handleUploadFile1" onClick={() => { handleUploadFile() }} >
-                        Update/Add new document
-                        <input ref={inputRef} data-testid="handleFileChange1" onChange={(e) => handleFileChange(e, empDataById.id, form_column, path_add, dispatch)} type="file" hidden />
-                    </div>
-                :
-                    <>
-                        <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.VERIFIED, path_add, doc_status_column, dispatch)}}>
-                            Verify
-                        </div>
-                        <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.INSUFFICIENT, path_add, doc_status_column,dispatch)}}>
-                            Insufficent
-                        </div>
-                        <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.REJECTED, path_add, doc_status_column,dispatch)}}>
-                            Reject
-                        </div>
-                        <div className="cursor-pointer" data-testid="handleUploadFile2" onClick={() => { handleUploadFile() }} >
-                            Update/Add new document
-                            <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => handleFileChange(e, empDataById.id, form_column, path_add, dispatch)} type="file" hidden />
-                        </div>
-                    </>
-                }
+                {/* <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.VERIFIED, path_add, doc_status_column, dispatch)}}> */}
+                <div className="cursor-pointer" onClick={() => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.VERIFIED,userid:empDataById.id,doc_status:VerificationDocStatus.VERIFIED,doc_status_column:doc_status_column,path_add:path_add}))}}>
+                    Verify
+                </div>
+                {/* <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.INSUFFICIENT, path_add, doc_status_column,dispatch)}}> */}
+                <div className="cursor-pointer" onClick={() => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.INSUFFICIENT,userid:empDataById.id,doc_status:VerificationDocStatus.INSUFFICIENT,doc_status_column:doc_status_column,path_add:path_add}))}}>
+
+                    Insufficent
+                </div>
+                {/* <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.REJECTED, path_add, doc_status_column,dispatch)}}> */}
+                <div className="cursor-pointer" onClick={() => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.REJECTED,userid:empDataById.id,doc_status:VerificationDocStatus.REJECTED,doc_status_column:doc_status_column,path_add:path_add}))}}>
+
+                    Reject
+                </div>
+                <div className="cursor-pointer" data-testid="handleUploadFile2" onClick={() => { handleUploadFile() }} >
+                    Update/Add new document
+                    {/* <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => {handleFileChange(e,empDataById.id,form_column,path_add,dispatch);e.target.value=''}} type="file" hidden /> */}
+                    <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.UPDATE_FILE,fileEvent:e.target.files?.length ? Array.from(e.target.files) : [],userid:empDataById.id,fileColumn:form_column,path_add:path_add}));e.target.value=''}} type="file" hidden />
+                </div>
             </div>
             <div className="cursor-pointer" data-testid="extraActionPopUpbtn" onClick={() => setExtraActionPopUp(!isExtraActionsPopUp)} ref={extraActionSideRef}>
                 <GrMore />

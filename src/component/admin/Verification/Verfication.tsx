@@ -20,14 +20,16 @@ const Verfication: React.FC = () => {
   });
   const [gridItems, setGridItems] = useState<ICheckItem[]>([]);
 
-  console.log(Boolean(allEmpData));
+  // console.log(Boolean(allEmpData));
+  // console.log(allEmpData);
+  
   
 
   async function getAddressCheck() {
     try {
       let gridItemsTemp: ICheckItem[] = [];
       gridItemsTemp.push({
-        value: allEmpData.total_check.length
+        value: allEmpData.total_check?.length
           ? allEmpData.total_check.length
           : 0,
         label: "Total Checks",
