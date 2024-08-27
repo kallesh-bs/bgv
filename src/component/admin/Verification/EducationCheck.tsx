@@ -34,10 +34,10 @@ const EducationCheck = () => {
   }
 
   return (
-    <div className="w-full h-[56vh] mt-5 overflow-y-scroll  no-scrollbar  ">
+    <div className="w-full h-[46vh] mt-5 overflow-y-scroll  no-scrollbar  ">
       {/* Section markshseet_10th */}
-      <div className="w-[100%]">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-5">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("10th")}</h1>
             {data1 ?  
@@ -46,7 +46,7 @@ const EducationCheck = () => {
                 ''
             }
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data1 ? 
               data1.map((item:any) => 
@@ -60,8 +60,8 @@ const EducationCheck = () => {
         </div>
       </div>
       {/* Section markshseet_12th */}
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-10">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("12th")}</h1>
             {data2 ? 
@@ -70,7 +70,7 @@ const EducationCheck = () => {
               ''
             }
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data2 ? 
               data2.map((item:any) => 
@@ -85,17 +85,17 @@ const EducationCheck = () => {
       </div>
 
       {/* graduation_degrees Section */}
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-10">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
-            <h1>{t("Graduation")}</h1>
+            <h1>{t("Graduation Degree (If not available, then last examination passed)")}</h1>
             {data3 ? 
                 <ExtraActions doc_status_column={VerificationDataKey.GRADUATION_DEGREES_STATUS} doc_column={VerificationDataKey.GRADUATION_DEGREES} nodata={false} /> 
               : 
                 ''
             }
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data3 ? 
               data3.map((item:any) => 
@@ -110,8 +110,8 @@ const EducationCheck = () => {
       </div>
 
       {/* other_certifications Section */}
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-10">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Any other Certification")}</h1>
             {data4 ? 
@@ -120,7 +120,7 @@ const EducationCheck = () => {
                 ''
             }
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data4 ? 
               data4.map((item:any) => 

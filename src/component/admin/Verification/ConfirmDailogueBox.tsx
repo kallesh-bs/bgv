@@ -100,7 +100,7 @@ function ConfirmDailogueBox(props:ActionPropType) {
                         <div className="flex justify-end" onClick={()=>{dispatch(bgvConfirmDialogueValue(null));handleUpdateDocStatus(props.actionValue.userid,props.actionValue.doc_status,props.actionValue.path_add,props.actionValue.doc_status_column,dispatch)}}>
                                 <button data-testid="handleUserNotifybtn"
                                     className=" bg-[#031B59] text-white py-[8px] px-[15px] rounded-[20px] my-2" >
-                                    {'Mark as Rjected'}
+                                    {'Mark as Rejected'}
                                 </button>
                             </div>
                 }
