@@ -24,11 +24,11 @@ const EmployementHistoryCheck = () => {
   const data3 = empDataById[VerificationDataKey.BACKGROUND_VERIFICATION][ VerificationDataKey.BANK_STATEMENTS ];
 
   return (
-    <div className="w-[100%] h-[56vh]  mt-5 overflow-x-scroll no-scrollbar">
+    <div className="w-[100%] h-[46vh]  mt-5 overflow-x-scroll no-scrollbar">
       {/* relieving_letters Section */}
 
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-5">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Relieving letter")}</h1>
             {data1 ? (
@@ -37,7 +37,7 @@ const EmployementHistoryCheck = () => {
               ''
             )}
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data1 ? (
             data1.map((item: any) => (
@@ -58,8 +58,8 @@ const EmployementHistoryCheck = () => {
 
       {/* experience_letters Section */}
 
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-10">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Experience letter")}</h1>
             {data2 ? (
@@ -68,7 +68,7 @@ const EmployementHistoryCheck = () => {
               ''
             )}
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data2 ? (
             data2.map((item: any) => (
@@ -89,8 +89,8 @@ const EmployementHistoryCheck = () => {
 
       {/* bank_statements Section */}
 
-      <div className="w-[100%] mt-2">
-        <div className="w-[100%] h-[55px] flex">
+      <div className="w-[100%] mt-10">
+        {/* <div className="w-[100%] h-[55px] flex"> */}
           <div className="xl:w-[100%] lg:w-[100%] md:w-[100%] flex justify-between items-center font-medium text-base">
             <h1>{t("Bank Statement")}</h1>
             {data3 ? (
@@ -99,7 +99,7 @@ const EmployementHistoryCheck = () => {
               ''
             )}
           </div>
-        </div>
+        {/* </div> */}
         <div>
           {data3 ? (
             data3.map((item: any) => (

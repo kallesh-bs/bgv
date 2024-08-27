@@ -81,7 +81,7 @@ const ProfileCard = () => {
                           src={img}
                         />
                         <div className="absolute  bottom-0 right-0 flex items-end justify-end ">
-                          <label
+                          {/* <label
                             className="h-9 w-9 cursor-pointer flex items-center justify-center rounded-full bg-white"
                             htmlFor="company_profile"
                           >
@@ -89,7 +89,7 @@ const ProfileCard = () => {
                               className="text-[#031B59] w-full h-full p-2
                             hover:scale-110 transition-transform"
                             />
-                          </label>
+                          </label> */}
                           <input
                             className="hidden"
                             type="file"

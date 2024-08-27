@@ -80,7 +80,7 @@ function UploadFile({
         <h1 className="text-base font-normal text-[#191919] cursor-pointer">
           {t("")}
           <span className="text-[#031B59] h-[40px] w-[40px] ml-[80px] font-bold cursor-pointer">
-            &nbsp;{t("Uplode Files")}
+            &nbsp;{t("Upload File")}
           </span>
         </h1>
         <input
@@ -90,6 +90,7 @@ function UploadFile({
             handleFileChange(e, empDataById.id, form_column, path_add, dispatch)
           }
           type="file"
+          multiple
           hidden
         />
       </div>

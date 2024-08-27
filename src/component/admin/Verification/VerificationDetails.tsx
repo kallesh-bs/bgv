@@ -12,7 +12,7 @@ import EmployementHistoryCheck from "./EmployementHistoryCheck";
 import IdentifyCheck from "./IdentityCheck";
 import "./Verfication.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getVerificationTabName } from "redux/actions/action";
+import { bgvSetAddressOptionTab, bgvSetIdentifyOptionTab, getVerificationTabName } from "redux/actions/action";
 import { setSidePopUpNavTab } from "redux/actions/action";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { object } from "prop-types";
@@ -22,10 +22,12 @@ import { VerificationDataKey } from "./types";
 const VerficationDetails: React.FC = () => {
   const dispatch = useDispatch()
   const userData = useSelector((state:any) => state.bgvReducer.employeeDataById)
+  const identifyOptionTab = useSelector((state:any) => state.bgvReducer.identifyOptionTab)
+  const adressOptionTab = useSelector((state:any) => state.bgvReducer.adressOptionTab)
   const [activeTab, setActiveTab] = useState(1);
   const { t } = useTranslation();
-  const [identifyOptionTab, setIdentifyOptionTab] = useState<ITabOption>("Choose~");
-  const [adressOptionTab, setAddressOptionTab] = useState<ITabOption>("Choose~");
+  // const [identifyOptionTab, setIdentifyOptionTab] = useState<ITabOption>("Choose~");
+  // const [adressOptionTab, setAddressOptionTab] = useState<ITabOption>("Choose~");
   const [handleButton , setHandleButton] =useState(false) 
 
   // console.log(userData);
@@ -33,6 +35,14 @@ const VerficationDetails: React.FC = () => {
   // console.log(Object.keys(userData).length);
 
   // console.log(userData);
+
+  useEffect(() => {
+    if (activeTab !== 1) {
+      // setIdentifyOptionTab('Choose~');
+      dispatch(bgvSetIdentifyOptionTab('Choose~'))
+      dispatch(bgvSetAddressOptionTab('Choose~'))
+    }
+  }, [activeTab]);
   
   
   useEffect(()=>{
@@ -52,16 +62,18 @@ const VerficationDetails: React.FC = () => {
   };
 
   const handlAddresseOptionClick = (value: ITabOption) => {
-    setAddressOptionTab(value);
+    // setAddressOptionTab(value);
+    dispatch(bgvSetAddressOptionTab(value))
   };
 
   const handleIdentifyOptionClick = (value: ITabOption) => {
-    setIdentifyOptionTab(value);
+    // setIdentifyOptionTab(value);
+    dispatch(bgvSetIdentifyOptionTab(value))
   };
 
   return (
     <>
-      <div className="wE-full h-full   ">
+      <div className="wE-full h-full">
         <div className="w-full  rounded-lg  border flex  ">
           <button
           data-testid="activeTabbtn1"
@@ -150,8 +162,9 @@ const VerficationDetails: React.FC = () => {
                   className="pl-2 pr-6 w-[300px] h-[50px] bg-transparent border border-gray-300
                     gap-[2px] outline-none"
                   name="Choose~"
-                  onChange={(e) =>
+                  onChange={(e) =>{
                     handleIdentifyOptionClick(e.target.value as ITabOption)
+                  }
                   }
                 >
                   <option value="Choose~" className="bg-transparent">
@@ -168,14 +181,17 @@ const VerficationDetails: React.FC = () => {
                   </option>
                 </select>
               </div>
+              {identifyOptionTab === "Choose~" && (
+                <div></div>
+              )}
               {identifyOptionTab === "Aadhar Card" && (
-                <IdentifyCheck selectOption={"Aadhar Card"} />
+                <IdentifyCheck selectOption={identifyOptionTab} />
               )}
               {identifyOptionTab === "Driving License" && (
-                <IdentifyCheck selectOption={"Driving License"}  />
+                <IdentifyCheck selectOption={identifyOptionTab}  />
               )}
               {identifyOptionTab === "Passport" && (
-                <IdentifyCheck selectOption={"Passport"} />
+                <IdentifyCheck selectOption={identifyOptionTab} />
               )}
             </div>
           )}
