@@ -11,8 +11,8 @@ justify-end fixed top-0 left-0 z-30 bg-[rgba(3,27,89,.2)]
 transitionRight"
     >
       <div
-        className=" w-[60vw] h-full bg-white flex flex-col 
-  shadow-[0_0px_20px_0px_rgba(3,27,89,0.10)] px-5 py-3"
+        className=" w-[60vw] h-full bg-white
+  shadow-[0_0px_20px_0px_rgba(3,27,89,0.10)] px-5 py-2"
       >
         <div 
       className='h-16 flex justify-end items-center   w-full '
@@ -23,7 +23,7 @@ transitionRight"
       </div>
       </div>
      {!isLoading ?  (
-  <div>
+  <div className='pb-10 flex flex-col'>
      {children}
      {grandChild}
   </div>):

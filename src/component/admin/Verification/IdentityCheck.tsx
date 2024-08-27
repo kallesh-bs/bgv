@@ -7,6 +7,7 @@ import { ConfirmDailogueBoxActions, VerificationDataKey } from "./types";
 import UploadFile from "./UploadFile";
 import { bgvConfirmDialogueValue } from "redux/actions/action";
 import ConfirmDailogueBox from "./ConfirmDailogueBox";
+import { useState } from "react";
 
 const IdentifyCheck = ({ selectOption }:{ selectOption : string}) => {
   const dispatch = useDispatch();

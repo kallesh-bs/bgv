@@ -7,7 +7,9 @@ import {
   ON_HOLD_BY_EMPLOYEE_ID,
   PROFILE_COMPLETION_BY_ID,
   REMOVE_DOCUMENT,
+  SET_ADDRESS_OPTION_TAB,
   SET_CONFIRMDIALOGUE_VALUE,
+  SET_IDENTITY_OPTION_TAB,
   SET_SIDE_POPUP_NAV_TAB,
 } from "redux/actions/types";
 
@@ -17,7 +19,9 @@ const initialstate = {
   employeeDataById: {},
   profileCompletionById: {},
   sidePopUpDocNavTab: 1,
-  confirmDialogueValue:null
+  confirmDialogueValue:null,
+  identifyOptionTab:"Choose~",
+  adressOptionTab:"Choose~"
 };
 
 // Define the action types
@@ -31,10 +35,22 @@ export type BGVAction =
   | { type: "NOTIFY_USER"; payload: boolean }
   | { type: "SET_SIDE_POPUP_NAV_TAB"; payload: boolean }
   | { type: "IS_LOADING"; payload: boolean }
-  | { type: "SET_CONFIRMDIALOGUE_VALUE"; payload:any};
+  | { type: "SET_CONFIRMDIALOGUE_VALUE"; payload:any}
+  | { type: "SET_IDENTITY_OPTION_TAB"; payload:string}
+  | { type: "SET_ADDRESS_OPTION_TAB"; payload:string};
 
 export const bgvReducer = (state = initialstate, action: BGVAction) => {
   switch (action.type) {
+    case SET_ADDRESS_OPTION_TAB:
+      return {
+        ...state,
+        adressOptionTab: action.payload,
+      };
+    case SET_IDENTITY_OPTION_TAB:
+      return {
+        ...state,
+        identifyOptionTab: action.payload,
+      };
     case BGV_ALL_EMPLOYEE_DATA:
       return {
         ...state,

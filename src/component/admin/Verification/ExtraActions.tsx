@@ -78,7 +78,7 @@ function ExtraActions({ nodata, doc_status_column, doc_column }:ExtraActionsProp
                 {nodata ? '' : docStatus === VerificationDocStatus.VERIFIED ? (<div className=""><GoVerified /></div>) : docStatus === VerificationDocStatus.REJECTED ? (<div><GoXCircle /></div>) : docStatus === VerificationDocStatus.INSUFFICIENT ? (<div><GrCircleQuestion /></div>) : ('')}
                 {nodata ? '' : <div>{docStatus === VerificationDocStatus.INPROGRESS || docStatus === VerificationDocStatus.IN_PROGRESS ? VerificationDocStatus.PENDING_VERIFICATION : docStatus}</div>}
             </div>
-            <div className={`absolute bg-[#FFFFFF] border border-[#DEE4EB] w-[250px] top-5 right-[20px] rounded-md px-6 py-2 mt-2 space-y-2 z-50 ${isExtraActionsPopUp ? '' : 'hidden'}`} style={{ display: `${isExtraActionsPopUp ? '' : 'none'}` }}>
+            <div className={`absolute bg-[#FFFFFF] border border-[#DEE4EB] w-[270px] top-10 right-[0px] rounded-md px-5 py-5 mt-2 space-y-2 z-50 ${isExtraActionsPopUp ? '' : 'hidden'}`} style={{ display: `${isExtraActionsPopUp ? '' : 'none'}` }}>
                 {/* <div className="cursor-pointer" onClick={() => {handleUpdateDocStatus(empDataById.id, VerificationDocStatus.VERIFIED, path_add, doc_status_column, dispatch)}}> */}
                 <div className="cursor-pointer" onClick={() => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.VERIFIED,userid:empDataById.id,doc_status:VerificationDocStatus.VERIFIED,doc_status_column:doc_status_column,path_add:path_add}))}}>
                     Verify
@@ -96,7 +96,7 @@ function ExtraActions({ nodata, doc_status_column, doc_column }:ExtraActionsProp
                 <div className="cursor-pointer" data-testid="handleUploadFile2" onClick={() => { handleUploadFile() }} >
                     Update/Add new document
                     {/* <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => {handleFileChange(e,empDataById.id,form_column,path_add,dispatch);e.target.value=''}} type="file" hidden /> */}
-                    <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.UPDATE_FILE,fileEvent:e.target.files?.length ? Array.from(e.target.files) : [],userid:empDataById.id,fileColumn:form_column,path_add:path_add}));e.target.value=''}} type="file" hidden />
+                    <input ref={inputRef} data-testid="handleFileChange2" onChange={(e) => {dispatch(bgvConfirmDialogueValue({dialogueAction:ConfirmDailogueBoxActions.UPDATE_FILE,fileEvent:e.target.files?.length ? Array.from(e.target.files) : [],userid:empDataById.id,fileColumn:form_column,path_add:path_add}));e.target.value=''}} type="file" multiple hidden />
                 </div>
             </div>
             <div className="cursor-pointer" data-testid="extraActionPopUpbtn" onClick={() => setExtraActionPopUp(!isExtraActionsPopUp)} ref={extraActionSideRef}>

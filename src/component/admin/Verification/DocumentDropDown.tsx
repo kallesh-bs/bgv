@@ -29,7 +29,7 @@ const DocumetDropDown = () => {
    // const function
 
    return (
-      <div className={`rounded-xl ${handleDropDown && "border"} h-full mt-2  `}>
+      <div className={`rounded-xl ${handleDropDown && "border"} h-full mt-2 pb-10`}>
          <div className={`w-full bg-${!handleDropDown && "[#031B59]  text-white "} p-3 px-4 items-center rounded-xl   flex justify-between`}>
             <div className='flex gap-2 items-center'>
                {handleDropDown && 

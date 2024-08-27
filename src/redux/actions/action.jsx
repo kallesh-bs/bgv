@@ -65,8 +65,24 @@ import {
   TOTAL_WORKING_DAYS_LEAVES,
   UPDATE_JOB_OPENING,
   SET_CONFIRMDIALOGUE,
-  SET_CONFIRMDIALOGUE_VALUE
+  SET_CONFIRMDIALOGUE_VALUE,
+  SET_ADDRESS_OPTION_TAB,
+  SET_IDENTITY_OPTION_TAB
 } from "./types";
+
+export const bgvSetIdentifyOptionTab = (payload) => {
+  return {
+    type: SET_IDENTITY_OPTION_TAB,
+    payload,
+  };
+};
+
+export const bgvSetAddressOptionTab = (payload) => {
+  return {
+    type: SET_ADDRESS_OPTION_TAB,
+    payload,
+  };
+};
 
 export const bgvAllEmpData = (payload) => {
   return {
