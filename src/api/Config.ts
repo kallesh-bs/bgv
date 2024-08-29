@@ -1,7 +1,7 @@
 export const getHost = () => {
   const host = window.location.host;
-
-  if (host.includes("localhost") || host.includes("staging.deeporion.com") || host.includes('bgv-kallesh-b-ss-projects.vercel.app')) {
+  // https://bgv-nine.vercel.app/
+  if (host.includes("localhost") || host.includes("staging.deeporion.com") || host.includes('bgv-kallesh-b-ss-projects.vercel.app') || host.includes('bgv-nine.vercel.app')) {
     // return `http://localhost:3000/`;
     // return `https://deeporionback-0cd6e44c3c14.herokuapp.com/`;
     return "https://api.staging.deeporion.com/";
