@@ -88,7 +88,7 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
       swalService.showSuccess({
         icon: "success",
         title: "<p style='color:red'>Removed</p>",
-        text: "Document Deleted successfully",
+        text: "Document deleted successfully",
         showConfirmButton: false,
         timer: 1500,
     });
@@ -135,7 +135,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status",
+          text: "Failed to update document status",
           timer: 1500,
       });
       return;
@@ -149,7 +149,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
         handleSidePopUpData(dispatch, userid)
           swalService.showSuccess({
               icon: "success",
-              title: "<p style='color:green'>Uploded</p>",
+              title: "<p style='color:green'>Uploaded</p>",
               text:"Document uploaded successfully",
               showConfirmButton: false,
               timer: 1500,
@@ -159,7 +159,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
           swalService.showError({
               icon: "error",
               title: "Error!",
-              text: "Failed to upload Document",
+              text: "Failed to upload document",
               timer: 1500,
           });
       }
@@ -170,7 +170,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status ! Something gone wrong!",
+          text: "Failed to update document status ! Something gone wrong!",
           timer: 1500,
       });
   }
@@ -201,7 +201,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
         swalService.showSuccess({
             icon: "success",
             title: "Added!",
-            text: "Document Status Updated successfully",
+            text: "Document status updated successfully",
             showConfirmButton: false,
             timer: 1500,
         });
@@ -211,7 +211,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
         swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status ! Something gone wrong !",
+          text: "Failed to update document ttatus ! Something gone wrong !",
           timer: 1500,
       });
       }
@@ -221,7 +221,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status",
+          text: "Failed to update document status",
           timer: 1500,
       });
   }
@@ -238,19 +238,19 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
     path = `background_verification/notify_user/?id=${userid}`;
   }
   else if(tabclick === 4){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_employment_history_check/?id=${userid}`;
     notifyBody = {employeement_history_check_reason: reason}
   }
   else if(tabclick === 3){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_address_check/?id=${userid}`;
     notifyBody = { address_check_reason: reason}
   }
   else if(tabclick === 2){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_education_check/?id=${userid}`;
     notifyBody = {education_check_reason: reason}
   }
   else if(tabclick === 1){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_identity_check/?id=${userid}`;
     notifyBody = {identity_check_reason: reason}
   }
   // console.log(path);
