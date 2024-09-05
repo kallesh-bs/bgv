@@ -29,9 +29,7 @@ const Verfication: React.FC = () => {
     try {
       let gridItemsTemp: ICheckItem[] = [];
       gridItemsTemp.push({
-        value: allEmpData.total_check?.length
-          ? allEmpData.total_check.length
-          : 0,
+        value: allEmpData.total_count,
         label: "Total Checks",
         color: "#67147C",
         status: "",
