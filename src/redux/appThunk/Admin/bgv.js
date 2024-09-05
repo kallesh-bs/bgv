@@ -71,8 +71,6 @@ export const handleSidePopUpData = async (dispatch, userId) => {
 
 export async function handleFileDelete(userId, url, columnName, dispatch) {
   let path = `${apiUrl.background_verification}/remove_document/${userId}`;
-  // console.log(path, url, columnName);
-
   // Ensure a valid path was determined
   if (!path) {
     console.error("Invalid text value, no API path determined");
@@ -101,15 +99,13 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
     swalService.showError({
       icon: "error",
       title: "Error!",
-      text: "Failed to Delete Document",
+      text: "Failed to delete document",
       timer: 1500,
   });
   }
 }
 
 export const handleFileChange = async (event, userid, form_column, path_add, dispatch) => {
-  // const files = event.target.files === null? [] : Array.from(event.target.files);
-  // console.log(files);
 
   let docs;
 
@@ -135,7 +131,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update document status",
+          text: "Failed to upload document !",
           timer: 1500,
       });
       return;
@@ -170,14 +166,13 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update document status ! Something gone wrong!",
+          text: "Failed to upload document !",
           timer: 1500,
       });
   }
 }
 
 export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_status_column, dispatch) {
-  // console.log({ doc_status_column: doc_status });
 
   let path = `${path_add}/${userid}`;
   console.log(doc_status);
@@ -211,7 +206,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
         swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update document ttatus ! Something gone wrong !",
+          text: "Failed to update document status !",
           timer: 1500,
       });
       }
@@ -221,7 +216,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update document status",
+          text: "Failed to update Document Status",
           timer: 1500,
       });
   }
@@ -265,8 +260,6 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
   
 
   try {
-    // console.log(path);
-    // if(tabclick === 5){
     let formData = true
       const { response }  = await Helper.post(notifyBody,path);
 
@@ -276,7 +269,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
         
         swalService.showSuccess({
             icon: "success",
-            title: "Added!",
+            title: "Notified!",
             text: "Consent request email sent to user successfully",
             showConfirmButton: false,
             timer: 1500,
@@ -287,7 +280,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
         swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status ! Something gone wrong !",
+          text: "Failed to notify user ! Something gone wrong !",
           timer: 1500,
         });
       }
@@ -323,7 +316,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status",
+          text: "Failed to notify user!",
           timer: 1500,
       });
   }
