@@ -9,9 +9,10 @@ import VerificationTable from "./VerificationTable";
 const VerficationListing: React.FC<IVerficationListingProps> = ({
   tabValue,
   allEmpData,
+  currentPage,
+  setCurrentPage
 }) => {
   const { t } = useTranslation();
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchItem, setSearchItem] = useState<string>("");
   const [finalFilteredValue] = useState<any[]>([]);
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
@@ -32,7 +33,7 @@ const VerficationListing: React.FC<IVerficationListingProps> = ({
       <div className="w-full h-12 bg-white flex justify-between relative">
         <div className="flex justify-center items-center">
           <h2 className="font-extrabold text-xl text-[#031B59]">
-            {tabValue.label || "Total Checks"}
+            {tabValue?.label || "Total Checks"}
           </h2>
         </div>
 

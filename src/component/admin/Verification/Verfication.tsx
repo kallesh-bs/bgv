@@ -2,15 +2,16 @@ import useRedux from "hooks/useRedux";
 import React, { useEffect, useState } from "react";
 import { ICheckItem } from "utils/types";
 import VerficationListing from "./VerficationListing";
+import { useDispatch, useSelector } from "react-redux";
+import { bgvSetFilterTab } from "redux/actions/action";
+import { RootState } from "redux/store";
+import { fetchBgvFilterEmployeeData } from "redux/appThunk/Admin/bgv";
 
 const Verfication: React.FC = () => {
   const { appSelector } = useRedux();
-
-  let { allEmpData, totalChecks } = appSelector((state:any) => ({
-    allEmpData: state.bgvReducer.employeeData,
-    totalChecks: state.bgvReducer.employeeData.total_check,
-  }));
-
+  const dispatch = useDispatch()
+  const {employeeData:allEmpData,filterTab}:any = useSelector((state:RootState)=>state.bgvReducer)
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const [bgvStatus, setBgvStatus] = useState<string>("");
 
@@ -20,10 +21,6 @@ const Verfication: React.FC = () => {
   });
   const [gridItems, setGridItems] = useState<ICheckItem[]>([]);
 
-  // console.log(Boolean(allEmpData));
-  // console.log(allEmpData);
-  
-  
 
   async function getAddressCheck() {
     try {
@@ -65,6 +62,10 @@ const Verfication: React.FC = () => {
     }
   }
 
+ useEffect(()=>{
+  fetchBgvFilterEmployeeData(dispatch,currentPage,'')
+ },[])
+
   useEffect(() => {
     if (allEmpData) {
       getAddressCheck();
@@ -85,12 +86,20 @@ const Verfication: React.FC = () => {
                 borderWidth: tabValue.tab === index + 1 ? "1px" : "0px",
                 borderStyle: tabValue.tab === index + 1 ? "solid" : "none",
               }}
-              onClick={() => {
+              onClick={function () {
                 setTabValue({
                   tab: index + 1,
                   label: item.label,
                 });
+                dispatch(bgvSetFilterTab(
+                  {
+                    tab: index + 1,
+                    label: item.label,
+                  }
+                ))
+                fetchBgvFilterEmployeeData(dispatch,currentPage,item.status)
                 setBgvStatus(item.status);
+                setCurrentPage(1)
               }}
             >
               <div>
@@ -115,14 +124,10 @@ const Verfication: React.FC = () => {
       </div>
 
       <VerficationListing
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
         tabValue={tabValue}
-        allEmpData={
-          bgvStatus
-            ? totalChecks.filter(
-                (check: { status: string }) => check.status === bgvStatus
-              )
-            : totalChecks
-        }
+        allEmpData={filterTab?.tab === 2 ? allEmpData?.verified_check?.filter((obj:any)=>obj!==null) : filterTab?.tab === 3 ? allEmpData?.in_progress_check?.filter((obj:any)=>obj!==null) : filterTab?.tab === 4 ? allEmpData?.insufficient_check?.filter((obj:any)=>obj!==null) : filterTab?.tab === 5 ? allEmpData?.rejected_check?.filter((obj:any)=>obj!==null) : allEmpData?.total_check?.filter((obj:any)=>obj!==null)}
       />
     </>
   );

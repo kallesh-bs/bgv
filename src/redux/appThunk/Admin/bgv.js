@@ -1,5 +1,5 @@
 import Helper from "api/Helper";
-import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, isLoading } from "redux/actions/action";
+import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, bgvSetFilterTab, isLoading } from "redux/actions/action";
 import swalService from "utils/SwalServices";
 import apiUrl from "api/apiUrl";
 
@@ -24,11 +24,11 @@ export const fetchBgvEmployeeData =
   };
 
 export const fetchBgvFilterEmployeeData =
-  (currentPage, searchItem) => async (dispatch) => {
+  async (dispatch, currentPage, searchItem) => {
     dispatch(isLoading(true));
     const path = `background_verification?&page=${
       currentPage || 1
-    } &per_page=${10} &query=${searchItem || ""}`;
+    } &per_page=${10} &type=${searchItem || ""}`;
     try {
       const { response } = await Helper.get(path);
       if (response.message === "No records found") {
@@ -104,8 +104,6 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
 }
 
 export const handleFileChange = async (event, userid, form_column, path_add, dispatch) => {
-  // const files = event.target.files === null? [] : Array.from(event.target.files);
-  // console.log(files);
 
   let docs;
 
@@ -173,7 +171,6 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
 }
 
 export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_status_column, dispatch) {
-  // console.log({ doc_status_column: doc_status });
 
   let path = `${path_add}/${userid}`;
   console.log(doc_status);
@@ -261,19 +258,22 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
   
 
   try {
-    // console.log(path);
-    // if(tabclick === 5){
     let formData = true
       const { response }  = await Helper.post(notifyBody,path);
 
       console.log(response);
 
-      if (response.message==="Consent request email sent to user") {
+      if (response.message==="Consent request email sent to user"
+        ||response.message==='Identity check consent request email sent to user'
+        ||response.message==='Education check consent request email sent to user'
+        ||response.message==='Address check consent request email sent to user'
+        ||response.message==='Employment history check consent request email sent to user'
+      ) {
         
         swalService.showSuccess({
             icon: "success",
             title: "Notified!",
-            text: "Consent request email sent to user successfully",
+            text: "Notify email sent to user successfully",
             showConfirmButton: false,
             timer: 1500,
         });
