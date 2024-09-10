@@ -65,8 +65,6 @@ export const handleSidePopUpData = async (dispatch, userId) => {
   catch (error) {
     swalService.showError({ title: "Error while fetching data" });
   }
-
-  // console.log("hHe");
 }
 
 export async function handleFileDelete(userId, url, columnName, dispatch) {
@@ -233,19 +231,19 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
     path = `background_verification/notify_user/?id=${userid}`;
   }
   else if(tabclick === 4){
-    path = `background_verification/notify_check/?id=${userid}`;
+    path = `background_verification/notify_employment_history_check/?id=${userid}`;
     notifyBody = {employeement_history_check_reason: reason}
   }
   else if(tabclick === 3){
-    path = `background_verification/notify_check/?id=${userid}`;
+    path = `background_verification/notify_address_check/?id=${userid}`;
     notifyBody = { address_check_reason: reason}
   }
   else if(tabclick === 2){
-    path = `background_verification/notify_check/?id=${userid}`;
+    path = `background_verification/notify_education_check/?id=${userid}`;
     notifyBody = {education_check_reason: reason}
   }
   else if(tabclick === 1){
-    path = `background_verification/notify_check/?id=${userid}`;
+    path = `background_verification/notify_identity_check/?id=${userid}`;
     notifyBody = {identity_check_reason: reason}
   }
   // console.log(path);

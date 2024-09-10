@@ -1,10 +1,11 @@
 export const getHost = () => {
   const host = window.location.host;
-
-  if (host.includes("localhost") || host.includes("staging.deeporion.com")) {
+  // https://bgv-nine.vercel.app/
+  if (host.includes("localhost") || host.includes("staging.deeporion.com") || host.includes('bgv-kallesh-b-ss-projects.vercel.app') || host.includes('bgv-nine.vercel.app')) {
     // return `http://localhost:3000/`;
     // return `https://deeporionback-0cd6e44c3c14.herokuapp.com/`;
     return "https://api.staging.deeporion.com/";
+    // return "https://tangerine-rolypoly-583dab.netlify.app/";
     // return `https://api.deeporion.com/`;
   } else if (host.includes("deeporion.com")) {
     return "https://api.deeporion.com/";
