@@ -11,6 +11,7 @@ import {
   SET_CONFIRMDIALOGUE_VALUE,
   SET_IDENTITY_OPTION_TAB,
   SET_SIDE_POPUP_NAV_TAB,
+  SET_FILTER_TAB
 } from "redux/actions/types";
 
 const initialstate = {
@@ -21,7 +22,12 @@ const initialstate = {
   sidePopUpDocNavTab: 1,
   confirmDialogueValue:null,
   identifyOptionTab:"Choose~",
-  adressOptionTab:"Choose~"
+  adressOptionTab:"Choose~",
+  // filterTab:{
+  //   tab: 0,
+  //   label: "Total Checks",
+  // },
+  filterTab:0
 };
 
 // Define the action types
@@ -37,10 +43,16 @@ export type BGVAction =
   | { type: "IS_LOADING"; payload: boolean }
   | { type: "SET_CONFIRMDIALOGUE_VALUE"; payload:any}
   | { type: "SET_IDENTITY_OPTION_TAB"; payload:string}
-  | { type: "SET_ADDRESS_OPTION_TAB"; payload:string};
+  | { type: "SET_ADDRESS_OPTION_TAB"; payload:string}
+  | { type: "SET_FILTER_TAB"; payload:string};
 
 export const bgvReducer = (state = initialstate, action: BGVAction) => {
   switch (action.type) {
+    case SET_FILTER_TAB:
+      return {
+        ...state,
+        filterTab: action.payload,
+      };
     case SET_ADDRESS_OPTION_TAB:
       return {
         ...state,

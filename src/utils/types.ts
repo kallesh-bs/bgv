@@ -86,6 +86,8 @@ export interface IEmployeebriefProps {
 export interface IVerficationListingProps {
   tabValue: { tab: number; label: string };
   allEmpData: any[];
+  currentPage:any
+  setCurrentPage: (page: number) => void;
 }
 
 export interface IBgvEmployeeData {

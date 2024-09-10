@@ -1,5 +1,5 @@
 import Helper from "api/Helper";
-import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, isLoading } from "redux/actions/action";
+import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, bgvSetFilterTab, isLoading } from "redux/actions/action";
 import swalService from "utils/SwalServices";
 import apiUrl from "api/apiUrl";
 
@@ -24,11 +24,11 @@ export const fetchBgvEmployeeData =
   };
 
 export const fetchBgvFilterEmployeeData =
-  (currentPage, searchItem) => async (dispatch) => {
+  async (dispatch, currentPage, searchItem) => {
     dispatch(isLoading(true));
     const path = `background_verification?&page=${
       currentPage || 1
-    } &per_page=${10} &query=${searchItem || ""}`;
+    } &per_page=${10} &type=${searchItem || ""}`;
     try {
       const { response } = await Helper.get(path);
       if (response.message === "No records found") {
@@ -71,8 +71,6 @@ export const handleSidePopUpData = async (dispatch, userId) => {
 
 export async function handleFileDelete(userId, url, columnName, dispatch) {
   let path = `${apiUrl.background_verification}/remove_document/${userId}`;
-  // console.log(path, url, columnName);
-
   // Ensure a valid path was determined
   if (!path) {
     console.error("Invalid text value, no API path determined");
@@ -88,7 +86,7 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
       swalService.showSuccess({
         icon: "success",
         title: "<p style='color:red'>Removed</p>",
-        text: "Document Deleted successfully",
+        text: "Document deleted successfully",
         showConfirmButton: false,
         timer: 1500,
     });
@@ -101,15 +99,13 @@ export async function handleFileDelete(userId, url, columnName, dispatch) {
     swalService.showError({
       icon: "error",
       title: "Error!",
-      text: "Failed to Delete Document",
+      text: "Failed to delete document",
       timer: 1500,
   });
   }
 }
 
 export const handleFileChange = async (event, userid, form_column, path_add, dispatch) => {
-  // const files = event.target.files === null? [] : Array.from(event.target.files);
-  // console.log(files);
 
   let docs;
 
@@ -135,7 +131,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status",
+          text: "Failed to upload document !",
           timer: 1500,
       });
       return;
@@ -149,7 +145,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
         handleSidePopUpData(dispatch, userid)
           swalService.showSuccess({
               icon: "success",
-              title: "<p style='color:green'>Uploded</p>",
+              title: "<p style='color:green'>Uploaded</p>",
               text:"Document uploaded successfully",
               showConfirmButton: false,
               timer: 1500,
@@ -159,7 +155,7 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
           swalService.showError({
               icon: "error",
               title: "Error!",
-              text: "Failed to upload Document",
+              text: "Failed to upload document",
               timer: 1500,
           });
       }
@@ -170,14 +166,13 @@ export const handleFileChange = async (event, userid, form_column, path_add, dis
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status ! Something gone wrong!",
+          text: "Failed to upload document !",
           timer: 1500,
       });
   }
 }
 
 export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_status_column, dispatch) {
-  // console.log({ doc_status_column: doc_status });
 
   let path = `${path_add}/${userid}`;
   console.log(doc_status);
@@ -201,7 +196,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
         swalService.showSuccess({
             icon: "success",
             title: "Added!",
-            text: "Document Status Updated successfully",
+            text: "Document status updated successfully",
             showConfirmButton: false,
             timer: 1500,
         });
@@ -211,7 +206,7 @@ export async function handleUpdateDocStatus(userid, doc_status, path_add, doc_st
         swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status ! Something gone wrong !",
+          text: "Failed to update document status !",
           timer: 1500,
       });
       }
@@ -238,19 +233,19 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
     path = `background_verification/notify_user/?id=${userid}`;
   }
   else if(tabclick === 4){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = {employeement_history_check_reason: reason}
   }
   else if(tabclick === 3){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = { address_check_reason: reason}
   }
   else if(tabclick === 2){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = {education_check_reason: reason}
   }
   else if(tabclick === 1){
-    path = `background_verification/notify_user/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = {identity_check_reason: reason}
   }
   // console.log(path);
@@ -265,19 +260,22 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
   
 
   try {
-    // console.log(path);
-    // if(tabclick === 5){
     let formData = true
       const { response }  = await Helper.post(notifyBody,path);
 
       console.log(response);
 
-      if (response.message==="Consent request email sent to user") {
+      if (response.message==="Consent request email sent to user"
+        ||response.message==='Identity check consent request email sent to user'
+        ||response.message==='Education check consent request email sent to user'
+        ||response.message==='Address check consent request email sent to user'
+        ||response.message==='Employment history check consent request email sent to user'
+      ) {
         
         swalService.showSuccess({
             icon: "success",
-            title: "Added!",
-            text: "Consent request email sent to user successfully",
+            title: "Notified!",
+            text: "Notify email sent to user successfully",
             showConfirmButton: false,
             timer: 1500,
         });
@@ -287,7 +285,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
         swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status ! Something gone wrong !",
+          text: "Failed to notify user ! Something gone wrong !",
           timer: 1500,
         });
       }
@@ -323,7 +321,7 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
       swalService.showError({
           icon: "error",
           title: "Error!",
-          text: "Failed to update Document Status",
+          text: "Failed to notify user!",
           timer: 1500,
       });
   }
