@@ -1,5 +1,5 @@
 import Helper from "api/Helper";
-import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, isLoading } from "redux/actions/action";
+import { bgvAllEmpData, bgvConfirmDialogueValue, bgvEmployeeDataById, bgvSetFilterTab, isLoading } from "redux/actions/action";
 import swalService from "utils/SwalServices";
 import apiUrl from "api/apiUrl";
 
@@ -24,11 +24,11 @@ export const fetchBgvEmployeeData =
   };
 
 export const fetchBgvFilterEmployeeData =
-  (currentPage, searchItem) => async (dispatch) => {
+  async (dispatch, currentPage, searchItem) => {
     dispatch(isLoading(true));
     const path = `background_verification?&page=${
       currentPage || 1
-    } &per_page=${10} &query=${searchItem || ""}`;
+    } &per_page=${10} &type=${searchItem || ""}`;
     try {
       const { response } = await Helper.get(path);
       if (response.message === "No records found") {
@@ -233,19 +233,19 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
     path = `background_verification/notify_user/?id=${userid}`;
   }
   else if(tabclick === 4){
-    path = `background_verification/notify_employment_history_check/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = {employeement_history_check_reason: reason}
   }
   else if(tabclick === 3){
-    path = `background_verification/notify_address_check/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = { address_check_reason: reason}
   }
   else if(tabclick === 2){
-    path = `background_verification/notify_education_check/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = {education_check_reason: reason}
   }
   else if(tabclick === 1){
-    path = `background_verification/notify_identity_check/?id=${userid}`;
+    path = `background_verification/notify_check/?id=${userid}`;
     notifyBody = {identity_check_reason: reason}
   }
   // console.log(path);
@@ -265,12 +265,17 @@ export const handleNotify = async (userid, dispatch, handle, tabclick, reason="N
 
       console.log(response);
 
-      if (response.message==="Consent request email sent to user") {
+      if (response.message==="Consent request email sent to user"
+        ||response.message==='Identity check consent request email sent to user'
+        ||response.message==='Education check consent request email sent to user'
+        ||response.message==='Address check consent request email sent to user'
+        ||response.message==='Employment history check consent request email sent to user'
+      ) {
         
         swalService.showSuccess({
             icon: "success",
             title: "Notified!",
-            text: "Consent request email sent to user successfully",
+            text: "Notify email sent to user successfully",
             showConfirmButton: false,
             timer: 1500,
         });

@@ -67,7 +67,8 @@ import {
   SET_CONFIRMDIALOGUE,
   SET_CONFIRMDIALOGUE_VALUE,
   SET_ADDRESS_OPTION_TAB,
-  SET_IDENTITY_OPTION_TAB
+  SET_IDENTITY_OPTION_TAB,
+  SET_FILTER_TAB
 } from "./types";
 
 export const bgvSetIdentifyOptionTab = (payload) => {
@@ -80,6 +81,13 @@ export const bgvSetIdentifyOptionTab = (payload) => {
 export const bgvSetAddressOptionTab = (payload) => {
   return {
     type: SET_ADDRESS_OPTION_TAB,
+    payload,
+  };
+};
+
+export const bgvSetFilterTab = (payload) => {
+  return {
+    type: SET_FILTER_TAB,
     payload,
   };
 };

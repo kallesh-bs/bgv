@@ -50,6 +50,8 @@ const renderComponent = (props: Partial<IVerficationListingProps> = {}) => {
       { id: 1, status: "verified" },
       { id: 2, status: "in_progress" },
     ],
+    currentPage:1,
+    setCurrentPage:()=>''
   };
 
   return render(<VerficationListing {...defaultProps} {...props} />);
