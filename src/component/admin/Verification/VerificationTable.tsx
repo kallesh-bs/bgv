@@ -11,7 +11,7 @@ import { IEmployeeData, IVerificationTableProps } from "utils/types";
 import DocumetDropDown from "./DocumentDropDown";
 import Employeebrief from "./Employeebrief";
 
-const VerificationTable: React.FC<IVerificationTableProps> = ({
+const VerificationTable: React.FC<any> = ({
   employeeData,
   finalFilteredValue,
   currentPage,
@@ -193,7 +193,7 @@ const VerificationTable: React.FC<IVerificationTableProps> = ({
         {!isLoading && (
           <tbody className="p-2 text-sm text-left font-normal   flex-0">
             {employeeData &&
-              employeeData?.map((data, index) => renderRow(data, index))}
+              employeeData?.map((data:any, index:number) => renderRow(data, index))}
           </tbody>
         )}
       </table>

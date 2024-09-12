@@ -11,7 +11,9 @@ import {
   SET_CONFIRMDIALOGUE_VALUE,
   SET_IDENTITY_OPTION_TAB,
   SET_SIDE_POPUP_NAV_TAB,
-  SET_FILTER_TAB
+  SET_FILTER_TAB,
+  PAGINATION_PER_PAGE,
+  PAGINATION_CURRENT_PAGE
 } from "redux/actions/types";
 
 const initialstate = {
@@ -23,11 +25,9 @@ const initialstate = {
   confirmDialogueValue:null,
   identifyOptionTab:"Choose~",
   adressOptionTab:"Choose~",
-  // filterTab:{
-  //   tab: 0,
-  //   label: "Total Checks",
-  // },
-  filterTab:0
+  filterTab:1,
+  perPage:10,
+  currentPage:1,
 };
 
 // Define the action types
@@ -44,14 +44,26 @@ export type BGVAction =
   | { type: "SET_CONFIRMDIALOGUE_VALUE"; payload:any}
   | { type: "SET_IDENTITY_OPTION_TAB"; payload:string}
   | { type: "SET_ADDRESS_OPTION_TAB"; payload:string}
-  | { type: "SET_FILTER_TAB"; payload:string};
+  | { type: "SET_FILTER_TAB"; payload:number}
+  | { type: "PAGINATION_CURRENT_PAGE"; payload:string|number}
+  | { type: "PAGINATION_PER_PAGE"; payload:string|number};
 
 export const bgvReducer = (state = initialstate, action: BGVAction) => {
   switch (action.type) {
+    case PAGINATION_PER_PAGE:
+      return {
+        ...state,
+        perPage: action.payload,
+      };
+    case PAGINATION_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     case SET_FILTER_TAB:
       return {
         ...state,
-        filterTab: action.payload,
+        filterTab : action.payload
       };
     case SET_ADDRESS_OPTION_TAB:
       return {

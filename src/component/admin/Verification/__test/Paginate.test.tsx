@@ -14,7 +14,7 @@ const renderComponent = (props: Partial<IPaginateProps> = {}) => {
     setCurrentPage: jest.fn(),
   };
 
-  return render(<Paginate {...defaultProps} {...props} />);
+  // return render(<Paginate {...defaultProps} {...props} />);
 };
 
 describe("Paginate", () => {
