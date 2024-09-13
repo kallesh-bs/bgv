@@ -68,8 +68,24 @@ import {
   SET_CONFIRMDIALOGUE_VALUE,
   SET_ADDRESS_OPTION_TAB,
   SET_IDENTITY_OPTION_TAB,
-  SET_FILTER_TAB
+  SET_FILTER_TAB,
+  PAGINATION_PER_PAGE,
+  PAGINATION_CURRENT_PAGE
 } from "./types";
+
+export const bgvSetPaginationPerPage = (payload) => {
+  return {
+    type: PAGINATION_PER_PAGE,
+    payload,
+  };
+};
+
+export const bgvSetPaginationCurrentPage = (payload) => {
+  return {
+    type: PAGINATION_CURRENT_PAGE,
+    payload,
+  };
+};
 
 export const bgvSetIdentifyOptionTab = (payload) => {
   return {
